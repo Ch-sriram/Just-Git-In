@@ -15,10 +15,15 @@ Resources
    1. [Making a new git repository (initialization)]()
    2. [Logical States in Git]()
    3. [Commits in Git]()
+   4. [Overview of a Git Repository]()
+   5. [Initializing a Git Repository w. Existing Files/Project]()
+   6. [Commit History w. Log and Show]()
 
 
 ## 1. What is Git?
-Git is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operations and full access to internals.
+Git is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operations and full access to internals. 
+
+In simple words, it is basically a system which allows the user/developer to maintain different versions of their softwares/projects across their cloud service (which is GitHub, bitbucket, etc) or in the local machine (using git bash).
 
 Git is super fast because it supports local operations. It means that we can completely work disconnected from the internet. All of the changes made locally, will be pushed onto the remote repository when there's an active internet connection available, automatically.
 
@@ -116,10 +121,42 @@ Working Directory => Staging Area => Repository (.git folder) => Remote Reposito
 ### 6.3 Commits in Git
 To get the information about a git repository, we can use the <code>git status</code> command. We'll see that (for a newly created repository), we'll have the information related to the branch (which will be <em>master</em>) and the commit message (which will be <em>initial commit</em>).
 
+
 To commit changes made inside a git repository, we first need to make changes inside the repository. After that, we can save the changes and again type in the  <code>git status</code> command, which will give us the commit we are on (which will be 'initial commit'), and there'll be some <strong>untracked files</strong> (the files that you changed and are not committed in the local repository). Right now, the files are the "Working Directory (modified)" state. Now, if we want to get these modified files in the repository to the "Staging Area" state, we need to type in the  <code>git add &lt;file-name></code> command (example:  <code>git add README.md</code>). 
+
 
 Now that our file is in the staging area, we can verify that using the  <code>git status</code> command. If we type it, we will see that we are still in the "initial commit" in the master branch, but we'll see that there's some new information which is <strong>Changes to be committed</strong> and git bash will show all the files which are in the staging area which are ready to be committed.
 
-To make sure that the files in the staging area are committed to the repository (.git folder), we give  <code>git commit -m &lt;commit-message></code> command in the git bash where the &lt;commit-message> can be any message depending on the changes made to the repository. When we commit the changes to the repository, we get information about the number of file changes and the number or insertions/deletions with a commit ID (which is a unique hashed value like 8fbc96b).
 
-Now when we type in the  <code>git status</code> command, we get the information that we are still on the master branch and we have nothing to commit in the working directory, which is mentioned as <em>nothing to commit, working directory clean</em>.
+To make sure that the files in the staging area are committed to the repository (.git folder), we give  <code>git commit -m &lt;commit-message></code> command in the git bash where the &lt;commit-message> can be any message depending on the changes made to the repository. When we commit the changes to the repository, we get information about the number of file changes and the number of insertions/deletions with a commit ID (which is a unique hashed value like 7dxc32e).
+
+
+Now when we type in the  <code>git status</code> command, we get the information that we are still on the master branch and we have nothing to commit in the working directory, which is mentioned as:  <em>nothing to commit, working directory clean</em>.
+
+
+
+### 6.4 Overview of a Git Repository
+Inside our repository, currently, we have one file (say) which README.md which is committed. Whatever our repository's name is (let's say "demo"), our directory, is the working directory of our git repository. The actual git repository is contained within .git folder which inside our working directory. The .git folder is a special directory that git manages internally.
+
+
+To get into the .git folder, we have to get into the .git folder using <code>cd .git/</code> command, and when we check the files inside the .git folder using <code>ls -al</code>, we will see that the we will see certain files which are <em>HEAD, branches, config, description, hooks, index, info, logs, objects, refs, etc</em>. These files are not to be changed without the knowledge of how to do so.
+
+
+To change our working directory into a normal folder, we can simply remove the .git folder from our working directory, and our directory will simply be a normal folder in our filesystem. To remove the .git folder, we type in <code>rm -rf .git</code> command to (-rf: recursively and forcefully) delete anything that's contained inside the .git folder. When we return to our prompt, we can see in the git bash that now, it knows the fact that we are no longer inside a git repository, we are inside a normal directory, and therefore, the git bash won't show any branch information with the directory we are inside. 
+
+
+If we simply type in <code>git status</code> into the git bash now, git bash will respond with the following message: 
+
+<em>fatal: Not a git repository (or any of the parent directories): .git</em>
+
+
+### 6.5 Initializing a Git Repository w. Existing Files/Project
+Now that we've deleted our .git folder, our "demo" folder is no longer a git repository, therefore, to make it a git repository, we first navigate the git bash to the "demo" folder, and just type in <code>git init .</code> command in the git bash, where . means "current folder". It will initialize the git repository inside the current folder. 
+
+When we type in <code>ls -la</code> in the git bash, we can see that now our "demo" folder contains the .git folder and therefore now our current working directory has become a git repository.
+
+Now we can follow the steps [6.3 Commits in Git]() to make changes and commit the changes in the git repository we created.
+
+
+### 6.6 Commit History w. Log and Show
+Within our "demo" git repository.
