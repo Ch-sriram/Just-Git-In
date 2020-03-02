@@ -5,6 +5,7 @@ Resources
 1. [Official Git Documentation](https://git-scm.com/docs)
 2. [Jason Taylor's Online Git & GitHub Course](https://www.udemy.com/course/github-ultimate/)
 
+
 ## Table Of Contents
 1. [What is Git?]()
 2. [What is a Repository?]()
@@ -19,6 +20,9 @@ Resources
    5. [Initializing a Git Repository w. Existing Files/Project]()
    6. [Commit History w. Log and Show]()
    7. [Express Commits]()
+   8. [Rolling Back Changes]()
+
+
 
 
 ## 1. What is Git?
@@ -175,3 +179,19 @@ We can get rid of the newly created file using <code>rm &lt;new-file-name></code
 When we say we are adding the modified files into the git's staging area, we are basically adding the modifications to the git repository, not the entire modified file.
 
 Now when we type in <code>git log</code> into the git bash, we can see all the commits we made till now and also the most recent commit that we made earlier at the top of the logs.
+
+
+### 6.8 Rolling Back Changes
+Here, we will back out the changes we made previously by unstaging our changes from the git staging area and then finally we will revert our changes entirely. 
+
+In our "demo" git repository, when we git bash the command <code>git status</code>, we can see that there will be nothing to commit and we will see the following message: <em>nothing to commit, working directory clean</em>.
+
+Now, we will modify the README.md file again and we will put some random text inside it. We save and close the README and then we again type in <code>git status</code> command inside the git bash. We can see that we will have the message - <strong>modified: README.md</strong> and then we can add the changes into the repository using <code>git add .</code> command in our git bash. When we type in <code>git status</code> again, we can see that we see the message - <strong>Changes to be committed: modified: README.md</strong> in the git bash. 
+
+Now, to unstage the changes, or undo the commit, we can type in the command <code>git reset HEAD README.md</code> where README.md is the file to be unstaged from the user's repository. When we open up our README.md file, the changes that we made, will still be there, but the changes that we made have simply been unstaged, that means, when we type in the command <code>git status</code>, we can see that the message we get is - <strong>Changes not staged for commit: modified: README.md</strong> in the git bash.
+
+Now, if we don't want the changes that we made and to discard the changes made to the repository, we can simply revert back to the last known good state (or commit) of the respective file (here, it is README.md) whose details are available inside the .git folder, we simply type in <code>git checkout -- &lt;file-name></code> (ex: <code>git checkout -- README.md</code>). Now, we can check the status of the repository with <code>git status</code> command, which will respond with the message - <em>nothing to commit, working directory clean</em> in the master branch of our "demo" repository. Now if we open README.md, we can see that the changes we made are also gone.
+
+
+### 6.9 Creating New Commands - Git Alias
+We will create a git alias to shorten a command into a smaller command. In our "demo" repository, in the master branch, when we type in <code>git status</code>, we can see that we have <em>nothing to commit, working directory clean</em> as the message.
