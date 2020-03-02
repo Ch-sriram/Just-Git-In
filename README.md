@@ -18,6 +18,7 @@ Resources
    4. [Overview of a Git Repository]()
    5. [Initializing a Git Repository w. Existing Files/Project]()
    6. [Commit History w. Log and Show]()
+   7. [Express Commits]()
 
 
 ## 1. What is Git?
@@ -162,3 +163,15 @@ Now we can follow the steps [6.3 Commits in Git]() to make changes and commit th
 Within our "demo" git repository to show all the commits/changes that have been made in our repository (in the order of most recent to least recent), we simply type in <code>git log</code> command and we will get the information about all the commits we have made so far, regarding our git repository. The commits contain the hash identifier (which is a SHA-1 ID to uniquely commits within a repository) along with the Author (which contains the user.name and user.email), Date followed by the commit message. 
 
 We can get a similar information using the <code>git show</code> command. It will show the last commit we made to the repository and a <code>diff</code> containing all the changes we made in the commit. To get out of the <code>show</code> command, we simply press 'q' in the git bash.
+
+
+### 6.7 Express Commits
+Inside git bash, we are in the "demo" git repository. When we type in <code>git status</code> command, we can see that there will be a message - <em>nothing to commit, working directory clean</em>. Inside our "demo" git repo, it shows that we have a LICENCE.md & README.md file. If we update one of them and again type in the <code>git status</code> command in the git bash, we can see that git will show us the message - <strong>modified: &lt;file-name></strong>.
+
+The difference between previous commits and this commit is that this time, the files are not untracked, they're tracked, but modified. This is how git tracks the difference between tracked and untracked files in a git repository. To know the files that are being tracked by git, we type in the <code>git ls-files</code> in the git bash. Git will show all the files that are being tracked by it. Now if we add a new file to the "demo" repository and again when we type in <code>git ls-files</code> command, we can see that git is still not tracking the new file. When we type in the <code>git status</code> command, we will see that there will be 2 messages: <strong>modified: &lt;prev-file></strong> and <strong>Untracked files: &lt;new-file></strong>.
+
+We can get rid of the newly created file using <code>rm &lt;new-file-name></code> and if we again type in <code>git status</code> command, we will see that there will only be one message and it will be the <strong>modified: &lt;file-name></strong>. Now to commit these changes, we can simply type in <code>git commit -m "commit-message"</code> into the git bash. But, we can do something much better by committing the changes expressly. The Express Commits rely upon one thing, which are/is the tracked file(s) in the repository. To add the files to the staging area and then commit them in a single command, we type in <code>git commit -am "commit-message"</code> into the git bash. Here, <code>-am</code> option => a: add all modified and tracked files to the staging area, and m: give the commit with a message. 
+
+When we say we are adding the modified files into the git's staging area, we are basically adding the modifications to the git repository, not the entire modified file.
+
+Now when we type in <code>git log</code> into the git bash, we can see all the commits we made till now and also the most recent commit that we made earlier at the top of the logs.
