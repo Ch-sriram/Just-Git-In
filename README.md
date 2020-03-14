@@ -25,6 +25,8 @@ Resources
    10. [Renaming & Deleting Files Using Git Bash]()
    11. [Renaming & Deleting Files Not Using Git Bash, but the OS Commands]()
    12. [Excluding/Ignoring Unwanted Files in our Git Repository]()
+7. [Advanced Version Control Using Git]()
+   1. [Introduction]()
 
 
 
@@ -288,4 +290,20 @@ Untracked files:
       <strong>.gitignore</strong>
 </pre>
 
-We can see that <em>app.log</em> has already been ignored from the repository, but the <strong>.gitignore</strong> file is being tracked now. If we want the changes to take place properly, we need to commit the repository using <code>git commit -am "Adding .gitignore file"</code> in the git bash or terminal. When we check the status of the repository, we will see that we are back to a clean working directory.
+We can see that <em>app.log</em> has already been ignored from the repository, but the <strong>.gitignore</strong> file is being tracked now. If we want the changes to take place properly, we need to commit the repository using <code>git commit -am "Adding .gitignore file"</code> in the git bash or terminal (Otherwise, first do <code>git add .</code> and then type in <code>git commit -m "Adding .gitignore file"</code>). When we check the status of the repository, we will see that we are back to a clean working directory.
+
+We can check the files in our repository by listing the files in the terminal (Windows: <code>dir</code> & Linux/Mac: <code>ls -la</code>) and we can see that app.log is still in the repository, but it is not being tracked by git i.e., it is being ignored by git, because it is mentioned inside <strong>.gitignore</strong> file.
+
+For now, we can simply go ahead and remove app.log entirely, from the terminal (Windows: <code>del app.log</code> & Linux/Mac: <code>rm app.log</code>).
+
+
+
+## 7. Advanced Version Control Using Git
+In this section, we will learn more advanced concepts and techniques in git that apply in local repository. Some of the topics covered in this section include: the following topics:
+- Comparing Differences,
+- Branching, Merging & Conflict Resolution,
+- Marking Milestones w. Tagging,
+- How to save Work in Progress,
+- How to Time Travel, Other, etc.
+
+
