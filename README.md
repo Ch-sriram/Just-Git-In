@@ -23,6 +23,8 @@ Resources
    8. [Rolling Back Changes]()
    9. [Creating New Commands - Git Alias]()
    10. [Renaming & Deleting Files Using Git Bash]()
+   11. [Renaming & Deleting Files Not Using Git Bash, but the OS Commands]()
+   12. [Excluding/Ignoring Unwanted Files in our Git Repository]()
 
 
 
@@ -211,3 +213,79 @@ In our demo repository, we will create a file called <strong>example.txt</strong
 Now, if we want to change the name of the file we just made, we can change the name in the git bash using the <code>git mv example.txt demo.txt</code> command. When we again check the status of the repository (using <code>git status</code> command), we will see the message - <strong>Changes to be committed: renamed:     example.txt -> demo.txt</strong>. This change is in the staged state. The renaming takes effect properly, only when we commit. When we list the files of the repository (using <code>ls -la</code> command) in git bash, we can see that the file has already been renamed on the Operating System. But to finish the task, we need to actually commit the changes and let our changes be in the .git directory, in the final state, the Committed State. For that, we type in <code>git commit -m "renamed example.txt to demo.txt"</code>. We will see a message - <strong>rename example.txt => demo.txt (100%)</strong> where the 100% inside the parentheses is the confidence level given by git that this file's content is a 100% similar to the previous file name, i.e., example.txt's context hasn't been changed, only the name of the file has been changed to demo.txt. If we would've made modifications to demo.txt before committing the state of the repository, then the confidence level would've been lower than 100%.
 
 If we wanted to delete a file that we made, we can remove it using the <code>rm</code> command in the git bash. To remove it using the git bash (instead of the facilities provided by the OS), we type in <code>git rm demo.txt</code> command in the git bash. If we delete/rename/modify files using the git commands (instead of the commands provided by the OS), we will get the additional benefit of git tracking the changes that we made in our repository. And so, we will have more power with us using the version control system. Now, if we simply list the files in our repository, we will see that we no longer have demo.txt file in our repository. Now, when we check the status of our repository (using <code>git status</code> command), we can see the message - <strong>Changes to be committed: deleted:    demo.txt</strong>, meaning, our deletion is just staged, it hasn't been committed. Therefore, we have to commit to completely reflect the changes in the .git directory of our repository using <code>git commit -m "deleting demo.txt file"</code>. When we check the status of our repo, we should see the message <em>nothing to commit, working directory clean</em>.
+
+
+### 6.11 Renaming & Deleting Files Not Using Git Bash, but the OS Commands
+We will create a new file in the demo repository using the OS commands (<code>notepad file-name</code> command for Windows Systems and <code>touch file-name</code> command for Linux/Mac Systems). We will list the files using the terminal (<code>dir</code> for Windows systems and <code>ls</code> for Linux/Mac systems). We will rename LICENCE.md to LICENCE.txt using the OS' terminal (Windows: <code>rename LICENCE.md LICENCE.txt</code>, Linux/Mac: <code>mv LICENCE.md LICENCE.txt</code>). Note that we are trying to make new files and rename them using the respective OS' commands and therefore, git sees these changes differently. When we check the status of our repository (using <code>git status</code> command), we will see that we have the message -
+<pre>
+Changes not staged for commit: 
+      <strong>deleted:   LICENCE.md</strong>
+
+Untracked files:
+      <strong>LICENCE.txt</strong>
+      <strong>myfile.txt</strong>
+</pre>
+
+We can see that we see <strong>myfile.txt</strong> as an untracked file. But git sees the renaming of the file using the terminal as a deletion and a new file addition to the repository. Therefore, we need to tell git about our recent changes. To stage the deletions in our repository, we type in <code>git add -u</code> where -u stands for "update". When we check the status of the repository (using <code>git status</code> command), we can see that we have the message -
+<pre>
+Changes to be committed: 
+      <strong>deleted:   LICENCE.md</strong>
+
+Untracked files:
+      <strong>LICENCE.txt</strong>
+      <strong>myfile.txt</strong>
+</pre>
+
+Now, we can see that only the deletions are taken care of. In order to include both additions and deletions in our repository, we have to type in <code>git add -A</code> in the cmd/terminal where -A covers all types of modifications made to the repository (both addition and deletions) properly. Now when we check the status of our repository (using <code>git status</code> command), we will see the message - 
+<pre>
+Changes to be committed: 
+      <strong>renamed:   LICENCE.md -> LICENCE.txt</strong>
+      <strong>new file:  myfile.txt</strong>
+</pre>
+
+At this point, these changes are only staged. We have to commit the changes using <code>git commit -m "rename and add"</code> command in the cmd/terminal of our pwd. We can check the status after we commit using the <code>git status</code> command.
+
+Now, if we want to delete the <strong>myfile.txt</strong>, we can type in the respective OS' command from the cmd/terminal (Windows: <code>del myfile.txt</code>, Linux/Mac: <code>rm myfile.txt</code>). Now when we check the status of our repository, we will see the message - 
+<pre>
+Changes not staged for commit: 
+      <strong>deleted:   myfile.txt</strong>
+</pre>
+
+Now we stage our deletion using <code>git add -u</code> command in the cmd/terminal. Check the status of our repository, and we will see the message - 
+<pre>
+Changes to be committed: 
+      <strong>deleted:  myfile.txt</strong>
+</pre>
+
+Now we commit the changes made to the repository using <code>git commit -m "removed myfile.txt"</code> command. When we check the status again, we will see the message - <em>nothing to commit, working directory clean</em>.
+
+
+### 6.12 Excluding/Ignoring Unwanted Files in our Git Repository
+Assume that we create a new log file inside our demo repository (Windows: <code>notepad app.log</code> & Linux/Mac: <code>touch app.log</code>). When we check the status of the git repository, we will see that the newly created log file is untracked, and the message we should get is - 
+
+<pre>
+Untracked files:
+      <strong>app.log</strong>
+</pre>
+
+In general, in a repository, we don't want anything other than the source code of the app that we are developing. Therefore, log files, images, videos, etc are not supposed to be in our git repository. For this, our version control, i.e., git, has to ignore these files. To exclude files/folders that we don't want in our git repository, we create a <strong>.gitignore</strong> file inside which we write the relative paths of the files that we don't want to be tracked in our repository.
+
+Therefore, we create a <strong>.gitignore</strong> file in cmd/terminal (Windows: <code>notepad .gitignore</code> & Linux/Mac: <code>touch .gitignore</code>) and then type in the relative path of the file/folder that we want to completely exclude from being tracked by the git version control. In our case, we want to exclude app.log file, and therefore, in our .gitignore file, we can type in the following - 
+<strong><em>.gitignore</em></strong>
+<pre>
+app.log
+</pre>
+
+Otherwise, if we want to exclude all the log files, we can type in the following - 
+<strong><em>.gitignore</em></strong>
+<pre>
+*.log
+</pre>
+
+Now, any file that ends with .log extension will be excluded from being tracked in our repository. We can save the .gitignore file and then close the file and in the terminal, we can again check the status of the repository (using <code>git status</code>) and we will see the following message - 
+<pre>
+Untracked files:
+      <strong>.gitignore</strong>
+</pre>
+
+We can see that <em>app.log</em> has already been ignored from the repository, but the <strong>.gitignore</strong> file is being tracked now. If we want the changes to take place properly, we need to commit the repository using <code>git commit -m "Adding .gitignore file"</code> in the git bash or terminal. When we check the status of the repository, we will see that we are back to a clean working directory.
