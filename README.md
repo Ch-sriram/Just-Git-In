@@ -288,4 +288,4 @@ Untracked files:
       <strong>.gitignore</strong>
 </pre>
 
-We can see that <em>app.log</em> has already been ignored from the repository, but the <strong>.gitignore</strong> file is being tracked now. If we want the changes to take place properly, we need to commit the repository using <code>git commit -m "Adding .gitignore file"</code> in the git bash or terminal. When we check the status of the repository, we will see that we are back to a clean working directory.
+We can see that <em>app.log</em> has already been ignored from the repository, but the <strong>.gitignore</strong> file is being tracked now. If we want the changes to take place properly, we need to commit the repository using <code>git commit -am "Adding .gitignore file"</code> in the git bash or terminal. When we check the status of the repository, we will see that we are back to a clean working directory.
