@@ -519,7 +519,7 @@ This is bound to cause trouble!
 
 We will save and close that change and then commit using <code>git commit -am "very bad update in LICENCE.md"</code> command in the terminal. We should see something of the following sort in our terminal:
 <pre>
-[bery-bad 809b141] very bad update in LICENCE.md
+[very-bad 809b141] very bad update in LICENCE.md
  1 file changed, 1 insertion(+), 1 deletion(-)
 </pre>
 
