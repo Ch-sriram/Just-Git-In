@@ -31,6 +31,8 @@ Resources
    3. [Special Markers/Pointers]()
    4. [Example of Branching]()
    5. [Conflict Resolution While Merging]()
+   6. [Marking Special Events w. Tagging]()
+   7. [Saving Work in Progress w. Stashing]()
 
 
 
@@ -621,3 +623,138 @@ We will express commit the current state of our repository using <code>git commi
 </pre>
 
 Now, all the files with <strong>.orig</strong> extension will be excluded from being tracked in our git repository and therefore, we can go ahead and delete LICENCE.md.orig (Windows: <code>del LICENCE.md.orig</code> & Linux/Mac: <code>rm LICENCE.md.orig</code>).
+
+
+
+### 7.6 Marking Special Events w. Tagging
+We are currently in the demo repository on the master branch. If we use our alias i.e., <code>git hist</code>, we should get something similar to the following response in the terminal:
+
+<pre>
+* 3c5ec7d (<strong>HEAD -> master</strong>) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (<strong>very-bad</strong>) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+At this point, we have been working with our demo repository for a really long time. So, we can mark this point in the repository with some type of a milestone. To do that, Git supports a notion of <strong>tags</strong>, which are just labels that we can put at any arbitrary commit point. By default, if we don't specify a commit (i.e., commit ID), it will be the current commit or <strong>HEAD</strong>. Now, there are two type of tags and they're:
+
+1. <strong>Lightweight Tags</strong>: It is simply a tag which just has a name associated to it. We create a lightweight tag using the <code>git tag tag-name</code> command (ex: <code>git tag mytag</code>). Now, if we type in <code>git tag --list</code>, we will see the following response in the terminal:
+
+<pre>
+mytag
+</pre>
+
+which is essentially a list of tags we have made. And, if we check all the logs using our alias that we created i.e., <code>git hist</code>, we should something similar to the following response in the terminal:
+
+<pre>
+* 3c5ec7d (<strong>HEAD -> master, tag: mytag</strong>) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (<strong>very-bad</strong>) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+Now, this is a lightweight tag and so there's no associated information with it.
+2. <strong>Annotated Tags</strong>: These tags should be preferred over lightweight tags when we have several releases of the app we are working on, and also, each release/version of the app has some changelog associated with itself. Annotated tags have extra information associated with the tag. Before we create an annotated tag, we will delete the lightweight tag we created earlier (i.e., mytag) using <code>git tag -d tag-name</code> (ex: <code>git tag -d mytag</code>) command in the terminal and we should see the following response in the output:
+
+<pre>
+Deleted tag 'mytag' (was 3c5ec7d)
+</pre>
+
+Now, to create an annotated tag, we use the command syntax as <code>git tag -a tag-name -m "commit-message"</code> (ex: <code>git tag -a v1.0 -m "Release 1.0"</code>) in the terminal. We will see the list of tags we have using <code>git tag --list</code> command in the terminal, and we should get the following output:
+
+<pre>
+v1.0
+</pre>
+
+When we type in <code>git hist</code>, we will see the following output in the terminal:
+
+<pre>
+* 3c5ec7d (<strong>HEAD -> master, tag: v1.0</strong>) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (<strong>very-bad</strong>) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+So far, we haven't seen any difference between a lightweight tag and an annotated tag. The question remains, where does the annotation (i.e., the commit message that we typed in) come in? To view the annotations of an annotated tag, we type in <code>git show tag-name</code> (ex: <code>git show v1.0</code>), we should see something similar to the following output in the terminal:
+
+<pre>
+tag v1.0
+Tagger: Chandrabhatta Sriram &lt;sriram@example.com>
+Date:   Sun Mar 15 19:23:33 2020 +0530
+
+Release 1.0
+
+commit 3c5ec7d224122896467386d56b6b12dd6336698c (HEAD -> master, tag: v1.0)
+Author: Chandrabhatta Sriram &lt;sriram@example.com>
+Date:   Sun Mar 15 12:24:56 2020 +0530
+
+    Updating .gitignore to exclude .orig files
+
+diff --git a/.gitignore b/.gitignore
+index bf0824e..490a1a0 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1 +1,2 @@
+-*.log
+\ No newline at end of file
++*.log
++*.orig
+\ No newline at end of file
+</pre>
+
+We can see that it has the information about the Tagger, Date that the respective version of the repository was tagged, the commit message (in this case "Release 1.0") followed by the rest of the information for the commit that's associated with that tag. These annotated tags are really useful when we are trying to note major milestones/versions/releases of our repository, and we generally, might want to associate some information with those major releases/versions and that could be achieved through tagging.
+
+
+### 7.7 Saving Work in Progress w. Stashing
+We are currently in the demo repository on the master branch in a clean working directory.
