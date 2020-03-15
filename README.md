@@ -30,6 +30,7 @@ Resources
    2. [Branching and Merging Types in Git]()
    3. [Special Markers/Pointers]()
    4. [Example of Branching]()
+   5. [Conflict Resolution While Merging]()
 
 
 
@@ -379,8 +380,8 @@ nothing to commit, working directory clean
 
 Now when we type in our git alias i.e., <code>git hist</code>, we will see something similar to the following response in the terminal:
 <pre>
-* 9394c33 (HEAD, updates) Adding new updates from master branch to 'updates' branch
-* 6b79701 (master) README Update
+* 9394c33 (<strong>HEAD -> updates</strong>) Adding new updates from master branch to 'updates' branch
+* 6b79701 (<strong>master</strong>) README Update
 * 20c7c63 Adding .gitignore file
 * eb94f26 Adding .gitignore file
 * 801a434 README Update
@@ -399,8 +400,8 @@ We can see that the latest commit is on the "updates" branch and the previous co
 
 In order to integrate any changes made in "updates" branch, we need to first switch to the parent branch, which is the "master" branch. To switch branches, we use the <strong>checkout</strong> command. Syntax: <code>git checkout branch-name</code>. Example usage: <code>git checkout master</code>. Now, we will look into the log/history from <em>master</em> branch's perspective by typing in <code>git hist</code> command in the terminal. We should get a response which is somewhat similar to the following:
 <pre>
-* 9394c33 (updates) Adding new updates from master branch to 'updates' branch
-* 6b79701 (HEAD, master) README Update
+* 9394c33 (<strong>updates</strong>) Adding new updates from master branch to 'updates' branch
+* 6b79701 (<strong>HEAD -> master</strong>) README Update
 * 20c7c63 Adding .gitignore file
 * eb94f26 Adding .gitignore file
 * 801a434 README Update
@@ -431,7 +432,7 @@ This merge that we did just now, was the most simple merge, where we simply did 
 
 Now, if we type in <code>git hist</code> (our git alias) command, we should see some message that looks as follows:
 <pre>
-* 9394c33 (HEAD, updates, master) Adding new updates from master branch to 'updates' branch
+* 9394c33 (<strong>HEAD -> master, updates</strong>) Adding new updates from master branch to 'updates' branch
 * 6b79701 README Update
 * 20c7c63 Adding .gitignore file
 * eb94f26 Adding .gitignore file
@@ -461,7 +462,7 @@ Again, when we type in <code>git branch</code>, we will see the following respon
 
 Now, if we use our git log alias which is <code>git hist</code>, we will be seeing something of the following sort:
 <pre>
-* 9394c33 (HEAD, master) Adding new updates from master branch to 'updates' branch
+* 9394c33 (<strong>HEAD -> master</strong>) Adding new updates from master branch to 'updates' branch
 * 6b79701 README Update
 * 20c7c63 Adding .gitignore file
 * eb94f26 Adding .gitignore file
@@ -478,3 +479,145 @@ Now, if we use our git log alias which is <code>git hist</code>, we will be seei
 </pre>
 
 We can see that we no longer have the <em>updates</em> branch associated with the respective commit ID (in our case, it is 9394c33). Also note that the actual log/history did NOT vanish/go-away, just the label i.e., <em>updates</em> was removed.
+
+
+### 7.5 Conflict Resolution While Merging
+This time, we will deliberately cause a conflict in our git repository and then resolve that conflict when working with branches. We will cause a conflict in the LICENCE.md file. 
+
+We are currently in the demo git repository from where, if we check the status of our git repository (using <code>git status</code>), we will see that we are on branch <em>master</em> and the working directory is clean with nothing to commit.
+
+From the <em>master</em> branch, we will open the LICENCE.md file and then make changes to it. We will add the 3<sup>rd</sup> line with the string "This is some change!!" as seen below:
+
+<strong>LICENCE.md</strong>
+<pre>
+# LICENCE
+## [Licence Name] - [Some Text], just for this tutorial.
+This is some change!!
+</pre>
+
+We will save and get back to the terminal and then create a branch, say <strong>very-bad</strong> branch using <code>git checkout -b very-bad</code> command in the terminal. We should see the following message as a response from the terminal:
+<pre>
+Switched to a new branch 'very-bad'
+</pre>
+
+Now if we type in <code>git branch -a</code> in the terminal, we should a response that is somewhat similar to the following message:
+<pre>
+  master
+* <strong>very-bad</strong>
+</pre>
+
+which means that we are currently working with the <em>very-bad</em> branch (or timeline).
+
+Now we will modify our LICENCE.md file such that it will cause a conflict. To do that, we have to update the same part of the file on both the branches (viz. <em>master</em> and <em>very-bad</em>). Therefore, we will update the 3<sup>rd</sup> line of LICENCE.md file with the string "This is bound to cause trouble!" as seen below:
+
+<strong>LICENCE.md</strong>
+<pre>
+# LICENCE
+## [Licence Name] - [Some Text], just for this tutorial.
+This is bound to cause trouble!
+</pre>
+
+We will save and close that change and then commit using <code>git commit -am "very bad update in LICENCE.md"</code> command in the terminal. We should see something of the following sort in our terminal:
+<pre>
+[bery-bad 809b141] very bad update in LICENCE.md
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre>
+
+When we use our pre-defined git alias for the log, which is <code>git hist</code>, we should something of the similar sort in our terminal:
+<pre>
+* 809b141 (<strong>HEAD -> very-bad</strong>)
+* 9394c33 (<strong>master</strong>) Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+Now, we will switch to <em>master</em> branch using <code>git checkout master</code> command in the terminal. We should see the following message in the terminal:
+<pre>
+Switched to branch 'master'
+</pre>
+
+Before we merge in the changes, we are going to think about this scenario as us being another developer who didn't know about the changes made to the LICENCE.md file at the 3<sup>rd</sup> line, and therefore, we will make another change at the 3<sup>rd</sup> line of the LICENCE.md file with the string "I hope this is not much of a problem!!!". The changes made should look as the file shown below:
+
+<strong>LICENCE.md</strong>
+<pre>
+# LICENCE
+## [Licence Name] - [Some Text], just for this tutorial.
+I hope this is not much of a problem!!!
+</pre>
+
+Save and close the LICENCE.md file and in the terminal, we will again do the express commit using <code>git commit -am "LICENCE.md Update (Merge Conflict Possible)"</code>. Now we will merge the <em>very-bad</em> branch into the <em>master</em> branch using <code>git merge very-bad</code> command in the terminal, and we should see a message of the following sort:
+<pre>
+Auto-merging LICENCE.md
+CONFLICT (content): Merge conflict in LICENCE.md
+Automatic merge failed; fix conflicts and then commit the result.
+</pre>
+
+Therefore as we can see, due to the multiple changes of the same file at the same location of the two branches, the auto-merge functionality, when merging the branches, doesn't know which version of the LICENCE.md to keep in the repository. Therefore, there's a conflict here, which places us in a <strong>MERGING state</strong> which is denoted by our git bash as the following:
+<pre>
+(master|MERGING) demo $ 
+</pre>
+
+Now, when we see the contents of the LICENCE.md file (because LICENCE.md file is the file that's implicated in the merge conflict) using <code>cat LICENCE.md</code> in git bash, we should the contents of the file somewhat similar to the following:
+
+<strong>LICENCE.md</strong>
+<pre>
+# LICENCE
+## [Licence Name] - [Some Text], just for this tutorial.
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+I hope this is not much of a problem!!!
+========
+This is bound to case trouble!
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; very-bad
+</pre>
+
+Now, the current version of the file has these weird caret symbol(s) [< and >] which denote the part(s) of the file that is/are conflicted. We can see that the conflict is between the content of either <strong>HEAD</strong> (which is master in this case) or <strong>very-bad</strong> and since this happens to be a very simple case of the merge conflict, we could manually modify the LICENCE.md file using our merge tool (which is P4Merge Helix) that we configured earlier in section 5 ([Git & GitHub Installation]()).
+
+Therefore, we use the merge tool using <code>git mergetool</code> while in the MERGING state and we will see that P4Merge launches with a 3-way merge in progress. We can select any one of the 3 versions of LICENCE.md file and then save that version. Once we've done that, we have no further conflicts to resolve and therefore, we can quit P4Merge altogether. To complete the merge, we need to commit what we've saved and so, we type in <code>git commit -m "Resolving Conflict in LICENCE.md"</code> in the git bash. If the message in response is the following:
+<pre>
+[master a78ed77] Resolving Conflict in LICENCE.md
+</pre>
+
+then the merge conflict has definitely been resolved and we will return back to the git bash in the normal state from the MERGING state, which will look as follows:
+<pre>
+(master) demo $
+</pre>
+
+We check the status of our repository using <code>git status</code> and we can see the following message in our terminal:
+<pre>
+Untracked files:
+      <strong>LICENCE.md.orig</strong>
+</pre>
+
+We can see that we have a <strong>LICENCE.md.orig</strong> file which is untracked. A file with <strong>.orig</strong> extension means that it is the original version of the that respective file. Now, we don't need the <em>.orig</em> files to be tracked by our git repository, and therefore, we can add all <strong>.orig</strong> files to be excluded from our repository in the <strong>.gitignore</strong> file as follows:
+
+<strong>.gitignore</strong>
+<pre>
+*.log
+*.orig
+</pre>
+
+When we check the status of our repository, we will see the following message:
+<pre>
+On branch master
+Changes not staged for commit:
+      <strong>modified:    .gitignore</strong>
+</pre>
+
+We will express commit the current state of our repository using <code>git commit -am "Updating .gitignore to exclude .orig files"</code> command in our terminal and we should see the following response in the terminal:
+<pre>
+[master df3d921] Updating .gitignore to exclude .orig files
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+</pre>
+
+Now, all the files with <strong>.orig</strong> extension will be excluded from being tracked in our git repository and therefore, we can go ahead and delete LICENCE.md.orig (Windows: <code>del LICENCE.md.orig</code> & Linux/Mac: <code>rm LICENCE.md.orig</code>).
