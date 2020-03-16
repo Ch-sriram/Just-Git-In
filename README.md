@@ -757,4 +757,67 @@ We can see that it has the information about the Tagger, Date that the respectiv
 
 
 ### 7.7 Saving Work in Progress w. Stashing
-We are currently in the demo repository on the master branch in a clean working directory.
+We are currently in the demo repository on the master branch in a clean working directory. We will modify the README.md file and we check the status of our repository using <code>git status</code> and we should see the following output:
+
+<pre>
+On branch master
+Changes not staged for commit:
+      <strong>modified:    README.md</strong>
+</pre>
+
+But, what if decide we are really supposed to be working on something other than the README.md file. Therefore, what we can do is, we can stash the changes made in README.md using <code>git stash</git> command in the terminal and we should see something similar to the following output:
+
+<pre>
+Saved working directory and index state WIP on master: 057fdf2 README Update
+</pre>
+
+We can now check the status of the repository using <code>git status</code>, we will see the following output in the terminal:
+
+<pre>
+On branch master
+nothing to commit, working tree clean
+</pre>
+
+Now, if we type in <code>git stash list</code>, it will show us the list of things we stashed, i.e., the following output in the terminal:
+
+<pre>
+stash@{0}: WIP on master: 057fdf2 README Update
+</pre>
+
+Now, we stashed the previous modification, therefore, we can make changes to something other than the README.md file. Let's say we make changes to the LICENCE.md file and apply those changes using git's express commits i.e., <code>git commit -am "Updating LICENCE.md"</code> and we should some output similar to the following in the terminal:
+
+<pre>
+[master 2bbc636] Updating LICENCE.md
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre>
+
+When we check the status of our repository using <code>git status</code>, we should see the following output:
+
+<pre>
+On branch master
+nothing to commit, working tree clean
+</pre>
+
+Now, from the stash, we will apply our stash using <code>git stash pop</code> command, which will do 2 actions at once which are the same as <code>git stash apply</code> and then <code>git stash drop</code> at the same time, which translates to apply the last stash in the stash stack (for <code>git stash apply</code> [In this case, we put the changes that we made in the README.md file, back into the README.md file]) and drop/delete that stash from the top of the stash stack, which was just applied (for <code>git stash drop</code> [In this case, it will drop/delete the stash@{0} which was the stash for the Commit ID 057fdf2 "README Update"]). After <code>git stash pop</code>, we should see the following output in the terminal:
+
+<pre>
+On branch master
+Changes not staged for commit:
+      <strong>modified:    README.md</strong>
+</pre>
+
+Now if we type in <code>git stash list</code> we would get no result in the terminal. And if we check the README.md file, we can see that README.md file was updated like it was updated before the stash ever took place. Now we can commit the README.md's update using express commit i.e., using <code>git commit -am "README update after stash"</code> command in the terminal and we should something similar to the following output:
+
+<pre>
+[master 78c2353] README update after stash
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+</pre>
+
+When we check the status of our repository using <code>git status</code> command in the terminal, we should see the following output:
+
+<pre>
+On branch master
+nothing to commit, working tree clean
+</pre>
+
+
