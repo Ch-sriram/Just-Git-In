@@ -2,8 +2,8 @@
 Learn about Git and GitHub step-by-step, with well explained concepts in theory and practice.
 
 Resources
-1. [Official Git Documentation](https://git-scm.com/docs)
-2. [Jason Taylor's Online Git & GitHub Course](https://www.udemy.com/course/github-ultimate/)
+- [Official Git Documentation](https://git-scm.com/docs)
+- [Jason Taylor's Online Git & GitHub Course](https://www.udemy.com/course/github-ultimate/)
 
 
 ## Table Of Contents
@@ -33,6 +33,7 @@ Resources
    5. [Conflict Resolution While Merging]()
    6. [Marking Special Events w. Tagging]()
    7. [Saving Work in Progress w. Stashing]()
+   8. [Time Travel w. Reset & Reflog]()
 
 
 
@@ -819,5 +820,297 @@ When we check the status of our repository using <code>git status</code> command
 On branch master
 nothing to commit, working tree clean
 </pre>
+
+
+### 7.8 Time Travel w. Reset & Reflog
+We are currently in the demo repository, on the master branch and the working directory is clean.
+
+We will update our README.md file and then add the changes to the staging area, and so when we see the status of our git repository using <code>git status</code>, we should see a response in the terminal that's somewhat similar to the following:
+
+<pre>
+On branch master
+Changes to be committed:
+      <strong>modified:    README.md</strong>
+</pre>
+
+We again, add some new content into README.md and check the status again. This time, we should see the following output in the terminal:
+
+<pre>
+On branch master:
+Changes to be committed:
+      <strong>modified:    README.md</strong>
+
+Changes not staged for commit:
+      <strong>modified:    README.md</strong>
+</pre>
+
+We can see that we've our modifications detected in both the stagin area and in our working directory.
+
+Now, there maybe times when we need to go to a different commit point. Example: If we made a mistake in the last commit that we shouldn't have committed in the first place, then we would want to rollback to a previous commit before that last commit. To check all the commits we ever made, we will use our git alias i.e, using <code>git hist</code> (which is same as <code>git log --all --oneline --graph --decorate</code>) command and we should see something similar to the following output in our terminal:
+
+<pre>
+* 184db4d (<strong>HEAD -> master</strong>) README.md updated after it was stashed
+* 445064a LICENCE.md updated when README.md's update was stashed
+* 057fdf2 README Update
+* 3c5ec7d (<strong>tag: v1.0</strong>) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (<strong>very-bad</strong>) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+We can see that we've several commits to choose from. So we can select a commit point (or version of our app) and <strong>reset</strong> our git repository to that commit point. For that, we use <code>git reset commit-ID --reset-type</code> command (ex: <code>git reset 3c5ec7d --soft). For the --reset-type, we actually have 3 distinct ways of resetting:
+
+1. <strong>Soft Reset</strong>: This is the least destructive out of all the rest type we have. It means that, soft reset only changes where the <strong>HEAD</strong> pointer points to, to the commit point we specified. Now, if we see where <strong>HEAD</strong> is pointing to, we can see that it is pointing to 184db4d (which is the master branch for now). Now, if we type in <code>git reset 3c5ec7d --soft</code> and then we type in <code>git hist</code>, we should see something similar to the following output in the terminal:
+
+<pre>
+* 3c5ec7d (<strong>HEAD -> master, tag: v1.0</strong>) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (<strong>very-bad</strong>) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+Now we can see that the <strong>HEAD</strong> is pointing to 3c5ec7d which is commit ID that we passed in earlier to the <strong>reset</strong> command. If we check our repository's status using <code>git status</code>, we can see something similar to the following output in the terminal:
+
+<pre>
+On branch master
+Changes to be committed:
+      <strong>modified:    LICENCE.md</strong>
+      <strong>modified:    README.md</strong>
+
+Changes not staged for commit:
+      <strong>modified:    README.md</strong>
+</pre>
+
+We can see that we have files that are modified in the working directory and in our staging area and this is what the <strong>Soft Reset</strong> precisely allows us to do and it is simply changing the Commit ID that the <strong>HEAD</strong> pointer is pointing to, to the respective Commit ID we pass in as the parameter when we use the <strong>reset</strong> command. Therefore a soft reset preserves the Git staging area and our working directory, which effectively means that, we can back out our changes, make minor modifications to them, and then commit where <strong>HEAD</strong> is currently pointing to.
+
+2. <strong>Mixed/Default Reset</strong>: Let's say we will reset to the Commit ID - 20c7c63 ("Adding .gitignore file") using <code>git reset 20c7c63 --mixed</code> (Note that by default, <code>git reset 20c7c63 --mixed</code> means the same as <code>git reset 20c7c63</code>. It means that if no option is given to the <strong>reset</strong> command, by defualt, --mixed option is applied) command in the terminal, and instantly, we would some message of the following sort:
+
+<pre>
+Unstaged changes after reset:
+M     .gitignore
+M     LICENCE.md
+M     README.md
+</pre> 
+
+We can see that some of the changes made till now have been unstaged. If we use our log alias i.e., <code>git hist</code>, we should some output of the following sort:
+
+<pre>
+* 3c5ec7d (<strong>tag: v1.0</strong>) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (<strong>very-bad</strong>) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 (<strong>HEAD -> master</strong>) Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+We can see that the <strong>HEAD</strong> is pointing to 20c7c63. And if we check the status using <code>gti status</code> command, we should some output which is similar to the following:
+
+<pre>
+On branch master
+Changes not staged for commit:
+      <strong>modified:   .gitignore</strong>
+      <strong>modified:   LICENCE.md</strong>
+      <strong>modified:   README.md</strong>
+</pre>
+
+We can see that we have several files that have been unstaged and have been placed into our working directory; there's nothing in our staging area.
+
+3. <strong>Hard Reset</strong>: This type of reset is the most destructive of all the reset modes. To apply this reset, we will simply apply the <strong>reset</strong> command to a particular Commit ID using the --hard option i.e., using the <code>git reset commit-id reset-type</code> command (ex: <code>git reset 8af524a --hard</code>) and we should get an output that's similar to the following:
+
+<pre>
+HEAD is now at 8af524a README & LICENCE Update
+</pre>
+
+If we now check the status of our repository using <code>git status</code>, we will see the following message:
+
+<pre>
+On branch master
+nothing to commit, working directory clean
+</pre>
+
+By the output above, we can see that any changes that were pending till now, have been wiped out (along with anything that was in the staging area) when we did a hard reset. Apart from a handful of changes we have made at the very beginning, we really haven't lost a whole lot. Now, if we type in <code>git hist</code>, we will see the following output:
+
+<pre>
+* 3c5ec7d (<strong>tag: v1.0</strong>) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (<strong>very-bad</strong>) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a (<strong>HEAD -> master</strong>) README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+We can see that our <strong>HEAD</strong> is now pointing to the Commit ID - 8af524a ("README & LICENCE Update"). If we just type in <code>git log --oneline</code> command, we will see the following output in the terminal:
+
+<pre>
+8af524a README & LICENCE Update
+231b4cd README Update
+</pre>
+
+We can see that we are not able to get all the commits we have made so far and that's because we did a hard reset. To check all the commits we've made so far, we use <code>git log --all</code> command. We can also use another command in conjunction with <strong>reset</strong> command, which is <code>git reflog</code>. Using <strong>reflog</strong> command is different when compared to <strong>log</strong> in the sense that <code>git log</code> shows us our commit IDs along with the timeline of our commits whereas <code>git reflog</code> shows us all the different actions we've taken while in the respective repository which will allow us to get all the way back to a specific commit ID, if we need to. The output in the terminal we get should resemble somewhat to the following (when we type in <code>git reflog</code>):
+
+<pre>
+8af524a HEAD@{0}: reset: moving to 8af524a
+20c7c63 HEAD@{1}: reset: moving to 20c7c63
+3c5ec7d HEAD@{2}: reset: moving to 3c5ec7d
+184db4d (HEAD -> master) HEAD@{3}: commit: README.md updated after it was stashed
+445064a HEAD@{4}: commit: LICENCE.md updated when README.md's update was stashed
+057fdf2 HEAD@{5}: reset: moving to HEAD
+057fdf2 HEAD@{6}: reset: moving to HEAD
+057fdf2 HEAD@{7}: reset: moving to HEAD
+057fdf2 HEAD@{8}: commit: README Update
+3c5ec7d (tag: v1.0) HEAD@{9}: commit: Updating .gitignore to exclude .orig files
+afb7058 HEAD@{10}: commit (merge): Resolving Conflict in LICENCE.md
+cb652a3 HEAD@{11}: commit: LICENCE.md Update (Merge Conflict Possible)
+85a1d27 HEAD@{12}: checkout: moving from very-bad to master
+7c48e4c (very-bad) HEAD@{13}: commit: very bad update in LICENCE.md
+85a1d27 HEAD@{14}: checkout: moving from master to very-bad
+85a1d27 HEAD@{15}: commit: README Update
+593fe03 HEAD@{16}: merge updates: Fast-forward
+6b79701 HEAD@{17}: checkout: moving from updates to master
+593fe03 HEAD@{18}: checkout: moving from master to updates
+6b79701 HEAD@{19}: checkout: moving from updates to master
+593fe03 HEAD@{20}: commit: Adding new updates from master branch to 'updates' branch
+6b79701 HEAD@{21}: checkout: moving from master to updates
+6b79701 HEAD@{22}: commit: README Update
+20c7c63 HEAD@{23}: commit: Adding .gitignore file
+eb94f26 HEAD@{24}: commit: Adding .gitignore file
+801a434 HEAD@{25}: commit: README Update
+cd82d85 HEAD@{26}: commit: README Updated
+1f28d75 HEAD@{27}: commit: deleted demo.txt file
+64f7486 HEAD@{28}: commit: renamed example.txt to demo.txt
+53f8779 HEAD@{29}: commit: adding example.txt
+d741b7e HEAD@{30}: commit: README Update
+6bf863a HEAD@{31}: commit: README Update
+634793a HEAD@{32}: commit: README Update
+8af524a HEAD@{33}: commit: README & LICENCE Update
+231b4cd HEAD@{34}: commit (initial): README Update
+</pre>
+
+Now, if we need to reset to HEAD@{3}, we can simply type in the commit ID associated with HEAD@{3} along with the reset command and the reset type. Now we are going to HEAD@{3} because HEAD@{3} is the last commit before we did any of the resets. Therefore, we type in <code>git reset 184db4d --hard</code> in the terminal and we should see the following output in the terminal:
+
+<pre>
+HEAD is now at 184db4d README.md updated after it was stashed
+</pre>
+
+We've now moved our Commit ID back to where it was in the beginning and therefore, we will type in <code>git log --oneline</code> and we should get the following output in the terminal:
+
+<pre>
+184db4d (HEAD -> master) README.md updated after it was stashed
+445064a LICENCE.md updated when README.md's update was stashed
+057fdf2 README Update
+3c5ec7d (tag: v1.0) Updating .gitignore to exclude .orig files
+afb7058 Resolving Conflict in LICENCE.md
+cb652a3 LICENCE.md Update (Merge Conflict Possible)
+7c48e4c (very-bad) very bad update in LICENCE.md
+85a1d27 README Update
+593fe03 Adding new updates from master branch to 'updates' branch
+6b79701 README Update
+20c7c63 Adding .gitignore file
+eb94f26 Adding .gitignore file
+801a434 README Update
+cd82d85 README Updated
+1f28d75 deleted demo.txt file
+64f7486 renamed example.txt to demo.txt
+53f8779 adding example.txt
+d741b7e README Update
+6bf863a README Update
+634793a README Update
+8af524a README & LICENCE Update
+231b4cd README Update
+</pre>
+
+It looks like we have all our commits that we made till now, back again to us. Now if we use our <code>git hist</code> alias command, we should see the output as the following (which will look the same as applying <code>git hist</code> prior to applying any resets to the repository):
+
+<pre>
+* 184db4d (HEAD -> master) README.md updated after it was stashed
+* 445064a LICENCE.md updated when README.md's update was stashed
+* 057fdf2 README Update
+* 3c5ec7d (tag: v1.0) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c (very-bad) very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
 
 
