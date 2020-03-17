@@ -766,7 +766,7 @@ Changes not staged for commit:
       <strong>modified:    README.md</strong>
 </pre>
 
-But, what if decide we are really supposed to be working on something other than the README.md file. Therefore, what we can do is, we can stash the changes made in README.md using <code>git stash</git> command in the terminal and we should see something similar to the following output:
+But, what if decide we are really supposed to be working on something other than the README.md file. Therefore, what we can do is, we can stash the changes made in README.md using <code>git stash</code> command in the terminal and we should see something similar to the following output:
 
 <pre>
 Saved working directory and index state WIP on master: 057fdf2 README Update
@@ -844,7 +844,7 @@ Changes not staged for commit:
       <strong>modified:    README.md</strong>
 </pre>
 
-We can see that we've our modifications detected in both the stagin area and in our working directory.
+We can see that we've our modifications detected in both the staging area and in our working directory.
 
 Now, there maybe times when we need to go to a different commit point. Example: If we made a mistake in the last commit that we shouldn't have committed in the first place, then we would want to rollback to a previous commit before that last commit. To check all the commits we ever made, we will use our git alias i.e, using <code>git hist</code> (which is same as <code>git log --all --oneline --graph --decorate</code>) command and we should see something similar to the following output in our terminal:
 
@@ -1111,6 +1111,4 @@ It looks like we have all our commits that we made till now, back again to us. N
 * 8af524a README & LICENCE Update
 * 231b4cd README Update
 </pre>
-
-
 
