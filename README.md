@@ -875,7 +875,7 @@ Now, there maybe times when we need to go to a different commit point. Example: 
 * 231b4cd README Update
 </pre>
 
-We can see that we've several commits to choose from. So we can select a commit point (or version of our app) and <strong>reset</strong> our git repository to that commit point. For that, we use <code>git reset commit-ID --reset-type</code> command (ex: <code>git reset 3c5ec7d --soft). For the --reset-type, we actually have 3 distinct ways of resetting:
+We can see that we've several commits to choose from. So we can select a commit point (or version of our app) and <strong>reset</strong> our git repository to that commit point. For that, we use <code>git reset commit-ID --reset-type</code> command (ex: <code>git reset 3c5ec7d --soft</code>). For the --reset-type, we actually have 3 distinct ways of resetting:
 
 1. <strong>Soft Reset</strong>: This is the least destructive out of all the rest type we have. It means that, soft reset only changes where the <strong>HEAD</strong> pointer points to, to the commit point we specified. Now, if we see where <strong>HEAD</strong> is pointing to, we can see that it is pointing to 184db4d (which is the master branch for now). Now, if we type in <code>git reset 3c5ec7d --soft</code> and then we type in <code>git hist</code>, we should see something similar to the following output in the terminal:
 
@@ -917,7 +917,7 @@ Changes not staged for commit:
 
 We can see that we have files that are modified in the working directory and in our staging area and this is what the <strong>Soft Reset</strong> precisely allows us to do and it is simply changing the Commit ID that the <strong>HEAD</strong> pointer is pointing to, to the respective Commit ID we pass in as the parameter when we use the <strong>reset</strong> command. Therefore a soft reset preserves the Git staging area and our working directory, which effectively means that, we can back out our changes, make minor modifications to them, and then commit where <strong>HEAD</strong> is currently pointing to.
 
-2. <strong>Mixed/Default Reset</strong>: Let's say we will reset to the Commit ID - 20c7c63 ("Adding .gitignore file") using <code>git reset 20c7c63 --mixed</code> (Note that by default, <code>git reset 20c7c63 --mixed</code> means the same as <code>git reset 20c7c63</code>. It means that if no option is given to the <strong>reset</strong> command, by defualt, --mixed option is applied) command in the terminal, and instantly, we would some message of the following sort:
+2. <strong>Mixed/Default Reset</strong>: Let's say we will reset to the Commit ID - 20c7c63 ("Adding .gitignore file") using <code>git reset 20c7c63 --mixed</code> (Note that by default, <code>git reset 20c7c63 --mixed</code> means the same as <code>git reset 20c7c63</code>. It means that if no option is given to the <strong>reset</strong> command, by default, --mixed option is applied) command in the terminal, and instantly, we would some message of the following sort:
 
 <pre>
 Unstaged changes after reset:
@@ -952,7 +952,7 @@ We can see that some of the changes made till now have been unstaged. If we use 
 * 231b4cd README Update
 </pre>
 
-We can see that the <strong>HEAD</strong> is pointing to 20c7c63. And if we check the status using <code>gti status</code> command, we should some output which is similar to the following:
+We can see that the <strong>HEAD</strong> is pointing to 20c7c63. And if we check the status using <code>git status</code> command, we should some output which is similar to the following:
 
 <pre>
 On branch master
@@ -1111,4 +1111,3 @@ It looks like we have all our commits that we made till now, back again to us. N
 * 8af524a README & LICENCE Update
 * 231b4cd README Update
 </pre>
-
