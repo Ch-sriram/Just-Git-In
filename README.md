@@ -306,7 +306,8 @@ Untracked files:
 In general, in a repository, we don't want anything other than the source code of the app that we are developing. Therefore, log files, images, videos, etc are not supposed to be in our git repository. For this, our version control, i.e., git, has to ignore these files. To exclude files/folders that we don't want in our git repository, we create a <strong>.gitignore</strong> file inside which we write the relative paths of the files that we don't want to be tracked in our repository.
 
 Therefore, we create a <strong>.gitignore</strong> file in cmd/terminal (Windows: <code>notepad .gitignore</code> & Linux/Mac: <code>touch .gitignore</code>) and then type in the relative path of the file/folder that we want to completely exclude from being tracked by the git version control. In our case, we want to exclude app.log file, and therefore, in our .gitignore file, we can type in the following - 
-<strong><em>.gitignore</em></strong>
+
+<strong>.gitignore</strong>
 <pre>
 app.log
 </pre>
@@ -722,6 +723,7 @@ which is essentially a list of tags we have made. And, if we check all the logs 
 </pre>
 
 Now, this is a lightweight tag and so there's no associated information with it.
+
 2. <strong>Annotated Tags</strong>: These tags should be preferred over lightweight tags when we have several releases of the app we are working on, and also, each release/version of the app has some changelog associated with itself. Annotated tags have extra information associated with the tag. Before we create an annotated tag, we will delete the lightweight tag we created earlier (i.e., mytag) using <code>git tag -d tag-name</code> (ex: <code>git tag -d mytag</code>) command in the terminal and we should see the following response in the output:
 
 <pre>
@@ -1160,7 +1162,7 @@ In our demo repository our status is that  there nothing to commit and the worki
 
 To connect our local repository to the remote repository (which is hosted by GitHub), we us the <strong>remote</strong> command. If we issue the <code>git remote -v</code> command, git responds without any result, that means that there's no remote repository connected to the respective local repository.
 
-To connect to a remote repository, we first create a repository after following the steps present [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository). We can link the local repository to our remote repository using the <strong>add</strong> sub-command in the <strong>remote</strong> command, i.e., using the syntax <code>git remote add origin https://github.com/&lt;username&gt;/&lt;repo-name&gt;.git</code> (Ex: <code>git remote add origin https://github.com/Ch-sriram/Just-Git-In.git</code>) where the <strong>add</strong> sub-command takes in <strong>two parameters</strong> which is the <strong>name of the remote reference we want to create (in this case it is 'origin')</strong> and the second parameter which is <strong>full URL to the remote repository</strong>. In this case we can refer to our remote repository with any name in place of 'origin', but by convention, the first and primary remote repository is named and refered by the name 'origin'. Now if we type in <code>git remote -v</code>, git responds with the following message in the terminal:
+To connect to a remote repository, we first create a repository after following the steps present [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository). We can link the local repository to our remote repository using the <strong>add</strong> sub-command in the <strong>remote</strong> command, i.e., using the syntax <code>git remote add origin https://github.com/username/repo-name.git</code> (Ex: <code>git remote add origin https://github.com/Ch-sriram/Just-Git-In.git</code>) where the <strong>add</strong> sub-command takes in <strong>two parameters</strong> which is the <strong>name of the remote reference we want to create (in this case it is 'origin')</strong> and the second parameter which is <strong>full URL to the remote repository</strong>. In this case we can refer to our remote repository with any name in place of 'origin', but by convention, the first and primary remote repository is named and refered by the name 'origin'. Now if we type in <code>git remote -v</code>, git responds with the following message in the terminal:
 
 <pre>
 origin https://github.com/Ch-sriram/Just-Git-In.git (fetch)
