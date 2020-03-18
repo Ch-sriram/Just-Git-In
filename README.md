@@ -1,12 +1,15 @@
 # Just Git In
+
 Learn about Git and GitHub step-by-step, with well explained concepts in theory and practice.
 
-Resources
+## Resources
+
 - [Official Git Documentation](https://git-scm.com/docs)
 - [Jason Taylor's Online Git & GitHub Course](https://www.udemy.com/course/github-ultimate/)
 
 
 ## Table Of Contents
+
 1. [What is Git?](https://github.com/Ch-sriram/Just-Git-In#1-what-is-git)
 2. [What is a Repository?](https://github.com/Ch-sriram/Just-Git-In#2-whats-a-repository)
 3. [Commits & Snapshots](https://github.com/Ch-sriram/Just-Git-In#3-commits-and-snapshots)
@@ -43,6 +46,7 @@ Resources
 
 
 ## 1. What is Git?
+
 Git is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operations and full access to internals. 
 
 In simple words, it is basically a system which allows the user/developer to maintain different versions of their softwares/projects across their cloud service (which is GitHub, bitbucket, etc) or in the local machine (using git bash).
@@ -53,6 +57,7 @@ Git is Open Source and has an extremely active community thereby, finding help/r
 
 
 ## 2. What's a Repository?
+
 Repository is a collection of files managed by Git. These collection of files are also managed with their entire history (version, names, etc).
 
 The repository in the local machine is considered as the Working Directory or the Workspace. The Workspace can contain, both files from git and other files and directories related to the project.
@@ -61,6 +66,7 @@ Normally, within the root folder of the repo, there's a pseudo-hidden <strong>.g
 
 
 ## 3. Commits and Snapshots
+
 Git works by saving the current state (state: changes made till now, meaning the current version of the software) of all its files it manages, into <em>snapshots</em> called <strong>Commits</strong>. A commit can contain more than one changes made to the files inside your repository.
 
 Git doesn't version the directories, but only versions the files inside your repository. As we make changes to the state of the repository, the commits are saved onto a timeline known as a <strong>Branch</strong>. 
@@ -69,6 +75,7 @@ A git repository will have at least one branch known as the <strong>master</stro
 
 
 ## 4. What is GitHub?
+
 GitHub is a git repository hosting service provided by GitHub, Incorporation (owned by Microsoft) at [GitHub.com](https://www.github.com).
 
 There are other hosting services, and one of the popular ones is bitbucket. But GitHub is the most popular git repository hosting service online. GitHub stands out as a git repo hosting service because it provides unlimited free public repositories to be maintained by an individual/organization. It means that as long as you're comfortable with others being able to look into your code, you can have as many public repositories as you want.
@@ -79,6 +86,7 @@ GitHub also has some additional features such as Issue Tracking, GitHub Webpages
 
 
 ## 5. Git & GitHub Installation
+
 Goto: https://git-scm.com/ and follow the instructions there to download Git for an OS. 
 
 After installing Git, open Git Bash and set the username and email using the following command syntax:
@@ -114,15 +122,19 @@ The following commands are used to make P4Merge as the default graphical merge t
 
 
 ## 6. The Basics of Git
+
 We will learn how to make new repositories, how to get information/status of a repository, basic workflow of a repository, how to apply file operations like renaming, moving & deleting files in the git repository, excluding unwanted files from the git repository and undoing mistakes.
 
 ### 6.1 Making a new git repository (initialization)
-To make a new repository in your system, first create a new directory anywhere in your system using <code>mkdir project</code> (let's say we use "project" as the name of the repository).
+
+To make a new repository in your system, first create a new directory anywhere in your system using <code>mkdir project</code> (let's say we use "project" as the name of the directory).
 
 Then simply inside the "project" directory, we run the <code>git init "repo-name"</code> command, where "repo-name" can be any name you want without the double quotes (ex: <code>git init demo</code>).
 
 ### 6.2 Logical States in Git (Local/Remote)
+
 There are 3 local states related to files being managed by git. These three states are:
+
 1. Working Directory.
 2. Staging Area.
 3. Repository (.git directory) aka Commit History.
@@ -141,6 +153,7 @@ Working Directory => Staging Area => Repository (.git folder) => Remote Reposito
 
 
 ### 6.3 Commits in Git
+
 To get the information about a git repository, we can use the <code>git status</code> command. We'll see that (for a newly created repository), we'll have the information related to the branch (which will be <em>master</em>) and the commit message (which will be <em>initial commit</em>).
 
 
@@ -158,6 +171,7 @@ Now when we type in the  <code>git status</code> command, we get the information
 
 
 ### 6.4 Overview of a Git Repository
+
 Inside our repository, currently, we have one file (say) which README.md which is committed. Whatever our repository's name is (let's say "demo"), our directory, is the working directory of our git repository. The actual git repository is contained within .git folder which inside our working directory. The .git folder is a special directory that git manages internally.
 
 
@@ -173,20 +187,23 @@ If we simply type in <code>git status</code> into the git bash now, git bash wil
 
 
 ### 6.5 Initializing a Git Repository w. Existing Files/Project
+
 Now that we've deleted our .git folder, our "demo" folder is no longer a git repository, therefore, to make it a git repository, we first navigate the git bash to the "demo" folder, and just type in <code>git init .</code> command in the git bash, where . means "current folder". It will initialize the git repository inside the current folder. 
 
 When we type in <code>ls -la</code> in the git bash, we can see that now our "demo" folder contains the .git folder and therefore now our current working directory has become a git repository.
 
-Now we can follow the steps [6.3 Commits in Git]() to make changes and commit the changes in the git repository we created.
+Now we can follow the steps [6.3 Commits in Git](https://github.com/Ch-sriram/Just-Git-In#63-commits-in-git) to make changes and commit the changes in the git repository we created.
 
 
 ### 6.6 Commit History w. Log and Show
+
 Within our "demo" git repository to show all the commits/changes that have been made in our repository (in the order of most recent to least recent), we simply type in <code>git log</code> command and we will get the information about all the commits we have made so far, regarding our git repository. The commits contain the hash identifier (which is a SHA-1 ID to uniquely commits within a repository) along with the Author (which contains the user.name and user.email), Date followed by the commit message. 
 
 We can get a similar information using the <code>git show</code> command. It will show the last commit we made to the repository and a <code>diff</code> containing all the changes we made in the commit. To get out of the <code>show</code> command, we simply press 'q' in the git bash.
 
 
 ### 6.7 Express Commits
+
 Inside git bash, we are in the "demo" git repository. When we type in <code>git status</code> command, we can see that there will be a message - <em>nothing to commit, working directory clean</em>. Inside our "demo" git repo, it shows that we have a LICENCE.md & README.md file. If we update one of them and again type in the <code>git status</code> command in the git bash, we can see that git will show us the message - <strong>modified: &lt;file-name></strong>.
 
 The difference between previous commits and this commit is that this time, the files are not untracked, they're tracked, but modified. This is how git tracks the difference between tracked and untracked files in a git repository. To know the files that are being tracked by git, we type in the <code>git ls-files</code> in the git bash. Git will show all the files that are being tracked by it. Now if we add a new file to the "demo" repository and again when we type in <code>git ls-files</code> command, we can see that git is still not tracking the new file. When we type in the <code>git status</code> command, we will see that there will be 2 messages: <strong>modified: &lt;prev-file></strong> and <strong>Untracked files: &lt;new-file></strong>.
@@ -199,6 +216,7 @@ Now when we type in <code>git log</code> into the git bash, we can see all the c
 
 
 ### 6.8 Rolling Back Changes
+
 Here, we will back out the changes we made previously by unstaging our changes from the git staging area and then finally we will revert our changes entirely. 
 
 In our "demo" git repository, when we git bash the command <code>git status</code>, we can see that there will be nothing to commit and we will see the following message: <em>nothing to commit, working directory clean</em>.
@@ -211,6 +229,7 @@ Now, if we don't want the changes that we made and to discard the changes made t
 
 
 ### 6.9 Creating New Commands - Git Alias
+
 We will create a git alias to shorten a command into a smaller command. In our "demo" repository, in the master branch, when we type in <code>git status</code>, we can see that we have <em>nothing to commit, working directory clean</em> as the message. Now to see the options available with the <code>git log</code> command, we can simply type in <code>git help log</code> command.
 
 Out of all the options available, we can type in the log command as <code>git log --oneline --graph --decorate --all</code> where <strong>--online</strong>: provides a simplified commit entry providing the log information in a single line instead of multiple lines, <strong>--graph</strong>: provides an asterisk(*) based graph denoting our branching hierarchy, <strong>--decorate</strong>: tells us which commits are part of which branches, <strong>--all</strong>: provides the history for all the branches that are available in the repository. We will see an output in git bash which will show us the entire history of our significant commits. Now, whenever we want to get details in this manner, we always have to type in <code>git log --oneline --graph --decorate --all</code> command every time. Instead of typing it all the time, we can use <strong>git aliases</strong>.
@@ -221,6 +240,7 @@ Using aliases, we can also add more options to the underlying command, it simply
 
 
 ### 6.10 Renaming & Deleting Files Using Git Bash
+
 In our demo repository, we will create a file called <strong>example.txt</strong> and insert some random text into the file and save and return back to the git bash. We type in <code>git status</code> and check the status of our git repository and we will see the message <strong>Untracked files: example.txt</strong>. We will add the new file using <code>git add example.txt</code> command in git bash. Finally, we commit the changes made into the repo using <code>git commit -m 'adding example.txt'</code>. When we list the files in the git bash using <code>ls -la</code> command, we will see that we have the three files <strong>LICENCE.md, README.md & example.txt</strong> in our repository. 
 
 Now, if we want to change the name of the file we just made, we can change the name in the git bash using the <code>git mv example.txt demo.txt</code> command. When we again check the status of the repository (using <code>git status</code> command), we will see the message - <strong>Changes to be committed: renamed:     example.txt -> demo.txt</strong>. This change is in the staged state. The renaming takes effect properly, only when we commit. When we list the files of the repository (using <code>ls -la</code> command) in git bash, we can see that the file has already been renamed on the Operating System. But to finish the task, we need to actually commit the changes and let our changes be in the .git directory, in the final state, the Committed State. For that, we type in <code>git commit -m "renamed example.txt to demo.txt"</code>. We will see a message - <strong>rename example.txt => demo.txt (100%)</strong> where the 100% inside the parentheses is the confidence level given by git that this file's content is a 100% similar to the previous file name, i.e., example.txt's context hasn't been changed, only the name of the file has been changed to demo.txt. If we would've made modifications to demo.txt before committing the state of the repository, then the confidence level would've been lower than 100%.
@@ -229,6 +249,7 @@ If we wanted to delete a file that we made, we can remove it using the <code>rm<
 
 
 ### 6.11 Renaming & Deleting Files Not Using Git Bash, but the OS Commands
+
 We will create a new file in the demo repository using the OS commands (<code>notepad file-name</code> command for Windows Systems and <code>touch file-name</code> command for Linux/Mac Systems). We will list the files using the terminal (<code>dir</code> for Windows systems and <code>ls</code> for Linux/Mac systems). We will rename LICENCE.md to LICENCE.txt using the OS' terminal (Windows: <code>rename LICENCE.md LICENCE.txt</code>, Linux/Mac: <code>mv LICENCE.md LICENCE.txt</code>). Note that we are trying to make new files and rename them using the respective OS' commands and therefore, git sees these changes differently. When we check the status of our repository (using <code>git status</code> command), we will see that we have the message -
 <pre>
 Changes not staged for commit: 
@@ -274,6 +295,7 @@ Now we commit the changes made to the repository using <code>git commit -m "remo
 
 
 ### 6.12 Excluding/Ignoring Unwanted Files in our Git Repository
+
 Assume that we create a new log file inside our demo repository (Windows: <code>notepad app.log</code> & Linux/Mac: <code>touch app.log</code>). When we check the status of the git repository, we will see that the newly created log file is untracked, and the message we should get is - 
 
 <pre>
@@ -310,6 +332,7 @@ For now, we can simply go ahead and remove app.log entirely, from the terminal (
 
 
 ## 7. Advanced Version Control Using Git
+
 In this section, we will learn more advanced concepts and techniques in git that apply in local repository. Some of the topics covered in this section include: the following topics:
 - Comparing Differences,
 - Branching, Merging & Conflict Resolution,
@@ -319,6 +342,7 @@ In this section, we will learn more advanced concepts and techniques in git that
 
 
 ### 7.1 Comparing Differences in Git
+
 We will know how to compare differences using the <strong>diff</strong> and the <strong>difftool</strong> command in Git. The <code>difftool</code> command will only work if P4Merge is properly setup as the difftool, shown in [Git & GitHub Installations]() (section 5). 
 
 In our demo repository, we are on the <em>master</em> branch with nothing to commit and with a clean working directory. When we type in our git command alias that we created earlier which is <code>git hist</code>, we will see all the commits that we made till now (i.e., the commit history of our repository this far). If we want to see the differences between two commit points, we can simply copy the hash-key (SHA1 Key) for the respective commit, and check it against the latest commit (which is the commit pointed by the HEAD pointer) using <code>git diff c904e33 HEAD</code> command in the terminal. We will get the difference between the HEAD's commit (which is the latest commit on the current (master) branch) and the respective commit that we mentioned earlier (which is c904e33 in our case).
@@ -337,6 +361,7 @@ For the most part, anything that can be passed into the <strong>diff</strong> co
 
 
 ### 7.2 Branching and Merging Types in Git
+
 Branching and Merging are very important concepts in Git.
 
 <strong>Branch is just a timeline of Commits, more accurately, branches are the names/labels we give to timelines in Git</strong>. We can create/delete branches w/o affecting the timeline, all we are doing is creating/deleting labels of commits in Git. <strong>So far, we've been working on the default branch, which is the master branch</strong>. Now, we can create a new branch (say <strong>feature branch</strong>) to develop a new feature of our application in that new branch and then <strong>rejoin/merge</strong> that new branch to the master branch by merging in any changes that occurred on the new branch.
@@ -348,6 +373,7 @@ While Merging, Git tries it's best to automatically merge when possible, which l
 
 
 ### 7.3 Special Markers/Pointers
+
 In addition branches, tags and other labels for commits, Git has special markers (or pointers). One such popular marker is called <strong>HEAD</strong> which points to the Last Commit of Current Branch, it means that, as we switch branches, the location of <strong>HEAD</strong> pointer moves to match the last commit location of that branch.
 
 While <strong>HEAD</strong> automatically points to the last commit of the current branch, it is also possible to move the <strong>HEAD</strong> pointer manually to a commit we wish to move it to. The details on how to manually move the <strong>HEAD</strong> pointer to a commit of our choice, will be covered later.
@@ -356,6 +382,7 @@ For now, we just need to remember that <strong>HEAD</strong> points to the last 
 
 
 ### 7.4 Example of Branching
+
 We will create and manage branches (other than master) in our git repository in this section. Currently we are in the demo repository where, if we check the status of the repository, we will see the following message:
 <pre>
 Changes not staged for commit:
@@ -489,6 +516,7 @@ We can see that we no longer have the <em>updates</em> branch associated with th
 
 
 ### 7.5 Conflict Resolution While Merging
+
 This time, we will deliberately cause a conflict in our git repository and then resolve that conflict when working with branches. We will cause a conflict in the LICENCE.md file. 
 
 We are currently in the demo git repository from where, if we check the status of our git repository (using <code>git status</code>), we will see that we are on branch <em>master</em> and the working directory is clean with nothing to commit.
@@ -632,6 +660,7 @@ Now, all the files with <strong>.orig</strong> extension will be excluded from b
 
 
 ### 7.6 Marking Special Events w. Tagging
+
 We are currently in the demo repository on the master branch. If we use our alias i.e., <code>git hist</code>, we should get something similar to the following response in the terminal:
 
 <pre>
@@ -762,6 +791,7 @@ We can see that it has the information about the Tagger, Date that the respectiv
 
 
 ### 7.7 Saving Work in Progress w. Stashing
+
 We are currently in the demo repository on the master branch in a clean working directory. We will modify the README.md file and we check the status of our repository using <code>git status</code> and we should see the following output:
 
 <pre>
@@ -827,6 +857,7 @@ nothing to commit, working tree clean
 
 
 ### 7.8 Time Travel w. Reset & Reflog
+
 We are currently in the demo repository, on the master branch and the working directory is clean.
 
 We will update our README.md file and then add the changes to the staging area, and so when we see the status of our git repository using <code>git status</code>, we should see a response in the terminal that's somewhat similar to the following:
@@ -1118,11 +1149,13 @@ It looks like we have all our commits that we made till now, back again to us. N
 
 
 ## 8. Basics of GitHub
+
 GitHub is a git repository hosting service where we can host unlimited public/private repositories. In GitHub, we can create an account [here](https://github.com/join?source=header-home) and sign-in after creating an account [here](https://github.com/login).
 
 After creating a GitHub account, we are all set to push our changes we made in our repository till now onto our Git Repository. We can create a repository in GitHub by following the steps provided [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository).
 
 ### 8.1 Linking to our GitHub Repository (Local <-> Remote)
+
 In our demo repository our status is that  there nothing to commit and the working directory is clean on the master branch.
 
 To connect our local repository to the remote repository (which is hosted by GitHub), we us the <strong>remote</strong> command. If we issue the <code>git remote -v</code> command, git responds without any result, that means that there's no remote repository connected to the respective local repository.
@@ -1138,6 +1171,7 @@ Git tells us that we've our origin point towards the remote git repository we me
 
 
 ### 8.2 Pushing Changes to GitHub (Local to Remote)
+
 We are currently in demo git repository in a clean working directory on master branch with nothing to commit.
 
 Now that we have connected our local repository with the remote repository, it is time to push our local repository to the remote repository. In order to synchronize all our changes between the local git repository and the remote git repository, we are going to the use the <strong>push</strong> command i.e, <code>git push -u origin master \[--tags]</code> command where -u option sets up a tracking branch relationship between the master branch on the local repository and the master on the remote repository. Since the remote repository we have is named 'origin', that's the value we used. After the name/reference of the remote repository, we provide the name of the branch (we are going to push our changes from the local repository to the remote repository) which in our case is 'master'. After that, we have --tags flag to send all the tags that we currently have in our local git repository, up to GitHub (The --tags flag is optional. For the --tags flag to be considered, we type in <code>git push -u origin master --tags</code> command in the git bash). After we type in the command, we will be prompted for our GitHub Username and Password as seen below:
