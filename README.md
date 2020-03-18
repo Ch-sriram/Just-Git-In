@@ -34,6 +34,10 @@ Resources
    6. [Marking Special Events w. Tagging]()
    7. [Saving Work in Progress w. Stashing]()
    8. [Time Travel w. Reset & Reflog]()
+8. [Basics of GitHub]()
+   1. [Linking to our GitHub Repository (Local <-> Remote)]()
+   2. [Pushing Changes to GitHub (Local to Remote)]()
+   
 
 
 
@@ -1111,3 +1115,51 @@ It looks like we have all our commits that we made till now, back again to us. N
 * 8af524a README & LICENCE Update
 * 231b4cd README Update
 </pre>
+
+
+## 8. Basics of GitHub
+GitHub is a git repository hosting service where we can host unlimited public/private repositories. In GitHub, we can create an account [here](https://github.com/join?source=header-home) and sign-in after creating an account [here](https://github.com/login).
+
+After creating a GitHub account, we are all set to push our changes we made in our repository till now onto our Git Repository. We can create a repository in GitHub by following the steps provided [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository).
+
+### 8.1 Linking to our GitHub Repository (Local <-> Remote)
+In our demo repository our status is that  there nothing to commit and the working directory is clean on the master branch.
+
+To connect our local repository to the remote repository (which is hosted by GitHub), we us the <strong>remote</strong> command. If we issue the <code>git remote -v</code> command, git responds without any result, that means that there's no remote repository connected to the respective local repository.
+
+To connect to a remote repository, we first create a repository after following the steps present [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository). We can link the local repository to our remote repository using the <strong>add</strong> sub-command in the <strong>remote</strong> command, i.e., using the syntax <code>git remote add origin https://github.com/&lt;username&gt;/&lt;repo-name&gt;.git</code> (Ex: <code>git remote add origin https://github.com/Ch-sriram/Just-Git-In.git</code>) where the <strong>add</strong> sub-command takes in <strong>two parameters</strong> which is the <strong>name of the remote reference we want to create (in this case it is 'origin')</strong> and the second parameter which is <strong>full URL to the remote repository</strong>. In this case we can refer to our remote repository with any name in place of 'origin', but by convention, the first and primary remote repository is named and refered by the name 'origin'. Now if we type in <code>git remote -v</code>, git responds with the following message in the terminal:
+
+<pre>
+origin https://github.com/Ch-sriram/Just-Git-In.git (fetch)
+origin https://github.com/Ch-sriram/Just-Git-In.git (push)
+</pre>
+
+Git tells us that we've our origin point towards the remote git repository we mentioned earlier. Now there might be a confusion about why the remote repository's entry (URL) is listed twice (<strong>one for fetch</strong> and <strong>one for push</strong>)? That's because technically, git will allow to have two different URLs one for fetching the changes from the remote repository to the local repository and one for pushing the changes made in the local repository to the remote repository. The URL for fetching can be different compared to the URL for pushing the repository, but in most cases, the URLs for fetching and pushing will be the same.
+
+
+### 8.2 Pushing Changes to GitHub (Local to Remote)
+We are currently in demo git repository in a clean working directory on master branch with nothing to commit.
+
+Now that we have connected our local repository with the remote repository, it is time to push our local repository to the remote repository. In order to synchronize all our changes between the local git repository and the remote git repository, we are going to the use the <strong>push</strong> command i.e, <code>git push -u origin master \[--tags]</code> command where -u option sets up a tracking branch relationship between the master branch on the local repository and the master on the remote repository. Since the remote repository we have is named 'origin', that's the value we used. After the name/reference of the remote repository, we provide the name of the branch (we are going to push our changes from the local repository to the remote repository) which in our case is 'master'. After that, we have --tags flag to send all the tags that we currently have in our local git repository, up to GitHub (The --tags flag is optional. For the --tags flag to be considered, we type in <code>git push -u origin master --tags</code> command in the git bash). After we type in the command, we will be prompted for our GitHub Username and Password as seen below:
+
+<pre>
+Username for 'https://github.com': Ch-sriram
+Password for 'https://Ch-sriram@github.com':
+</pre>
+
+After that, Git will do some house-keeping (which synchronizes the local and remote repositories) and if everything is successful, we should see an output on the terminal which is similar to the following:
+
+<pre>
+To https://github.com/Ch-sriram/Just-Git-In.git
+ * [new branch]   master -> master
+ * [new tag]      v1.0 -> v1.0
+Branch master set up to track remote branch master from origin.
+</pre>
+
+We can see that we have two lines with <strong>\[new branch]</strong> and <strong>\[new tag]</strong> information, which means that, when we pushed our local repository to the remote repository, we created our one and only branch in the remote repository which is the 'master' branch.
+
+We also see that we have the statement -  <strong>Branch master set up to track remote branch master from origin</strong>. This statement came up because we used the -u option when we pushed the local repository to the remote repository. In the future pushes we make to the remote repo, we need not use the -u option.
+
+After we have pushed our local repository to the remote repository, we can check and verify our changes in the remote repository using the GitHub remote repository URL we gave earlier. 
+
+
