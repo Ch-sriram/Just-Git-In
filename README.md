@@ -36,7 +36,7 @@ Resources
    8. [Time Travel w. Reset & Reflog](https://github.com/Ch-sriram/Just-Git-In#78-time-travel-w-reset--reflog)
 8. [Basics of GitHub](https://github.com/Ch-sriram/Just-Git-In#78-time-travel-w-reset--reflog)
    1. [Linking to our GitHub Repository (Local <-> Remote)](https://github.com/Ch-sriram/Just-Git-In#81-linking-to-our-github-repository-local---remote)
-   2. [Pushing Changes to GitHub (Local to Remote)](https://github.com/Ch-sriram/Just-Git-In#81-linking-to-our-github-repository-local---remote)
+   2. [Pushing Changes to GitHub (Local to Remote)](https://github.com/Ch-sriram/Just-Git-In#82-pushing-changes-to-github-local-to-remote)
    
 
 
