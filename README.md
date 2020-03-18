@@ -1198,4 +1198,12 @@ We also see that we have the statement -  <strong>Branch master set up to track 
 
 After we have pushed our local repository to the remote repository, we can check and verify our changes in the remote repository using the GitHub remote repository URL we gave earlier. 
 
+Now when we type in <code>git status</code> in the terminal, we see the following output from git:
+
+<pre>
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+</pre>
 
