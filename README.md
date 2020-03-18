@@ -40,6 +40,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
 8. [Basics of GitHub](https://github.com/Ch-sriram/Just-Git-In#78-time-travel-w-reset--reflog)
    1. [Linking to our GitHub Repository (Local <-> Remote)](https://github.com/Ch-sriram/Just-Git-In#81-linking-to-our-github-repository-local---remote)
    2. [Pushing Changes to GitHub (Local to Remote)](https://github.com/Ch-sriram/Just-Git-In#82-pushing-changes-to-github-local-to-remote)
+9. [SSH Authentication]()
    
 
 
@@ -1206,4 +1207,14 @@ Your branch is up to date with 'origin/master'.
 
 nothing to commit, working tree clean
 </pre>
+
+
+## 9. SSH Authentication
+
+Till now we used <strong>HTTPS (Hyper-Text Transfer Protocol Secure)</strong> [which is used for secure transfer communication over a computer network and is widely used in the internet] authentication with GitHub.
+
+This time, we will set-up another authentication method known as <strong>SSH</strong> (<strong>Secure SHell</strong> is a cryptographic network protocol for operating network services securely over an unsecured network). It is recommended to use SSH when we are on a system/computer we own or a system that we use on a regular basis. SSH takes a short setup process, but once it is done, it saves a lot more time each time we make a remote change on our local repository, when compared to the HTTPS authentication. 
+
+We will setup our SSH Key for our respective system and then save it on GitHub, so now, our account is linked via SSH authentication.
+
 
