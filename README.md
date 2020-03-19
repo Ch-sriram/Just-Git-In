@@ -1412,3 +1412,38 @@ We can verify our changes in GitHub in our CPP repository.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
+
+### 10.3 Updating Remote References of a Repository
+
+We will be in need of updating our remote references of the local repository when we rename the repository, because the SSH/HTTPS URL changes with respect to the name of the repository. Please know how to rename a repository [here](https://help.github.com/en/github/administering-a-repository/renaming-a-repository). Assume that we renamed <strong>Practice-CPP</strong> to <strong>CPP</strong>.
+
+After renaming our repository, we generally have to change our remote reference to the local repository, because that particular remote reference is not functional anymore. When we check the remote reference our local repository is connected to using <code>git remote -v</code> command, we get the following output:
+
+<pre>
+origin  git@github.com:Ch-sriram/Practice-CPP.git (fetch)
+origin  git@github.com:Ch-sriram/Practice-CPP.git (push)
+</pre>
+
+Now, that we have renamed our repository, we need to update the remote reference to origin by copying the clone URL (SSH or HTTPS, depending on what you want) and then using <code>git remote set-url origin git@github.com:Ch-sriram/CPP.git</code> command in the terminal and then we check the remote reference again using <code>git remote -v</code> command in the terminal and we should see the following output:
+
+<pre>
+origin  git@github.com:Ch-sriram/CPP.git (fetch)
+origin  git@github.com:Ch-sriram/CPP.git (push)
+</pre>
+
+We can get additional information about our remote reference by typing in <code>git remote show origin</strong> command (where 'origin' is the name of the remote reference) in the terminal and we should get a similar output as shown below:
+
+<pre>
+* remote origin
+  Fetch URL: git@github.com:Ch-sriram/CPP.git
+  Push  URL: git@github.com:Ch-sriram/CPP.git
+  HEAD branch: master
+  Remote branch:
+    master tracked
+  Local branch configured for 'git pull':
+    master merges with remote master
+  Local ref configured for 'git push':
+    master pushes to master (up to date)
+</pre>
+
+We can see more information related to the remote reference and we see that the Remote branch is master and it is <strong>tracked</strong>, which means whenever we do a <code>git push</code> or <code>git pull</code>, git will automatically synchronize between the master branches on both sides (viz. remote and local).
