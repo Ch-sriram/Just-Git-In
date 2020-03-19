@@ -1268,7 +1268,20 @@ id_rsa.pub
 
 <strong>id_rsa</strong> is the private key and <strong>id_rsa.pub</strong> is our private key. We open the <strong>id_rsa.pub</strong> file in our text editor (Windows: <code>notepad id_rsa.pub</code> & Linux/Mac: <code>mate id_rsa.pub</code>) and then copy all the content of the file and then close our editor. Now we have the contents of <strong>id_rsa.pub</strong> file in our clipboard.
 
-Now, in our internet browser, we open our GitHub Profile and go to Settings. In the Settings, we go to the menu item <strong>SSH Keys</strong>. In there, we will see that we have a functionality to add an SSH Key using the <strong>Add SSH Key</strong> button. After we press the button, we will be asked to give a <strong>Title</strong> and the <strong>Key</strong>. In the <strong>Title</strong> field, we will give a description of the SSH Key we are using as an SSH Key is usually associated with some system/computer (example: My Lenovo YogaPad \[PC]) and then we will paste the contents of the clipboard into the Key field and then press <strong>Add key</strong> button. After that, GitHub asks prompts us for password of the GitHub account so that we can get into <strong>super user mode</strong>. Once we have successfully authenticate using our GitHub password, we will be redirected to the SSH keys sub-menu in Personal settings menu where we will see our SSH key with the title we gave alonf with the public key. We can always delete the SSH Key we have from that same menu using the Delete button.
+Now, in our internet browser, we open our GitHub Profile and go to Settings. In the Settings, we go to the menu item <strong>SSH Keys</strong>. In there, we will see that we have a functionality to add an SSH Key using the <strong>Add SSH Key</strong> button. After we press the button, we will be asked to give a <strong>Title</strong> and the <strong>Key</strong>. In the <strong>Title</strong> field, we will give a description of the SSH Key we are using as an SSH Key is usually associated with some system/computer (example: My Lenovo YogaPad \[PC]) and then we will paste the contents of the clipboard into the Key field and then press <strong>Add key</strong> button. After that, GitHub prompts us for password of the GitHub account so that we can get into <strong>super user mode</strong>. Once we have successfully authenticate using our GitHub password, we will be redirected to the SSH keys sub-menu in Personal settings menu where we will see our SSH key with the title we gave alonf with the public key. We can always delete the SSH Key we have from that same menu using the Delete button.
 
+Now to confirm whether the machine we geerated the SSH Key on is able to communicate with GitHub via SSH, we are going to use the SSH command to try to login. For that we type in <code>ssh -T git@github.com</code> in the terminal inside the .ssh directory, and we should something similar to the following output in the terminal:
 
+<pre>
+The authenticity of host 'github.com (192.30.234.66)' can't be established
+RSA key fingerprint is xxxxxxxxxxxxxxxxxxxxxxxx.
+Are you sure you want to continue (yes/no)? 
+</pre>
+
+We will be given a prompt as shown above and we should type in <strong>yes</strong> and we will be prompted again for our SSH Key Password. We have the option to remember the SSH Key Password depending on the Operating System we are using. We type in the SSH Key Password and then click "OK" and we should see the following output in the terminal:
+
+<pre>
+Identity added: C:/users/srira/Desktop/.ssh/id_rsa (C:/users/srira/Desktop/.ssh/id_rsa)
+Hi Ch-sriram! You've successfully authenticated, but GitHub does not provide shell access.
+</pre>
 
