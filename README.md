@@ -40,10 +40,10 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
 8. [Basics of GitHub](https://github.com/Ch-sriram/Just-Git-In#78-time-travel-w-reset--reflog)
    1. [Linking to our GitHub Repository (Local <-> Remote)](https://github.com/Ch-sriram/Just-Git-In#81-linking-to-our-github-repository-local---remote)
    2. [Pushing Changes to GitHub (Local to Remote)](https://github.com/Ch-sriram/Just-Git-In#82-pushing-changes-to-github-local-to-remote)
-9. [SSH Authentication]()
-   1. [Generating an SSH Key]()
-10. [GitHub Repository]()
-    1. [Cloning a GitHub Repository]()
+9. [SSH Authentication](https://github.com/Ch-sriram/Just-Git-In#9-ssh-authentication)
+   1. [Generating an SSH Key](https://github.com/Ch-sriram/Just-Git-In#91-generating-an-ssh-key)
+10. [GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#10-github-repository)
+    1. [Cloning a GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#101-cloning-a-github-repository)
 
 
 
