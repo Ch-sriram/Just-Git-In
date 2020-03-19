@@ -57,6 +57,7 @@ Git is super fast because it supports local operations. It means that we can com
 
 Git is Open Source and has an extremely active community thereby, finding help/resources related to Git & GitHub is extremely easy.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 2. What's a Repository?
 
@@ -66,6 +67,7 @@ The repository in the local machine is considered as the Working Directory or th
 
 Normally, within the root folder of the repo, there's a pseudo-hidden <strong>.git</strong> directory which contains its own collection of files and directories that make up the entire internal structure of the repository. 
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 3. Commits and Snapshots
 
@@ -75,6 +77,7 @@ Git doesn't version the directories, but only versions the files inside your rep
 
 A git repository will have at least one branch known as the <strong>master</strong> branch. Additional branches can be created, which we will look into later.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 4. What is GitHub?
 
@@ -86,6 +89,7 @@ Therefore, in order to have private repositories in your GitHub account, you've 
 
 GitHub also has some additional features such as Issue Tracking, GitHub Webpages, Source Code Snippet Sharing (in the form of <em>gists</em>), etc to support developer projects hosted on GitHub.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 5. Git & GitHub Installation
 
@@ -122,16 +126,21 @@ The following commands are used to make P4Merge as the default graphical merge t
 
 <code>git config --global mergetool.prompt false</code>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 6. The Basics of Git
 
 We will learn how to make new repositories, how to get information/status of a repository, basic workflow of a repository, how to apply file operations like renaming, moving & deleting files in the git repository, excluding unwanted files from the git repository and undoing mistakes.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.1 Making a new git repository (initialization)
 
 To make a new repository in your system, first create a new directory anywhere in your system using <code>mkdir project</code> (let's say we use "project" as the name of the directory).
 
 Then simply inside the "project" directory, we run the <code>git init "repo-name"</code> command, where "repo-name" can be any name you want without the double quotes (ex: <code>git init demo</code>).
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.2 Logical States in Git (Local/Remote)
 
@@ -153,6 +162,7 @@ This is how the files go from one state to another:
 
 Working Directory => Staging Area => Repository (.git folder) => Remote Repository.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.3 Commits in Git
 
@@ -170,23 +180,21 @@ To make sure that the files in the staging area are committed to the repository 
 
 Now when we type in the  <code>git status</code> command, we get the information that we are still on the master branch and we have nothing to commit in the working directory, which is mentioned as:  <em>nothing to commit, working directory clean</em>.
 
-
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.4 Overview of a Git Repository
 
 Inside our repository, currently, we have one file (say) which README.md which is committed. Whatever our repository's name is (let's say "demo"), our directory, is the working directory of our git repository. The actual git repository is contained within .git folder which inside our working directory. The .git folder is a special directory that git manages internally.
 
-
 To get into the .git folder, we have to get into the .git folder using <code>cd .git/</code> command, and when we check the files inside the .git folder using <code>ls -al</code>, we will see that the we will see certain files which are <em>HEAD, branches, config, description, hooks, index, info, logs, objects, refs, etc</em>. These files are not to be changed without the knowledge of how to do so.
 
-
 To change our working directory into a normal folder, we can simply remove the .git folder from our working directory, and our directory will simply be a normal folder in our filesystem. To remove the .git folder, we type in <code>rm -rf .git</code> command to (-rf: recursively and forcefully) delete anything that's contained inside the .git folder. When we return to our prompt, we can see in the git bash that now, it knows the fact that we are no longer inside a git repository, we are inside a normal directory, and therefore, the git bash won't show any branch information with the directory we are inside. 
-
 
 If we simply type in <code>git status</code> into the git bash now, git bash will respond with the following message: 
 
 <em>fatal: Not a git repository (or any of the parent directories): .git</em>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.5 Initializing a Git Repository w. Existing Files/Project
 
@@ -196,6 +204,7 @@ When we type in <code>ls -la</code> in the git bash, we can see that now our "de
 
 Now we can follow the steps [6.3 Commits in Git](https://github.com/Ch-sriram/Just-Git-In#63-commits-in-git) to make changes and commit the changes in the git repository we created.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.6 Commit History w. Log and Show
 
@@ -203,6 +212,7 @@ Within our "demo" git repository to show all the commits/changes that have been 
 
 We can get a similar information using the <code>git show</code> command. It will show the last commit we made to the repository and a <code>diff</code> containing all the changes we made in the commit. To get out of the <code>show</code> command, we simply press 'q' in the git bash.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.7 Express Commits
 
@@ -216,6 +226,7 @@ When we say we are adding the modified files into the git's staging area, we are
 
 Now when we type in <code>git log</code> into the git bash, we can see all the commits we made till now and also the most recent commit that we made earlier at the top of the logs.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.8 Rolling Back Changes
 
@@ -229,6 +240,7 @@ Now, to unstage the changes, or undo the commit, we can type in the command <cod
 
 Now, if we don't want the changes that we made and to discard the changes made to the repository, we can simply revert back to the last known good state (or commit) of the respective file (here, it is README.md) whose details are available inside the .git folder, we simply type in <code>git checkout -- &lt;file-name></code> (ex: <code>git checkout -- README.md</code>). Now, we can check the status of the repository with <code>git status</code> command, which will respond with the message - <em>nothing to commit, working directory clean</em> in the master branch of our "demo" repository. Now if we open README.md, we can see that the changes we made are also gone.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.9 Creating New Commands - Git Alias
 
@@ -240,6 +252,7 @@ To create a git alias (which is basically a new command in git bash and a shorte
 
 Using aliases, we can also add more options to the underlying command, it simply replaces the alias command with the actual command and concatenates the options that we added. For example, the command <code>git hist -- LICENCE.md</code>, will convert into the actual command which is <code>git log --oneline --graph --decorate --all -- LICENCE.md</code>, where the command will give us all the commit logs related to LICENCE.md file in the repository.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.10 Renaming & Deleting Files Using Git Bash
 
@@ -249,6 +262,7 @@ Now, if we want to change the name of the file we just made, we can change the n
 
 If we wanted to delete a file that we made, we can remove it using the <code>rm</code> command in the git bash. To remove it using the git bash (instead of the facilities provided by the OS), we type in <code>git rm demo.txt</code> command in the git bash. If we delete/rename/modify files using the git commands (instead of the commands provided by the OS), we will get the additional benefit of git tracking the changes that we made in our repository. And so, we will have more power with us using the version control system. Now, if we simply list the files in our repository, we will see that we no longer have demo.txt file in our repository. Now, when we check the status of our repository (using <code>git status</code> command), we can see the message - <strong>Changes to be committed: deleted:    demo.txt</strong>, meaning, our deletion is just staged, it hasn't been committed. Therefore, we have to commit to completely reflect the changes in the .git directory of our repository using <code>git commit -m "deleting demo.txt file"</code>. When we check the status of our repo, we should see the message <em>nothing to commit, working directory clean</em>.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.11 Renaming & Deleting Files Not Using Git Bash, but the OS Commands
 
@@ -295,6 +309,7 @@ Changes to be committed:
 
 Now we commit the changes made to the repository using <code>git commit -m "removed myfile.txt"</code> command. When we check the status again, we will see the message - <em>nothing to commit, working directory clean</em>.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 6.12 Excluding/Ignoring Unwanted Files in our Git Repository
 
@@ -332,7 +347,7 @@ We can check the files in our repository by listing the files in the terminal (W
 
 For now, we can simply go ahead and remove app.log entirely, from the terminal (Windows: <code>del app.log</code> & Linux/Mac: <code>rm app.log</code>).
 
-
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 7. Advanced Version Control Using Git
 
@@ -343,6 +358,7 @@ In this section, we will learn more advanced concepts and techniques in git that
 - How to save Work in Progress,
 - How to Time Travel, Other, etc.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.1 Comparing Differences in Git
 
@@ -362,6 +378,7 @@ To check all the options available with the <strong>diff</strong> command, we ca
 
 For the most part, anything that can be passed into the <strong>diff</strong> command, can also be passed into the <strong>difftool</strong> command (iff, difftool is configured properly).
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.2 Branching and Merging Types in Git
 
@@ -374,6 +391,7 @@ While Merging, Git tries it's best to automatically merge when possible, which l
 2. <strong>Automatic Merge</strong>: This happens when git detects non-conflicting changes in the parent branch. Git is able to automatically resolve any conflicts. In doing so, the old branch's timeline is preserved and a new merge commit is created to show the merging of the two branches. 
 3. <strong>Manual Merge</strong>: This happens when git is unable to automatically resolve any conflicts. Git enters a special conflicting merge state, which means that all merge conflicts must be resolved prior to moving forward with a commit. Once all conflicts have been resolved, those changes are saved as a merge commit.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.3 Special Markers/Pointers
 
@@ -383,6 +401,7 @@ While <strong>HEAD</strong> automatically points to the last commit of the curre
 
 For now, we just need to remember that <strong>HEAD</strong> points to the last commit of the current branch.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.4 Example of Branching
 
@@ -517,6 +536,7 @@ Now, if we use our git log alias which is <code>git hist</code>, we will be seei
 
 We can see that we no longer have the <em>updates</em> branch associated with the respective commit ID (in our case, it is 9394c33). Also note that the actual log/history did NOT vanish/go-away, just the label i.e., <em>updates</em> was removed.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.5 Conflict Resolution While Merging
 
@@ -660,7 +680,7 @@ We will express commit the current state of our repository using <code>git commi
 
 Now, all the files with <strong>.orig</strong> extension will be excluded from being tracked in our git repository and therefore, we can go ahead and delete LICENCE.md.orig (Windows: <code>del LICENCE.md.orig</code> & Linux/Mac: <code>rm LICENCE.md.orig</code>).
 
-
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.6 Marking Special Events w. Tagging
 
@@ -793,6 +813,7 @@ index bf0824e..490a1a0 100644
 
 We can see that it has the information about the Tagger, Date that the respective version of the repository was tagged, the commit message (in this case "Release 1.0") followed by the rest of the information for the commit that's associated with that tag. These annotated tags are really useful when we are trying to note major milestones/versions/releases of our repository, and we generally, might want to associate some information with those major releases/versions and that could be achieved through tagging.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.7 Saving Work in Progress w. Stashing
 
@@ -859,6 +880,7 @@ On branch master
 nothing to commit, working tree clean
 </pre>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 7.8 Time Travel w. Reset & Reflog
 
@@ -1151,12 +1173,15 @@ It looks like we have all our commits that we made till now, back again to us. N
 * 231b4cd README Update
 </pre>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 8. Basics of GitHub
 
 GitHub is a git repository hosting service where we can host unlimited public/private repositories. In GitHub, we can create an account [here](https://github.com/join?source=header-home) and sign-in after creating an account [here](https://github.com/login).
 
 After creating a GitHub account, we are all set to push our changes we made in our repository till now onto our Git Repository. We can create a repository in GitHub by following the steps provided [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository).
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 8.1 Linking to our GitHub Repository (Local <-> Remote)
 
@@ -1173,6 +1198,7 @@ origin https://github.com/Ch-sriram/Just-Git-In.git (push)
 
 Git tells us that we've our origin point towards the remote git repository we mentioned earlier. Now there might be a confusion about why the remote repository's entry (URL) is listed twice (<strong>one for fetch</strong> and <strong>one for push</strong>)? That's because technically, git will allow to have two different URLs one for fetching the changes from the remote repository to the local repository and one for pushing the changes made in the local repository to the remote repository. The URL for fetching can be different compared to the URL for pushing the repository, but in most cases, the URLs for fetching and pushing will be the same.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 8.2 Pushing Changes to GitHub (Local to Remote)
 
@@ -1209,6 +1235,7 @@ Your branch is up to date with 'origin/master'.
 nothing to commit, working tree clean
 </pre>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 9. SSH Authentication
 
@@ -1218,6 +1245,7 @@ This time, we will set-up another authentication method known as <strong>SSH</st
 
 We will setup our SSH Key for our respective system and then save it on GitHub, so now, our account is linked via SSH authentication.
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 9.1 Generating an SSH Key
 
@@ -1285,6 +1313,7 @@ Identity added: C:/users/srira/Desktop/.ssh/id_rsa (C:/users/srira/Desktop/.ssh/
 Hi Ch-sriram! You've successfully authenticated, but GitHub does not provide shell access.
 </pre>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ## 10. GitHub Repository
 
@@ -1296,6 +1325,7 @@ While we can make smal changes in our project using the GitHub Interface, but th
 
 We can create a repository on GitHub from the steps given [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository).
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 ### 10.1 Cloning a GitHub Repository
 
@@ -1308,3 +1338,4 @@ origin git@github.com:Ch-sriram/Practice-CPP.git (fetch)
 origin git@github.com:Ch-sriram/Practice-CPP.git (push)
 </pre>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
