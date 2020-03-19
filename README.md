@@ -45,8 +45,8 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
 10. [GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#10-github-repository)
     1. [Cloning a GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#101-cloning-a-github-repository)
     2. [Fetch & Pull in GitHub](https://github.com/Ch-sriram/Just-Git-In#102-fetch--pull-in-github)
-
-
+    3. [Updating Remote References of a Repository](https://github.com/Ch-sriram/Just-Git-In#103-updating-remote-references-of-a-repository)
+    4. [Creating New Files in GitHub on a New Branch]()
 
 ## 1. What is Git?
 
@@ -1431,7 +1431,7 @@ origin  git@github.com:Ch-sriram/CPP.git (fetch)
 origin  git@github.com:Ch-sriram/CPP.git (push)
 </pre>
 
-We can get additional information about our remote reference by typing in <code>git remote show origin</strong> command (where 'origin' is the name of the remote reference) in the terminal and we should get a similar output as shown below:
+We can get additional information about our remote reference by typing in <code>git remote show origin</code> command (where 'origin' is the name of the remote reference) in the terminal and we should get a similar output as shown below:
 
 <pre>
 * remote origin
@@ -1447,3 +1447,20 @@ We can get additional information about our remote reference by typing in <code>
 </pre>
 
 We can see more information related to the remote reference and we see that the Remote branch is master and it is <strong>tracked</strong>, which means whenever we do a <code>git push</code> or <code>git pull</code>, git will automatically synchronize between the master branches on both sides (viz. remote and local).
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.4 Creating New Files in GitHub on a New Branch
+
+In our CPP repository on GitHub (which is [here](https://github.com/Ch-sriram/Practice-CPP)), we will create a new file by clicking on the <strong>Create new file</strong> button in the repository page in the web browser. We can go into any sub-directory inside our GitHub repository and create a new file by giving a name to the file with the appropriate extension and then typing in the content of the file in the <strong>Edit new file</strong> section. After we fill the content inside the file, we can also preview the file before committing the changes by clicking on the <strong>Preview</strong> tab beside the <strong>Edit new file</strong> tab in the web browser.
+
+After we fill the content in the new file, we scroll to the bottom of the webpage and then put in our commit message's title along with any additional optional description (if we want, we can put in the description in markdown syntax) and then we can <strong>commit directly to the <code>master</code> branch</strong> or we can <strong>Create a <u>new branch</u> for this commit and start a pull request</strong>. We will create a new branch for the commit and start a pull request. We will name our branch <strong>feature-branch</strong> and we click on <strong>Propose new file</strong> button.
+
+We will be redirected to <strong>Open a pull request</strong> page where we are effectively making a pull request into our master branch in the remote repository itself. We can edit the commit message we gave earlier while committing the creation of the new file, or leave it as it is. After the pull request commit message we have a comment that will go along with it where we can drop-in images and use markdown there too. After we finish with the commit message and the comment, we can simply press the <strong>Crete pull request</strong> button. 
+
+We will see a message which says <strong>This branch is up-to-date with the base branch</strong> and since we are the only contributor of the repository, we will click the <strong>Merge pull request</strong> button below the message. We will again have the opportunity to modify the commit message prior to clicking on <strong>Confirm merge</strong> button. Once we've clicked the button, we will be shown one more message which says <strong>Pull request successfully merged and closed</strong> and we will have a button beside it which is <strong>Delete branch</strong> and we can click that button to delete the branch ("feature-branch") that we created earlier. We click <strong>Delete branch</strong> button and we delete the branch we created earlier.
+
+To verify the changes made, we go to CPP repository home and we check that the newly created file is there in the remote repository.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
