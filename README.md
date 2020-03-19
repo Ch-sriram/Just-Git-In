@@ -21,7 +21,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
    3. [Commits in Git](https://github.com/Ch-sriram/Just-Git-In#63-commits-in-git)
    4. [Overview of a Git Repository](https://github.com/Ch-sriram/Just-Git-In#64-overview-of-a-git-repository)
    5. [Initializing a Git Repository w. Existing Files/Project](https://github.com/Ch-sriram/Just-Git-In#65-initializing-a-git-repository-w-existing-filesproject)
-   6. [Commit History w. Log and Show](https://github.com/Ch-sriram/Just-Git-In#65-initializing-a-git-repository-w-existing-filesproject)
+   6. [Commit History w. Log and Show](https://github.com/Ch-sriram/Just-Git-In#66-commit-history-w-log-and-show)
    7. [Express Commits](https://github.com/Ch-sriram/Just-Git-In#67-express-commits)
    8. [Rolling Back Changes](https://github.com/Ch-sriram/Just-Git-In#68-rolling-back-changes)
    9. [Creating New Commands - Git Alias](https://github.com/Ch-sriram/Just-Git-In#69-creating-new-commands---git-alias)
