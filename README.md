@@ -44,6 +44,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
    1. [Generating an SSH Key](https://github.com/Ch-sriram/Just-Git-In#91-generating-an-ssh-key)
 10. [GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#10-github-repository)
     1. [Cloning a GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#101-cloning-a-github-repository)
+    2. [Fetch & Pull in GitHub]()
 
 
 
@@ -1339,3 +1340,75 @@ origin git@github.com:Ch-sriram/Practice-CPP.git (push)
 </pre>
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.2 Fetch & Pull in GitHub
+
+Right now, we are in our [CPP repository](https://github.com/Ch-sriram/Practice-CPP) (which we cloned earlier) in the web browser, and while we are in the repository, we are going to make a quick change in the repository directly through the github website. We are going to open the README.md file in the repository and then edit that file (Note that the CPP repository should be a part of our repositories in our respective GitHub account to edit on GitHub). After editing/adding some content in README.md, we can provide the Commit Message and the provide optional extended description and then we can choose if we want to <strong>Commit directly to the <code>master</code> branch</strong> or create a new branch for the commit and start a pull request. We will simply make the commit on the master branch, and then press the <strong>Commit changes</strong> button. 
+
+Now we just updated our remote repository, a change of which our local repository is currently unaware of. In our local repository, in the terminal, when we check the status of our repository (which is CPP repo) using <code>git status</code>, we will see the following output in the terminal:
+
+<pre>
+On branch master
+Your branch is up-to-date with 'origin/master'
+
+nothing to commit, working directory clean
+</pre>
+
+While we are in the CPP repository, we can make some changes to the README.md file there, and then commit our changes using the express commit, i.e., using <code>git commit -am "README Update"</code> command and we should see house-keeping output. Now when we check the status of CPP repository using <code>git status</code> command in the terminal, we would see the following output:
+
+<pre>
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+</pre>
+
+Now according to the message seen above, we can see that we are ahead of the remote repository by 1 commit, however, we know that we have made a commit in CPP remote repository through the GitHub website and therefore, if we now try to publish the changes made in the local repository to the remote repository using <code>git push</code>, we'd get the following output in the terminal:
+
+<pre>
+To github.com:Ch-sriram/Practice-CPP.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'git@github.com:Ch-sriram/Practice-CPP.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</pre>
+
+When we tried to publish our changes in the local repository to the remote repository, git has rejected the push because we have made a commit in the remote repository and we have to first <strong>fetch</strong> the changes we made in our remote repository and then <strong>merge</strong> those changes to our local repository, otherwise, we can simply <strong>pull</strong> the changes from the remote repository to the local repository which will <strong>fetch + merge</strong> at the same time. But when pulling (or merging in general) there's obviously a possibility that the pull might fail due to a merge conflict (in that case, we go to a MERGING state and then use our mergetool to resolve the merge conflict), but most oftenly, the pull request goes in automatically (due to a fast-forward merge).
+
+Now, if we are not sure whether there'll be merge conflict or not, we generally go for <strong>fetching</strong> and then <strong>merging</strong> the remote repo changes into our local repo manually rather than going for the <strong>pull</strong> command, which can be a destructive command if we have changes that are not compatible with what currently is in the remote repository.
+
+Therefore, we alleviate the usage of pull by using the <strong>fetch</strong> command, i.e., using <code>git fetch</code> command in the terminal, and we should something similar to the following:
+
+<pre>
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 717 bytes | 4.00 KiB/s, done.
+From github.com:Ch-sriram/Practice-CPP
+   56b8dac..fdcf788  master     -> origin/master
+</pre>
+
+Now when we check the status using <code>git status</code> command, git responds with the following output in the terminal:
+
+<pre>
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+nothing to commit, working tree clean
+</pre>
+
+We can see that the message depicts that we have 1 commit from local and 1 commit from the remote repository. Also, the message says that we can merge the changes automatically using <code>git pull</code> command in the terminal. Now when we type in <code>git pull</code> command in the terminal, since the master branch on both sides (remote and local) are different, what occurs is a merge commit and so, we will see a MERGE_MSG file open where we type in the commit message we want. By default, the commit message we will see is - <strong>Merge branch 'master' of github.com:Ch-sriram/Practice-CPP</strong> which is a perfectly fine commit message. Therefore, we leave the message as that and then save and close the editor where the MERGE_MSG file was opened and then we publish the changes to GitHub using <code>git push</code> and we should get an output which is house-keeping output.
+
+Doing a <strong>pull<strong> or a <strong>fetch</strong> prior to any <strong>pushes</strong> is the best practice when trying to publish the changes made in the local repository to our remote repository.
+
+We can verify our changes in GitHub in our CPP repository.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
