@@ -1381,7 +1381,7 @@ When we tried to publish our changes in the local repository to the remote repos
 
 Now, if we are not sure whether there'll be merge conflict or not, we generally go for <strong>fetching</strong> and then <strong>merging</strong> the remote repo changes into our local repo manually rather than going for the <strong>pull</strong> command, which can be a destructive command if we have changes that are not compatible with what currently is in the remote repository.
 
-Therefore, we alleviate the usage of pull by using the <strong>fetch</strong> command, i.e., using <code>git fetch</code> command in the terminal, and we should something similar to the following:
+Therefore, we alleviate the usage of pull by using the <strong>fetch</strong> command, i.e., using <code>git fetch</code> command in the terminal, and we should see something similar to the following output:
 
 <pre>
 remote: Enumerating objects: 5, done.
