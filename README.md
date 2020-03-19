@@ -42,8 +42,8 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
    2. [Pushing Changes to GitHub (Local to Remote)](https://github.com/Ch-sriram/Just-Git-In#82-pushing-changes-to-github-local-to-remote)
 9. [SSH Authentication]()
    1. [Generating an SSH Key]()
-   
-
+10. [GitHub Repository]()
+    1. [Cloning a GitHub Repository]()
 
 
 
@@ -1283,5 +1283,28 @@ We will be given a prompt as shown above and we should type in <strong>yes</stro
 <pre>
 Identity added: C:/users/srira/Desktop/.ssh/id_rsa (C:/users/srira/Desktop/.ssh/id_rsa)
 Hi Ch-sriram! You've successfully authenticated, but GitHub does not provide shell access.
+</pre>
+
+
+## 10. GitHub Repository
+
+We will know how to apply local operations in a git repository, but by using the GitHub Interface. We will view, edit, create & delete files all directly on the GitHub interface.
+
+We will also go over the unique aspects of the GitHub's remote repository and how it relates to our local repositories back on our system. 
+
+While we can make smal changes in our project using the GitHub Interface, but the more significant changes are recommended to be done using the Git CLI (or the git bash).
+
+We can create a repository on GitHub from the steps given [here](https://help.github.com/en/enterprise/2.13/user/articles/creating-a-new-repository).
+
+
+### 10.1 Cloning a GitHub Repository
+
+We can clone a GitHub Repository easily from the repository link (link can be an SSH or HTTPS link) itself. Whenever we open a GitHub repository in the github's website in the web browser, we can see an option in the repository which has information on the <strong>clone URL</strong> by pressing the <strong>Clone or download</strong> button. We have two types of URLs to choose from, one is HTTPS, another is SSH. We can choose either. We will choose SSH URL. We will copy the SSH URL of the the respective GitHub Repository and in our terminal, we type in the <strong>clone</strong> command with the following syntax: <code>git clone clone-url \[directory-name]</code> (example: If we use the command w/o giving the optional \[directory-name] option, then we will clone the directory from GitHub to our local machine with the same name as the repo's name and so the command would be the following: <code>git clone git@github.com:Ch-sriram/Practice-CPP.git</code>. Otherwise, if we want a custom directory name, we would give the optional \[directory-name] option which is <code>git clone git@github.com:Ch-sriram/Practice-CPP.git CPP</code>).
+
+After we clone the repository, we can see that the contents inside the clones repository is the same as that of the files list we saw inside the remote repository hosted on GitHub. Inside the cloned repository, whenever we type in <code>git remote -v</code>, we will see that the git repository is automatically connected to GitHub via SSH with both the fetch and pull links having the same URL as seen below:
+
+<pre>
+origin git@github.com:Ch-sriram/Practice-CPP.git (fetch)
+origin git@github.com:Ch-sriram/Practice-CPP.git (push)
 </pre>
 
