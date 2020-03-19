@@ -346,7 +346,7 @@ In this section, we will learn more advanced concepts and techniques in git that
 
 ### 7.1 Comparing Differences in Git
 
-We will know how to compare differences using the <strong>diff</strong> and the <strong>difftool</strong> command in Git. The <code>difftool</code> command will only work if P4Merge is properly setup as the difftool, shown in [Git & GitHub Installations]() (section 5). 
+We will know how to compare differences using the <strong>diff</strong> and the <strong>difftool</strong> command in Git. The <code>difftool</code> command will only work if P4Merge is properly setup as the difftool, shown in [Git & GitHub Installations](https://github.com/Ch-sriram/Just-Git-In#5-git--github-installation) (section 5). 
 
 In our demo repository, we are on the <em>master</em> branch with nothing to commit and with a clean working directory. When we type in our git command alias that we created earlier which is <code>git hist</code>, we will see all the commits that we made till now (i.e., the commit history of our repository this far). If we want to see the differences between two commit points, we can simply copy the hash-key (SHA1 Key) for the respective commit, and check it against the latest commit (which is the commit pointed by the HEAD pointer) using <code>git diff c904e33 HEAD</code> command in the terminal. We will get the difference between the HEAD's commit (which is the latest commit on the current (master) branch) and the respective commit that we mentioned earlier (which is c904e33 in our case).
 
