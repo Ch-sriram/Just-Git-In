@@ -44,7 +44,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
    1. [Generating an SSH Key](https://github.com/Ch-sriram/Just-Git-In#91-generating-an-ssh-key)
 10. [GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#10-github-repository)
     1. [Cloning a GitHub Repository](https://github.com/Ch-sriram/Just-Git-In#101-cloning-a-github-repository)
-    2. [Fetch & Pull in GitHub]()
+    2. [Fetch & Pull in GitHub](https://github.com/Ch-sriram/Just-Git-In#102-fetch--pull-in-github)
 
 
 
@@ -1406,7 +1406,7 @@ nothing to commit, working tree clean
 
 We can see that the message depicts that we have 1 commit from local and 1 commit from the remote repository. Also, the message says that we can merge the changes automatically using <code>git pull</code> command in the terminal. Now when we type in <code>git pull</code> command in the terminal, since the master branch on both sides (remote and local) are different, what occurs is a merge commit and so, we will see a MERGE_MSG file open where we type in the commit message we want. By default, the commit message we will see is - <strong>Merge branch 'master' of github.com:Ch-sriram/Practice-CPP</strong> which is a perfectly fine commit message. Therefore, we leave the message as that and then save and close the editor where the MERGE_MSG file was opened and then we publish the changes to GitHub using <code>git push</code> and we should get an output which is house-keeping output.
 
-Doing a <strong>pull<strong> or a <strong>fetch</strong> prior to any <strong>pushes</strong> is the best practice when trying to publish the changes made in the local repository to our remote repository.
+Doing a <strong>pull</strong> or a <strong>fetch</strong> prior to any <strong>push</strong>es is the best practice when trying to publish the changes made in the local repository to our remote repository.
 
 We can verify our changes in GitHub in our CPP repository.
 
