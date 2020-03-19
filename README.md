@@ -35,7 +35,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
    4. [Example of Branching](https://github.com/Ch-sriram/Just-Git-In#74-example-of-branching)
    5. [Conflict Resolution While Merging](https://github.com/Ch-sriram/Just-Git-In#75-conflict-resolution-while-merging)
    6. [Marking Special Events w. Tagging](https://github.com/Ch-sriram/Just-Git-In#76-marking-special-events-w-tagging)
-   7. [Saving Work in Progress w. Stashing](https://github.com/Ch-sriram/Just-Git-In#76-marking-special-events-w-tagging)
+   7. [Saving Work in Progress w. Stashing](https://github.com/Ch-sriram/Just-Git-In#77-saving-work-in-progress-w-stashing)
    8. [Time Travel w. Reset & Reflog](https://github.com/Ch-sriram/Just-Git-In#78-time-travel-w-reset--reflog)
 8. [Basics of GitHub](https://github.com/Ch-sriram/Just-Git-In#8-basics-of-github)
    1. [Linking to our GitHub Repository (Local <-> Remote)](https://github.com/Ch-sriram/Just-Git-In#81-linking-to-our-github-repository-local---remote)
