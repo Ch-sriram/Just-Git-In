@@ -1517,3 +1517,4 @@ Now when we type in <code>ls</code> in our terminal, we will see that <strong>lo
 app.log  LICENCE.txt  lorem.txt  README.md
 </pre>
 
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
