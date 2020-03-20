@@ -47,7 +47,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     2. [Fetch & Pull in GitHub](https://github.com/Ch-sriram/Just-Git-In#102-fetch--pull-in-github)
     3. [Updating Remote References of a Repository](https://github.com/Ch-sriram/Just-Git-In#103-updating-remote-references-of-a-repository)
     4. [Creating New Files in GitHub on a New Branch](https://github.com/Ch-sriram/Just-Git-In#104-creating-new-files-in-github-on-a-new-branch)
-    5. [Synchronizing Changes made in Remote Repository to the Local Repository]()
+    5. [Synchronizing Changes made in Remote Repository to the Local Repository](https://github.com/Ch-sriram/Just-Git-In#105-synchronizing-changes-made-in-remote-repository-to-the-local-repository)
 
 
 ## 1. What is Git?
