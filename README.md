@@ -47,7 +47,8 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     2. [Fetch & Pull in GitHub](https://github.com/Ch-sriram/Just-Git-In#102-fetch--pull-in-github)
     3. [Updating Remote References of a Repository](https://github.com/Ch-sriram/Just-Git-In#103-updating-remote-references-of-a-repository)
     4. [Creating New Files in GitHub on a New Branch](https://github.com/Ch-sriram/Just-Git-In#104-creating-new-files-in-github-on-a-new-branch)
-    
+    5. [Synchronizing Changes made in Remote Repository to the Local Repository]()
+
 
 ## 1. What is Git?
 
@@ -1465,3 +1466,54 @@ We will see a message which says <strong>This branch is up-to-date with the base
 To verify the changes made, we go to CPP repository home and we check that the newly created file is there in the remote repository.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.5 Synchronizing Changes made in Remote Repository to the Local Repository
+
+After we made the changes in the remote repository as we have seen in the section above (in 10.4), now we have to synchronize the changes that we made in the remote repository into our local repository. For that, we type in <code>git fetch</code> in the terminal, and we will see an output which is of the following sort:
+
+<pre>
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), 1.64 KiB | 6.00 KiB/s, done.
+From https://github.com/Ch-sriram/Just-Git-In
+   05dd1ca..1a54600  master     -> origin/master
+</pre>
+
+Now if we check the status using <code>git status</code> command in our demo repository, we will see the following output:
+
+<pre>
+On branch master
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+</pre>
+
+Now we can simply type in a <code>git pull</code> in the terminal, and we shall an output that's similar to the following:
+
+<pre>
+Updating 05dd1ca..1a54600
+Fast-forward
+ lorem.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 lorem.txt
+</pre>
+
+Now when we check the status (using <code>git status</code> command) of our demo repository, we will see the following output:
+
+<pre>
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+</pre>
+
+Now when we type in <code>ls</code> in our terminal, we will see that <strong>lorem.txt</strong> is in our local repository as seen below:
+
+<pre>
+app.log  LICENCE.txt  lorem.txt  README.md
+</pre>
+
