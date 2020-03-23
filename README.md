@@ -48,8 +48,8 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     3. [Updating Remote References of a Repository](https://github.com/Ch-sriram/Just-Git-In#103-updating-remote-references-of-a-repository)
     4. [Creating New Files in GitHub on a New Branch](https://github.com/Ch-sriram/Just-Git-In#104-creating-new-files-in-github-on-a-new-branch)
     5. [Synchronizing Changes made in Remote Repository to the Local Repository](https://github.com/Ch-sriram/Just-Git-In#105-synchronizing-changes-made-in-remote-repository-to-the-local-repository)
-    6. [Creating Branches on GitHub]()
-    7. [Creating Branches Locally and then Pushing them to GitHub]()
+    6. [Creating Branches on GitHub](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)
+    7. [Creating Branches Locally and then Pushing them to GitHub](https://github.com/Ch-sriram/Just-Git-In#107-creating-branches-locally-and-then-pushing-them-to-github)
 
 
 ## 1. What is Git?
