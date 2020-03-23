@@ -8,7 +8,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
 - [Jason Taylor's Online Git & GitHub Course](https://www.udemy.com/course/github-ultimate/)
 
 
-## Table Of Contents
+## Table of Contents
 
 1. [What is Git?](https://github.com/Ch-sriram/Just-Git-In#1-what-is-git)
 2. [What is a Repository?](https://github.com/Ch-sriram/Just-Git-In#2-whats-a-repository)
@@ -48,6 +48,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     3. [Updating Remote References of a Repository](https://github.com/Ch-sriram/Just-Git-In#103-updating-remote-references-of-a-repository)
     4. [Creating New Files in GitHub on a New Branch](https://github.com/Ch-sriram/Just-Git-In#104-creating-new-files-in-github-on-a-new-branch)
     5. [Synchronizing Changes made in Remote Repository to the Local Repository](https://github.com/Ch-sriram/Just-Git-In#105-synchronizing-changes-made-in-remote-repository-to-the-local-repository)
+    6. [Creating Branches on GitHub]()
 
 
 ## 1. What is Git?
@@ -1518,3 +1519,21 @@ app.log  LICENCE.txt  lorem.txt  README.md
 </pre>
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.6 Creating Branches on GitHub
+
+Before making any new branches in GitHub, we should note that we are on the <strong>master</strong> branch which is the default branch when we are on a newly made repository.
+
+So now, we will create a new branch using GitHub. We will press on the button <strong>Branch: master</strong> in our repository and we will see the list of branches we have in our repository on GitHub's remote repository (which should only be master). So now, to create a new branch, we simply type inside the text-field that has the placeholder <strong>Find or create a branch</strong> and so we type in the name of the branch we want to create in that text-field, let's say we create the new branch called <strong>example</strong>.
+
+After we create the new branch (<strong>example</strong>), we can see that we will instantly be switching to the <strong>example</strong> branch and we can see that everything in that branch is th same as that of the <strong>master</strong> branch. We can make a quick edit inside the <strong>example</strong> branch, so that we can understand what will happen when we branch.
+
+Click on <strong>lorem.txt</strong> file and then click on the pencil button to edit the file and make some changes say <strong>"This is some change in the example branhc"</strong>. Once we edited, we scroll down and type in a commit message and then commit the changes directly on the <strong>example</strong> branch. We will return to the main page for the repository which is the demo repository and it will reset the repository to the <strong>master</strong> branch. To get back to the <strong>example</strong> branch, we will simply click the button <strong>Branch: master</strong> and select the <strong>example</strong> branch.
+
+Once we switch to the <strong>example</strong> branch, we can see that we have our latest commit which we made on the <strong>example</strong> branch. If we notice the branches tab in GitHub, it tells us that we have <strong>2 branches</strong> and when we click on the tab, we will see that we have our <code>Default</code> branch as <strong>master</strong> and we will see other branches under <strong>Your branches</strong> section.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.7 
