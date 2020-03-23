@@ -49,6 +49,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     4. [Creating New Files in GitHub on a New Branch](https://github.com/Ch-sriram/Just-Git-In#104-creating-new-files-in-github-on-a-new-branch)
     5. [Synchronizing Changes made in Remote Repository to the Local Repository](https://github.com/Ch-sriram/Just-Git-In#105-synchronizing-changes-made-in-remote-repository-to-the-local-repository)
     6. [Creating Branches on GitHub]()
+    7. [Creating Branches Locally and then Pushing them to GitHub]()
 
 
 ## 1. What is Git?
@@ -1536,4 +1537,40 @@ Once we switch to the <strong>example</strong> branch, we can see that we have o
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 
-### 10.7 
+### 10.7 Creating Branches Locally and then Pushing them to GitHub
+
+Previously, we created a branch directly on GitHub in the remote repository and then made some changes directly on the file inside the remote repository hosted by GitHub. However, modifying files directly on GitHub is not exactly a best practice. What we'll end up doing most of the time is creating the branches locally and then pushing them up to GitHub. So let's do that now.
+
+We are going to create a branch called <strong>remove-lorem</strong> using <code>git checkout -b remove-lorem</code> command in the git bash and we should see the following output in the git bash:
+
+<pre>
+Switched to a new branch 'remove-lorem'
+</pre>
+
+When we list out the files inside our text file, we ca see that we have <strong>lorem.txt</strong>, which is just a text file which has some filler text inside it. Therefore, we can delete/remove the file as it is not providing any tangible benefit to the demo repository directly. Therefore, we will delete it using <code>git rm lorem.txt</code> in the git bash. Now when we check the status of our repository (using <code>git status</code>), we can see that we have staged the fact that we are doing a delete as seen below:
+
+<pre>
+On branch remove-lorem
+Changes to be committed:
+  (use "git reset HEAD &lt;file> to unstage)
+
+      <strong>deleted:    lorem.txt</strong>
+
+</pre>
+
+In order to finalize this change, we need to commit using <code>git commit -m "Removing lorem.txt file"</code> in the git bash, and we shall se the following output:
+
+<pre>
+ 1 file changed, 5 deletions(-)
+ delete mode 100644 lorem.txt
+</pre>
+
+We have successfully deleted lorem.txt from the repository and we are back to a clean working directory. However, these changes are only reflected in the local repository. In order to make sure that these changes reflect in the remote repository, we should use the command <code>git push -u origin remove-lorem</code> where the -u sets up a tracking relation between the remove-lorem branch in the local repository and the remote repository (and so, whenever we push using <code>git push</code> or <code>git pull</code> next time, we would automatically push/pull into/from <strong>remove-lorem</strong> branch), origin is the name of the remote reference and remove-lorem is the branch we are trying to push into the remote repository. When we type in the command, we will see some house-keeping output, and along with that, we shall see something similar to the following:
+
+<pre>
+To git@github.com:Ch-sriram/Just-Git-In.git
+ * [new branch]        remove-lorem -> remove-lorem
+Branch remove-lorem set up to track remote branch remove-lorem from origin.
+</pre>
+
+Therefore, our local branch has been pushed up to GitHub. Now if we refresh our remote repository page in GitHub, we will see that GitHub already detected that <strong>remove-lorem</strong> is a new branch. When we browse the <strong>remove-lorem</strong> branch, we will see that we no longer have the <strong>lorem.txt</strong> file inside our <strong>remove-lorem</strong> branch of the repository.
