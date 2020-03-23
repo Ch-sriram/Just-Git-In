@@ -50,7 +50,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     5. [Synchronizing Changes made in Remote Repository to the Local Repository](https://github.com/Ch-sriram/Just-Git-In#105-synchronizing-changes-made-in-remote-repository-to-the-local-repository)
     6. [Creating Branches on GitHub](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)
     7. [Creating Branches Locally and then Pushing them to GitHub](https://github.com/Ch-sriram/Just-Git-In#107-creating-branches-locally-and-then-pushing-them-to-github)
-    8. [Comparing and Pull Requests in GitHub](https://github.com/Ch-sriram/Just-Git-In#108-comparing-and-pull-request-in-github)
+    8. [Comparing and Pull Requests in GitHub](https://github.com/Ch-sriram/Just-Git-In#108-comparing-and-pull-requests-in-github)
 
 ## 1. What is Git?
 
