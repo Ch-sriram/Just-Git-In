@@ -50,7 +50,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     5. [Synchronizing Changes made in Remote Repository to the Local Repository](https://github.com/Ch-sriram/Just-Git-In#105-synchronizing-changes-made-in-remote-repository-to-the-local-repository)
     6. [Creating Branches on GitHub](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)
     7. [Creating Branches Locally and then Pushing them to GitHub](https://github.com/Ch-sriram/Just-Git-In#107-creating-branches-locally-and-then-pushing-them-to-github)
-
+    8. [Comparing and Pull Requests in GitHub](https://github.com/Ch-sriram/Just-Git-In#108-comparing-and-pull-request-in-github)
 
 ## 1. What is Git?
 
@@ -1574,3 +1574,22 @@ Branch remove-lorem set up to track remote branch remove-lorem from origin.
 </pre>
 
 Therefore, our local branch has been pushed up to GitHub. Now if we refresh our remote repository page in GitHub, we will see that GitHub already detected that <strong>remove-lorem</strong> is a new branch. When we browse the <strong>remove-lorem</strong> branch, we will see that we no longer have the <strong>lorem.txt</strong> file inside our <strong>remove-lorem</strong> branch of the repository.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.8 Comparing and Pull Requests in GitHub
+
+We will integrate one of the branches we made in GitHub, into the <strong>master</strong> branch. We are currently logged into GitHub and we are currently on the demo git repository hosted on GitHub (in master branch). We have created 2 branches fairly recently and the GitHub interface notices that we have recent branches named <strong>example</strong> and <strong>remove-lorem</strong> which is shown above below the description of the repository in the default branch (which is the master branch) of the repository and that's because a lot of workflow that GitHub has is around comparing and pull requests.
+
+Therefore, beside our <strong>example</strong> branch, there will be abutton which is <strong>Compare & pull request</strong> which we are going to click on (We can go into the <strong>Pull request</strong> tab and do the same). After that, we will be redirected to a page where we will be asked to <strong>Open a pull request</strong> and by default (if there are no forks involved), <strong>GitHub will automatically do a compare and prepare for a pull request</strong> based on the default branch (which in this case is master). We will also have a commit messag which will be by default, the previous commit message we made in the branch we are applying the pull request to. We can also comment on the commit, and when we scroll to the bottom, we can see the difference between what we started with and what all files were actually edited/added in the <strong>example</strong> branch (in unified/split view). We can also see the number of commits, number of files changed, number of commit comments and the number of contributors associated with the <strong>example</strong> branch.
+
+Once we are done with the commit message and the rest of the pull request changes, we can go ahead and click on the button <strong>Create pull request</strong> and that will land us on the main pull request page where the heading of the page will be the commit message we gave in the previous page (which was the Open pull request page). For this particular repository (the demo repository), this is the second pull request, and therefore, we can see that we have the title of the main pull request page appended with <strong>#2</strong> with the commit message. 
+
+Now, one thing to note here is that, for public repositories, anyone can submit a pull request, however, only the people who have access to commit to the repository will have to ability to merge the pull request. Therefore, when we landed on this main pull request page, we can see that we have button that says <strong>Merge pull request</strong>. Before we press the button, we can check the comments in the <strong>Conversation</strong> tab or, we can check the <strong>Commits</strong> tab where all the commits for the branch will be listed, and we will also be able to check all the differences made, in the <strong>Files changed</strong> tab. We can go to the individual (modified) files and then leave comment, at the line level (GitHub provides a fine level of granularity). We can comment using emoticons, which are accessible using the colon operator (:) i.e., <code>:+1</code> converts to a thumbs-up. On GitHub, whenever we type in the colon operator, we will be able to see a preview of emoticons we can use and simply press the icon to get the code related to it typed in automatically into the comment.
+
+Now, we can simply press the <strong>Merge pull request</strong> button (note that the button is only visible if there are no merge conflicts between the default branch and the branch we are merging into the default branch) and then we are given the opportunity to revise the commit message, and so, we are going to click on <strong>Confirm merge</strong> button and we should see a message saying - <strong>Pull request was successfully merged and close</strong>, and beside that button, we have the <strong>Delete branch</strong> button which we will press to delete our branch. Therefore, the <strong>example</strong> branch is deleted.
+
+To verify, we can go to the repository's master branch, and then click the <strong>Branch: master</strong> button where we can check the branches we have in our repository. We will see that the <strong>example</strong> branch is deleted. Also, we will have a commit message that says <strong>Merge pull request #2 from Ch-sriram/example</strong> (which is the commit message that we get automatically when GItHub does the merge), where <strong>#2</strong> is a hotlink directly to the pull request (in case if we want to review our pull request later). When we got to the hotlink <strong>#2</strong>, we will see the status of <strong>Merged</strong> (which we can always revert whenever we want to).
+
+To double check, we can go back to the __master__ branch and when we check the __lorem.txt__ file, we will see that the edit we made in the __example__ branch is now reflecting in the __master__ branch.
