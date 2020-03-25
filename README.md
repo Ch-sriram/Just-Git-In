@@ -1607,7 +1607,7 @@ Switched to branch 'master'
 Your branch is up-to-date with 'origin/master'.
 </pre>
 
-Now, to make sure that our local repository is in sync with the remote repository, we are just going to apply a <code>git pull</code> in the git bash and we shall see some git house-keeping output and alongside that, we should also some output similar to the following:
+Now, to make sure that our local repository is in sync with the remote repository, we are just going to apply a <code>git pull</code> in the git bash and we shall see some git house-keeping output and alongside that, we should also see some output similar to the following:
 
 <pre>
 From github.com:Ch-sriram/demo
