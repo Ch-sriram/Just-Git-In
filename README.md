@@ -1698,3 +1698,44 @@ Now when we type in <code>git branch -a</code> in the git bash, we see the follo
 Now, in the local repository, we only have the branch references to the remote repository's __master__ branch and the special pointer called __HEAD__. And we can see that __remove-lorem__ branch is no longer available locally or is available as a reference in the remote repository on GitHub.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.10 Locally Switching to a Branch on GitHub
+
+In addition to starting a branch in the local repository and then pushing the changes into the remote repository hosted on GitHub, we can also work from the other direction, where we create a branch on GitHub and then checkout that particular branch on the local repository using the git bash.
+
+Therefore, we will create a new branch in the remote repository named __update-licence__ on GitHub (instructions to create a new branch can be found [here at 10.6](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)). Now, after we create the new branch, we will go into the LICENCE.md file and edit it on GitHub and then commit the changes on the __update-licence__ branch. 
+
+Now, let's say we want to continue making changes to the __update-licence__ branch, but we will do that on our local system, in our local repository, and so, we will switch back over to our terminal and we are currently in the demo git repository in the master branch where we have a clean working directory. Now, if we type in <code>git branch -a</code>, we should see the following output:
+
+<pre>
+* <strong>master</strong>
+  remotes/origin/master  
+</pre>
+
+Now, since we have made some changes in our remote repository hosted at GitHub, so we need to update those changes made into the local repository using <code>git fetch</code> command, which will update our remotes, which will include any new branches that git/github might be aware of. Now when we check all of our branches using <code>git branch -a</code>, we will see the following output:
+
+<pre>
+* <strong>master</strong>
+  remotes/origin/master
+  remotes/origin/update-licence
+</pre>
+
+Now, we can see that we have a new branch __update-licence__ within the __origin__ reference as part of the __remotes__ from the .git directory. There are several ways in which we can link the local branch with the __update-licence__ branch present at the remote repository on GitHub. But the simples way is to use the __checkout__ command, i.e., using the <code>git checkout update-licence</code> command, even though the __update-licence__ branch isn't available in the local repository. Now this only works if we have a single remote repository, and the reason why this works is because git will figure out what we mean by the name of the branch that we are specifying. Git is first going to look for a local branch called __update-licence__ and when it fails to find it, it will look for the name of that branch among the __remotes__. As long as the branch name (the git is looking for) is unique among our remotes, git will find and it will be able to checkout that branch -- however, if we have a scenario where we have multiple remotes pointing to similar repositories, where there are overlaps with the names of the branches, git is not going to be able to figure that out, and thus, we'll need to handle that manually to link a local branch with the specific branch on our remote that we want to link. However, in this case, git was able to find __update-licence__ branch in the __remotes__ since we only have single remote named __origin__ and in doing so, git made the assumption that we want to track the branch, so that my local version (local repository) of __update-licence__ is tracking to the GitHub version (remote repository) of it. And then git automatically switches to that new branch, which it is a new local branch created automatically by git.
+
+Now when we use <code>git branch -a</code>, we shall see an output of the following sort:
+
+<pre>
+  master
+* <strong>update-licence</strong>
+  remotes/origin/master
+  remotes/origin/update-licence
+</pre>
+
+We can see that we have new local branch called __update-licence__ and technically, they are two different distinct branches because we are working with two different repositories - a local repository & a remote repository.
+
+Now we will open up our LICENCE.md file and make some more changes into it, and then save and close it. We will commit the changes and then we will publish the changes made in our local repository to the remote repository hosted on GitHub using <code>git push</code> command (we don't need to specify the remote reference or the branch since the tracking relationship has already been established by git previously) and git figures out which branch these changes need to be pushed, and it pushed to the corresponding __update-licence__ branch on GitHub.
+
+we can verify the published changes from the local repository to the remote repository from our remote repository hosted at GitHub using the web browser.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
