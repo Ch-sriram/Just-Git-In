@@ -1,5 +1,5 @@
 # LICENCE
 ## [Licence Name] - [Some Text], just for this tutorial.
-I hope this is not much of a problem!!!
+Replacing this line in the local repository and then publishing the changes to the remote repository.
 This is just some update after stashing the README's update
 Editing the LICENCE on GitHub in update-licence branch.
