@@ -1649,7 +1649,7 @@ To git@github.com:Ch-sriram/demo.git
     dbcd07..e86646b  master -> master
 </pre>
 
-Now, we have successdully published out local repository's changes into the remote repository's master hosted on GitHub. We can verify it on GitHub by opening the demo repository page on GitHub using a web-browser.
+Now, we have successfully published out local repository's changes into the remote repository's master hosted on GitHub. We can verify it on GitHub by opening the demo repository page on GitHub using a web-browser.
 
 Now, when we check our remote repository on GitHub using the web browser, we will see that there are still 2 branches, but we see that, since we merged the __remove-lorem__ branch with the __master__ branch, we can see that we do NOT have __lorem.txt__ file in our __master__ branch also. When we switch to __remove-lorem__ branch, we can see the message as a sub-title that __This branch is 3 commits behind master__ and that's because __remove-lorem__ doesn't have the changes from the __example__ branch that was integrated into the __master__ branch already. The __remove-lorem__ branch also doesn't have the merge commits associated with merging back into __master__.
 
@@ -1665,7 +1665,7 @@ Now, going back to the local repository, when we type in <code>git branch -a</co
   remotes/origin/remove-lorem
 </pre>
 
-We can see that remove-lorem is still a branch that we have on GitHub, or at least the reference of it is still there in the local repository which is under __remotes/origin/remove-lorem__. Therefore, we will delete our branch in the local repository using <code>git branch -d remove-lorem</code> command in the git bash and we shall an output that's similar to the following:
+We can see that remove-lorem is still a branch that we have on GitHub, or at least the reference of it is still there in the local repository which is under __remotes/origin/remove-lorem__. Therefore, we will delete our branch in the local repository using <code>git branch -d remove-lorem</code> command in the git bash and we shall see an output that's similar to the following:
 
 <pre>
 Deleted branch remove-lorem (was 30278cb)
@@ -1692,7 +1692,7 @@ Now when we type in <code>git branch -a</code> in the git bash, we see the follo
 <pre>
 * <strong>master</strong>
   remotes/origin/master
-  remotes/origin/remove-lorem
+  remotes/origin/HEAD
 </pre>
 
 Now, in the local repository, we only have the branch references to the remote repository's __master__ branch and the special pointer called __HEAD__. And we can see that __remove-lorem__ branch is no longer available locally or is available as a reference in the remote repository on GitHub.
