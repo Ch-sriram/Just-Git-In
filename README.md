@@ -51,6 +51,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     6. [Creating Branches on GitHub](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)
     7. [Creating Branches Locally and then Pushing them to GitHub](https://github.com/Ch-sriram/Just-Git-In#107-creating-branches-locally-and-then-pushing-them-to-github)
     8. [Comparing and Pull Requests in GitHub](https://github.com/Ch-sriram/Just-Git-In#108-comparing-and-pull-requests-in-github)
+    9. [Merging Branches Locally]()
 
 ## 1. What is Git?
 
@@ -1593,3 +1594,107 @@ Now, we can simply press the <strong>Merge pull request</strong> button (note th
 To verify, we can go to the repository's master branch, and then click the <strong>Branch: master</strong> button where we can check the branches we have in our repository. We will see that the <strong>example</strong> branch is deleted. Also, we will have a commit message that says <strong>Merge pull request #2 from Ch-sriram/example</strong> (which is the commit message that we get automatically when GItHub does the merge), where <strong>#2</strong> is a hotlink directly to the pull request (in case if we want to review our pull request later). When we got to the hotlink <strong>#2</strong>, we will see the status of <strong>Merged</strong> (which we can always revert whenever we want to).
 
 To double check, we can go back to the __master__ branch and when we check the __lorem.txt__ file, we will see that the edit we made in the __example__ branch is now reflecting in the __master__ branch.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.9 Merging Branches Locally
+
+If we are on __remove-lorem__ branch (use <code>git status</code> to check), then we checkout from __remove-lorem__ branch into the __master__ branch using <code>git checkout master</code> command in the git bash, and we should some output of the following sort:
+
+<pre>
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+</pre>
+
+Now, to make sure that our local repository is in sync with the remote repository, we are just going to apply a <code>git pull</code> in the git bash and we shall see some git house-keeping output and alongside that, we should also some output similar to the following:
+
+<pre>
+From github.com:Ch-sriram/demo
+      dbcd07..f1dcf21
+Fast-forward
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+</pre>
+
+Now we've integrated all the changes into master from our remote GitHub repository. Now, we are ready to integrate the changes that we have in our local __remove-lorem__ branch using <code>git merge remove-lorem</code> command in the git bash and we shall see the following output:
+
+<pre>
+Removing lorem.txt
+</pre>
+
+And we should also see the default text editor opened so that we can write our commit merge message (by default, the merge commit message is  __Merge branch 'remove-lorem'__). We will leave the default commit message, save and exit the default text editor, and we shall see some output which is of the following sort:
+
+<pre>
+Removing lorem.txt
+Merge made by the 'recursive' strategy.
+ lorem.txt | 5 -----
+ 1 file changed, 5 deletions(-)
+ delete mode 100644 lorem.txt
+</pre>
+
+Now if we check the status of our repository (using <code>git status</code>), we shall see something of the following sort:
+
+<pre>
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+    (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+</pre>
+
+Now, we can synchronize our local changes to the remote repository into the GitHub repository using <code>git push</code>, and we shall see some git house-keeping output and in the end, we shall see the following output:
+
+<pre>
+To git@github.com:Ch-sriram/demo.git
+    dbcd07..e86646b  master -> master
+</pre>
+
+Now, we have successdully published out local repository's changes into the remote repository's master hosted on GitHub. We can verify it on GitHub by opening the demo repository page on GitHub using a web-browser.
+
+Now, when we check our remote repository on GitHub using the web browser, we will see that there are still 2 branches, but we see that, since we merged the __remove-lorem__ branch with the __master__ branch, we can see that we do NOT have __lorem.txt__ file in our __master__ branch also. When we switch to __remove-lorem__ branch, we can see the message as a sub-title that __This branch is 3 commits behind master__ and that's because __remove-lorem__ doesn't have the changes from the __example__ branch that was integrated into the __master__ branch already. The __remove-lorem__ branch also doesn't have the merge commits associated with merging back into __master__.
+
+We can delete the __remove-lorem__ branch by going into the "branches" tab and then clicking on the trash-can icon beside the __remove-lorem__ branch. Until e refresh the page, we have the option to __Restore__ the branch that we just deleted, but it is always better to delete the branch iff we are completely done implementing the feature we wanted to integrate with our __master__ branch.
+
+Now, going back to the local repository, when we type in <code>git branch -a</code> in the git bash, we should see some output of the following sort:
+
+<pre>
+* <strong>master</strong>
+  remove-lorem
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/remove-lorem
+</pre>
+
+We can see that remove-lorem is still a branch that we have on GitHub, or at least the reference of it is still there in the local repository which is under __remotes/origin/remove-lorem__. Therefore, we will delete our branch in the local repository using <code>git branch -d remove-lorem</code> command in the git bash and we shall an output that's similar to the following:
+
+<pre>
+Deleted branch remove-lorem (was 30278cb)
+</pre>
+
+Note that git would've warned us if we wouldn't have had integrated the changes made inside the __remove-lorem__ branch into the __master__ branch. Now, we can check the branches we have in our repository using <code>git branch -a</code>, and we see the following output:
+
+<pre>
+* <strong>master</strong>
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/remove-lorem
+</pre>
+
+We can see that the __remove-lorem__ branch which was the local repository's branch, has been removed. But we still have the reference to the __remove-lorem__ branch which is present in the remote repository on GitHub referenced at __remotes/origin/remove-lorem__. However, we know that that branch doesn't exist on GitHub and therefore, it is just a stale reference. To update those stale references, we use the __fetch__ command, i.e., <code>git fetch -p</code> where "-p" is the __prune__ option, which means that the __fetch__ is going to look for any dead branches and remove those references between the local and the remote repositories. We use that command, and we shall see some output of the following sort:
+
+<pre>
+From github.com:Ch-sriram/demo
+ x [deleted]      (none)      -> origin/remove-lorem
+</pre>
+
+Now when we type in <code>git branch -a</code> in the git bash, we see the following output in the terminal:
+
+<pre>
+* <strong>master</strong>
+  remotes/origin/master
+  remotes/origin/remove-lorem
+</pre>
+
+Now, in the local repository, we only have the branch references to the remote repository's __master__ branch and the special pointer called __HEAD__. And we can see that __remove-lorem__ branch is no longer available locally or is available as a reference in the remote repository on GitHub.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
