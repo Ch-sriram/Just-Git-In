@@ -52,6 +52,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     7. [Creating Branches Locally and then Pushing them to GitHub](https://github.com/Ch-sriram/Just-Git-In#107-creating-branches-locally-and-then-pushing-them-to-github)
     8. [Comparing and Pull Requests in GitHub](https://github.com/Ch-sriram/Just-Git-In#108-comparing-and-pull-requests-in-github)
     9. [Merging Branches Locally](https://github.com/Ch-sriram/Just-Git-In#109-merging-branches-locally)
+    10. [Locally Switching to a Branch on GitHub](https://github.com/Ch-sriram/Just-Git-In#1010-locally-switching-to-a-branch-on-github)
 
 ## 1. What is Git?
 
