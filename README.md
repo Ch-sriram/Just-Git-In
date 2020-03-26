@@ -54,6 +54,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     9. [Merging Branches Locally](https://github.com/Ch-sriram/Just-Git-In#109-merging-branches-locally)
     10. [Locally Switching to a Branch on GitHub](https://github.com/Ch-sriram/Just-Git-In#1010-locally-switching-to-a-branch-on-github)
     11. [Cleaning Up By Deleting Branches and References](https://github.com/Ch-sriram/Just-Git-In#1011-cleaning-up-by-deleting-branches-and-references)
+    12. [Pull with Rebase](https://github.com/Ch-sriram/Just-Git-In#1012-pull-with-rebase)
 
 ## 1. What is Git?
 
@@ -1848,3 +1849,72 @@ When we removed the __update-licence__ branch in the remote repository also, git
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 
+### 10.12 Pull with Rebase
+
+When we apply a __pull__ with the __--rebase__ option, git rewinds the current commits that are on our branch to a point to where the branch we're merging in originally diverged from. Then, playing back the commits that happened on that branch that we are wanting to bring in; and then, after that, playing on top of that any commits that have happened on the branch that we are currently on, thus making any changes that we have including the changes that happened on the remote branch, but with our changes made ahead of them (that were local).
+
+This is a good strategy when we are working on something, and we want to make sure that our changes are ahead of whatever's going on from the remote side.
+
+If all of the explaination feels confusing, we can always apply the concept practically to understand what the explaination was. To start things off, we're in our local repository on the demo git repository on the master branch and at this point, the working directory is clean with nothing to commit. We can verify that by applying a <code>git pull</code> and we see the following output:
+
+<pre>
+Already up-to-date.
+</pre>
+
+Now, if we jump over to the remote repository on GitHub, we can edit the LICENCE.txt file there, and then commit the changes made directly to the __master__ branch. For ease in understanding, we can have a commit message that say something as follows - "__LICENCE Updated on master on GitHub before rebase__".
+
+Now, we will switch back to our local repository back in our terminal. Before we pull any changes from GitHub, we are going to make some changes on the local side first (a malice change so that there's a definite merge conflict). Let's tweak the LICENCE.txt file first. After that tweak, we can commit the changes locally with the commit message <code>git commit -am "Updating LICENCE locally before rebase"</code>. Now, if we do a <code>git fetch</code>, we will update our local git repository with whatever changed in our remote side. And now if we apply a <code>git status</code> command, we can see the following output:
+
+<pre>
+On branch master
+Your branch and 'origin/master' have diverged,
+and have 1 and 1 different commit each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+nothing to commit, working directory clean
+</pre>
+
+In this case, we can just merge in the changes from or remote repository into the local repository, and in doing so, it will create an automatic merge, which would result in a merge commit, and that's okay. 
+
+BUT, what if want to make sure that whatever we are currently working on, stays ahead of whatever's currently in GitHub. To do that, we can use the __rebase__ command. Therefore, we type in <code>git pull --rebase</code>, where __--rebase__ option first rewinds the HEAD to replay our work from the remote repository, into the local repository and then apply the latest local repository changes (commits) on top of it. We can check the re-winding process using our alias (we created [here in 6.9](https://github.com/Ch-sriram/Just-Git-In#69-creating-new-commands---git-alias)) <code>git hist</code> command and we can see some output of the following sort:
+
+<pre>
+* b18gb1c (<strong>HEAD -> master</strong>) Updating LICENCE locally before rebase
+* 2eb9c33 (<strong>origin/master</strong>) LICENCE Updated on master on GitHub before rebase
+*   e6d2589 Merge conflict resolved: LICENCE Updated
+|\
+| * bfe9739 Updating LICENCE.txt
+* | 3ba7730 LICENCE Update
+|/
+* 9a98e53 README Update: 10.11 Cleaning Up By Deleting Branches and References && Link Update in Table of Contents
+* 7191c89 LICENCE Update
+* 0e5906a LICENCE.md Update
+* 56c1db4 README Update: 10.10 Table of Contents Link Integrated
+* a3a9e1d README Update: 10.10 Locally Switching to a Branch on GitHub
+* 0abc089 README Update: Minor Changes
+* 866f8dc lorem.txt removed
+*   8226e97 Merge branch remove-lorem && README Update
+|\
+| * e9353c4 Removed lorem.txt file
+* | 3aafe1a README Update: 10.9 Link Integrated in Table of Contents
+* | 87e1467 README Update: 10.9 Merging Branches Locally
+* | 905a778 README Update: 10.8 Link Update in Table of Contents
+* |   426bfcb Merge branch 'master' of https://github.com/Ch-sriram/Just-Git-In
+|\ \
+| * \   f984afd Merge pull request #2 from Ch-sriram/example
+| |\ \
+| | * | 3033da1 Updating lorem.txt in the example branch
+| |/ /
+* | | 981e9fe README Update: 10.8 Comparing and Pull Requests in GitHub
+: ...
+</pre>
+
+We can see that the commit 2eb9c33 is what 'origin/master' is currently pointing to, which is our last commit from GitHub on 'origin/master' followed by the commit we just made on our local copy on master, which is updating the LICENCE file before the rebase. However, that commit did not include any of the updates from GitHub, and therefore, that's an interesting distinction. 
+
+Before, when we had applied the local changes on master, it only had the changes that we included while we were in the local repository, it did not include anything that we changed on GitHub. We can verify that the changes we made in our remote repository, made it back into our local repo by simply checking the LICENCE.txt file. When we check the status of our repository (using <code>git status</code>), we can see that the local repo is ahead of the remote repo by 1 commit, which is the commit made in the local repo. Now, we will publish the changes that we made locally, to the remote repository on GitHub using <code>git push</code> command, and we shall see the following output:
+
+<pre>
+To git@github.com:Ch-sriram/demo.git
+    2eb9c33..b18gb1c
+</pre>
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
