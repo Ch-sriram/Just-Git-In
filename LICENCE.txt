@@ -4,4 +4,9 @@ Replacing this line in the local repository and then publishing the changes to t
 This is just some update after stashing the README's update
 Editing the LICENCE on GitHub in update-licence branch.
 
+
+
+
+
+Changes made inside the remote repository in the update-licence branch.
 Adding new line in the local repository, in update-licence branch.
