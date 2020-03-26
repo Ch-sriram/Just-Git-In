@@ -53,6 +53,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     8. [Comparing and Pull Requests in GitHub](https://github.com/Ch-sriram/Just-Git-In#108-comparing-and-pull-requests-in-github)
     9. [Merging Branches Locally](https://github.com/Ch-sriram/Just-Git-In#109-merging-branches-locally)
     10. [Locally Switching to a Branch on GitHub](https://github.com/Ch-sriram/Just-Git-In#1010-locally-switching-to-a-branch-on-github)
+    11. [Cleaning Up By Deleting Branches and References](https://github.com/Ch-sriram/Just-Git-In#1011-cleaning-up-by-deleting-branches-and-references)
 
 ## 1. What is Git?
 
@@ -1740,3 +1741,110 @@ Now we will open up our LICENCE.md file and make some more changes into it, and 
 we can verify the published changes from the local repository to the remote repository from our remote repository hosted at GitHub using the web browser.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.11 Cleaning Up By Deleting Branches and References
+
+This time, we will make few more changes to the __update-licence__ branch and then sync them back to my local repository, then synchronize all our changes to tracking branches locally, and then walk through the process of merging locally, then deleting the branch both locally and remotely from the command line.
+
+In our demo GitHub remote repository, we will switch to the __update-licence__ branch and then we will open the LICENCE.txt file and then make a quick tweak to the file and then commit the changes directly to the __update-licence__ branch.
+
+Now, we will switch back to the terminal on the demo's local repository, where we will check the status of our repository using <code>git status</code>, and we shall see the following output:
+
+<pre>
+On branch update-licence
+Your branch is up-to-date with 'origin/update-licence'.
+nothing to commit, working directory clean
+</pre>
+
+If we are not in the __update-licence__ branch, we would switch to the the branch using <code>git checkout update-licence</code> command in the terminal. 
+
+Now, we shall synchronize our remote repository's changes into the local repository, and for that, we can easily do it using <code>git pull</code> and get the latest update that's on the remote repository on GitHub, but we will see another way to synchronize the remote repo with the local repo.
+
+Now, eventually, we will be merging with the __master__ branch, so we will switch to the __master__ branch using <code>git checkout master</code>, and we shall see the following output:
+
+<pre>
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+</pre>
+
+Now, in the __master__ branch, if we use <code>git pull</code>, we will fetch and merge from the __master__ branch of the remote repo, into the __master__ branch of the local repo. We can check the configuration using <code>git config --global -e</code> command, and we will see the following output on vim:
+
+<pre>
+[filter "lfs"]
+        required = true
+        lean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+[user]
+        name = Chandrabhatta Sriram
+        email = sriram.ch1995@gmail.com
+[winUpdater]
+        recentlySeenVersion = 2.25.0.windows.1
+[diff]
+        tool = p4merge
+[difftool "p4merge"]
+        path = C:/Program Files/Perforce/p4merge.exe
+[difftool]
+        prompt = false
+[merge]
+        tool = prmerge
+[mergetool "p4merge"]
+        path = C:\\Program Files\\Perforce\\p4merge.exe
+[mergetool]
+        prompt = false
+[alias]
+        hist = log --oneline --graph --decorate --all
+[push]
+        default = simple
+</pre>
+
+At the bottom, we can see the the __push__ command has __default = simple__ which smply means that whatever branch we are currently on, push and pull will only apply to that particular branch. However, if we want to override that, we can use an option when we do a __pull__, i.e., by using <code>git pull --all</code>, even though, we are currently on the __master__ branch, Git will update all tracking branches at the same time, i.e., all branches in the local repositories will merge into all branches of the remote repositories viz. __master__ to __master__ and __update-licence__ to __update-licence__. 
+
+And now, we will integrate our changes using the __merge__ command using <code>git merge update-licence</code> command and we shall some output of the following sort:
+
+<pre>
+Updating e86646b..9cg9c0f
+Fast-forward
+ README.md | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+</pre>
+
+Now we have integrated the changes into the local repository, and therefore, now we can check the status of our local repository, and we will see that we are on __master__ branch and we will be ahead by some number of commits from 'origin/master'.
+
+We will publish the changes in our local repository, into our remote repository using <code>git push</code> command and we shall see some output of the following sort:
+
+<pre>
+To git@github.com:Ch-sriram/demo.git
+    e86646b..9cg9c0f    master -> master
+</pre>
+
+Now that we have published the changes, we no longer need the __update-licence__ branch and by using <code>git branch -d update-licence</code> command, we can delete the __update-licence__ branch. Now, by typing in <code>git branch -a</code>, we can see the following output:
+
+<pre>
+* <strong>master</strong>
+  remotes/origin/master
+  remotes/origin/update-licence
+</pre>
+
+We can see that __update-licence__ branch is deleted from the local repository, but not from the remote repository. We can delete the __update-licence__ branch remotely on GitHub, but we can do the same at the local repository also. We can use <code>git push origin :update-licence</code> command [where __:__ (colon) is used to mention to GitHub to delete the branch that's followed by the __:__ (colon)] and we shall see the following output:
+
+<pre>
+To git@github.com:Ch-sriram/demo.git
+ - [deleted]      update-licence
+</pre>
+
+When we check our remote repository hosted on GitHub, we can see that it got instantly updated that the __update-licence__ branch is deleted. We can see that we only have 1 branch in the remote repository on GitHub.
+
+Using the command line, we will type in <code>git branch -a</code> to check the branches we have in our local git repository, and we shall see the following output:
+
+<pre>
+* <strong>master</strong>
+  remotes/origin/master
+</pre>
+
+When we removed the __update-licence__ branch in the remote repository also, git automatically updated our remote branch references in the local repository as well and therefore, we don't need to apply a __fetch__ command with the __prune__ option.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
