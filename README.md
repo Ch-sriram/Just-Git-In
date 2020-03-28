@@ -1927,7 +1927,7 @@ In the demo remote repository on GitHub, on the master branch. In a lot of workf
 
 So from now on, we will make a branch called __develop__ which will be the __default__ branch of our repository. To do that, we will create a new branch in GitHub using the instructions present __[here in 10.6](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)__. After that, we navigate to the __Repository Settings__ in GitHub's webpage and then goto the __Options__ tab, where we will see the __Default branch__ option, where we change the repository to __develop__ branch and then press the __Update__ button to make sure that the changes stick to the repository. We've successfully updated the default branch for the repository.
 
-Now when we get to the main page of our repository, we can see that the repository's default branch is now the __develop__ branch. Now, whenever we try to make a __Pull Request__, we will see that the base destination of the pull request is now the __develop__ branch (and not the __master__ branch). Another thing is, whenever we try to clone the repository using either the HTTPS/SSH clone URL in the terminal in the local system, using the <code>git clone git@github.com:Ch-sriram/demo.git</code> command, we will see that the repository is clones inside the local system, and when we type in <code>git branch -a</code> command in the terminal, we will see the following output:
+Now when we get to the main page of our repository, we can see that the repository's default branch is now the __develop__ branch. Now, whenever we try to make a __Pull Request__, we will see that the base destination of the pull request is now the __develop__ branch (and not the __master__ branch). Another thing is, whenever we try to clone the repository using either the HTTPS/SSH clone URL in the terminal in the local system, using the <code>git clone git@github.com:Ch-sriram/demo.git</code> command, we will see that the repository is cloned inside the local system, and when we type in <code>git branch -a</code> command in the terminal, we will see the following output:
 
 <pre>
 * <strong>develop</strong>
@@ -1935,6 +1935,13 @@ Now when we get to the main page of our repository, we can see that the reposito
   remotes/origin/master
 </pre>
 
-We can see that __master__ is not present in the local repository, it is only present in the remote repository, and so, we have to make a new __master__ branch inside the local repository using <code>git checkout master</code> as we've seen in __[section 10.10](https://github.com/Ch-sriram/Just-Git-In#1010-locally-switching-to-a-branch-on-github)__, where the remote __master__ is merged with the local __master__ branch (after a new local __master__ branch is created automatically). So now we've both __master__ and __develop__ branches in our local repository and remote repository, but the __develop__ branch is the default branch.
+We can see that __master__ is not present in the local repository, it is only present in the remote repository, and so, we have to make a new __master__ branch inside the local repository using <code>git checkout master</code> as we've seen in __[section 10.10](https://github.com/Ch-sriram/Just-Git-In#1010-locally-switching-to-a-branch-on-github)__, where the remote __master__ is merged with the local __master__ branch (after a new local __master__ branch is created automatically). So now we've both __master__ and __develop__ branches in our local repository and remote repository, but the __develop__ branch is the default branch. Now when we type in <code>git branch -a</code> command, we shall see the following output:
+
+<pre>
+  develop
+* <strong>master</strong>
+  remotes/origin/develop
+  remotes/origin/master
+</pre>
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
