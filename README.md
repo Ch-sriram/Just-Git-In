@@ -55,6 +55,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     10. [Locally Switching to a Branch on GitHub](https://github.com/Ch-sriram/Just-Git-In#1010-locally-switching-to-a-branch-on-github)
     11. [Cleaning Up By Deleting Branches and References](https://github.com/Ch-sriram/Just-Git-In#1011-cleaning-up-by-deleting-branches-and-references)
     12. [Pull with Rebase](https://github.com/Ch-sriram/Just-Git-In#1012-pull-with-rebase)
+    13. [Changing Default Branch in GitHub](https://github.com/Ch-sriram/Just-Git-In#1013-changing-default-branch-in-github)
 
 ## 1. What is Git?
 
@@ -1916,5 +1917,24 @@ Before, when we had applied the local changes on master, it only had the changes
 To git@github.com:Ch-sriram/demo.git
     2eb9c33..b18gb1c
 </pre>
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.13 Changing Default Branch in GitHub
+
+In the demo remote repository on GitHub, on the master branch. In a lot of workflows, the __master__ branch represents whatever is currently in production. Active development should not happen directly on the __master__ branch. Instead, there should be another branch which is also long-lived where all the development effort goes, and then periodically, those changes are merged back into the __master__ branch for production.
+
+So from now on, we will make a branch called __develop__ which will be the __default__ branch of our repository. To do that, we will create a new branch in GitHub using the instructions present __[here in 10.6](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)__. After that, we navigate to the __Repository Settings__ in GitHub's webpage and then goto the __Options__ tab, where we will see the __Default branch__ option, where we change the repository to __develop__ branch and then press the __Update__ button to make sure that the changes stick to the repository. We've successfully updated the default branch for the repository.
+
+Now when we get to the main page of our repository, we can see that the repository's default branch is now the __develop__ branch. Now, whenever we try to make a __Pull Request__, we will see that the base destination of the pull request is now the __develop__ branch (and not the __master__ branch). Another thing is, whenever we try to clone the repository using either the HTTPS/SSH clone URL in the terminal in the local system, using the <code>git clone git@github.com:Ch-sriram/demo.git</code> command, we will see that the repository is clones inside the local system, and when we type in <code>git branch -a</code> command in the terminal, we will see the following output:
+
+<pre>
+* <strong>develop</strong>
+  remotes/origin/develop
+  remotes/origin/master
+</pre>
+
+We can see that __master__ is not present in the local repository, it is only present in the remote repository, and so, we have to make a new __master__ branch inside the local repository using <code>git checkout master</code> as we've seen in __[section 10.10](https://github.com/Ch-sriram/Just-Git-In#1010-locally-switching-to-a-branch-on-github)__, where the remote __master__ is merged with the local __master__ branch (after a new local __master__ branch is created automatically). So now we've both __master__ and __develop__ branches in our local repository and remote repository, but the __develop__ branch is the default branch.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
