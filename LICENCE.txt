@@ -7,6 +7,5 @@ Editing the LICENCE on GitHub in update-licence branch.
 This some text in the local repo before rebase.
 This is some change in LICENCE.txt before rebase.
 
-
-
+This is an update from remote side in GitHub.
 This is an update in LICENCE.txt from the local repository using git bash.
