@@ -56,6 +56,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     11. [Cleaning Up By Deleting Branches and References](https://github.com/Ch-sriram/Just-Git-In#1011-cleaning-up-by-deleting-branches-and-references)
     12. [Pull with Rebase](https://github.com/Ch-sriram/Just-Git-In#1012-pull-with-rebase)
     13. [Changing Default Branch in GitHub](https://github.com/Ch-sriram/Just-Git-In#1013-changing-default-branch-in-github)
+    14. [Dealing with a Conflict while Pulling](https://github.com/Ch-sriram/Just-Git-In#1014-dealing-with-a-conflict-while-pulling)
 
 ## 1. What is Git?
 
@@ -1945,5 +1946,87 @@ We can see that __master__ is not present in the local repository, it is only pr
   remotes/origin/develop
   remotes/origin/master
 </pre>
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 10.14 Dealing with a Conflict while Pulling
+
+We will now look into resolving conflicts between our local repository and our remote repository hosted on GitHub. In the remote repository on GitHub, we are in our demo repository. While we are here, we are going to make a quick change that we know will lead to a conflict when pulling to the local repo. We will make a change in LICENCE.txt file and add some text at the end of the file, and then type in the Commit message, let's say "__LICENCE Update: Problematic changes from GitHub__", and then commit the changes directly to the __develop__ branch.
+
+Now, we will go to our local repo - in the terminal, we will switch over to the __develop__ branch using <code>git checkout develop</code> command and we shall see the following output:
+
+<pre>
+Switched to branch 'develop'
+Your branch is up-to-date with 'origin/develop'.
+</pre>
+
+Now that we are on the __develop__ branch, we can simply fetch the changes made in the remote repository using the <code>git fetch</code> command, and we shall see some house-keeping output after which, we would see the following output:
+
+<pre>
+From github.com:Ch-sriram/demo.git
+    b18gb1d..5bc44f7    develop     -> origin/develop
+</pre>
+
+Now that we've fetched the changes from the remote repo at GitHub, when we check the status of the local repo using <code>git status</code>, we will an output similar to the following:
+
+<pre>
+On branch develop
+Your branch is behind 'origin/develop' by 1 commit, and can be fast-forwarded
+    (use "git pull" to update your local branch)
+nothing to commit, working directory clean
+</pre>
+
+Now, we will update our LICENCE.txt file before we issue the pull request (so as to cause a merge conflict when we pull from the remote repo to the local repo). We will again, update our LICENCE.txt file in the local repo, and add some content at the end of the LICENCE.txt file. We will commit the changes using <code>git commit -am "LICENCE Update with malice on local side"</code>. Now when we check the status of our local repository, we shall the following output:
+
+<pre>
+On branch develop
+Your branch and 'origin/develop' have diverged, and have 1 and 1 different commit each, respectively.
+    (use "git pull" to merge the remote branch into yours)
+nothing to commit, working directory clean
+</pre>
+
+Now if we try to __pull (i.e., fetch + merge)__ the changes from the remote to the local side using <code>git pull</code>, we would get the following output:
+
+<pre>
+Auto-merging LICENCE.txt
+CONFLICT (content): Merge conflict in LICENCE.txt
+Automatic merge failed; fix conflicts and then commit the result.
+(develop|MERGING) demo $ 
+</pre>
+
+We can see that we're having a __Merge Conflict__ and we're in the __MERGING State__. Like before, as we tried to hande a Merge Conflict in __[section 7.5](https://github.com/Ch-sriram/Just-Git-In#75-conflict-resolution-while-merging)__, we can do the same here by either the merge conflict directly, or by using the mergetool. Since we have a mergetool configured as shown in __[section 5](https://github.com/Ch-sriram/Just-Git-In#5-git--github-installation)__, we can use the mergetool to resolve our merge conflict.
+
+In the __MERGING State__, we will type in <code>git mergetool</code>, and the Helix P4Merge tool will open, where we will resolve the conflict and then save the changes we made. After that, we will the changes in this state using <code>git commit -m "Resolving the merge conflict"</code> command in the terminal, and if everything went well, we should exit the MERGING State, back to the normal state. Now, when we check the status of our repository using <code>git status</code>, we will see that we have the following output:
+
+<pre>
+On branch develop
+Your branch is ahead of 'origin/develop' by 2 commits.
+    (use "git push" to publish your local commits )
+Untracked files:
+    (use "git add &lt;file>..." to include in what will be committed)
+
+        LICENCE.txt.orig
+
+nothing added to commit but untracked files present (use "git add" to track)
+</pre>
+
+We can remove the <span>.orig</span> file using <code>rm *.orig</code> command. Now, if check the status of our repository, we will see the following output in the terminal:
+
+<pre>
+On branch develop
+Your branch is ahead of 'origin/develop' by 2 commits.
+    (use "git push" to publish your local commits)
+nothing to commit, working directory clean
+</pre>
+
+We will now simply publish the changes into the remote repository hosted at GitHub by using the <code>git push</code> command, and we shall see some house-keeping output, after which, we will see the following output:
+
+<pre>
+To git@github.com/Ch-sriram/demo.git
+    6bc44f7..470c943    develop -> develop
+</pre>
+
+We can verify the publish on GitHub by checking out the LICENCE.txt file.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
