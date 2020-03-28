@@ -1995,7 +1995,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 (develop|MERGING) demo $ 
 </pre>
 
-We can see that we're having a __Merge Conflict__ and we're in the __MERGING State__. Like before, as we tried to hande a Merge Conflict in __[section 7.5](https://github.com/Ch-sriram/Just-Git-In#75-conflict-resolution-while-merging)__, we can do the same here by either the merge conflict directly, or by using the mergetool. Since we have a mergetool configured as shown in __[section 5](https://github.com/Ch-sriram/Just-Git-In#5-git--github-installation)__, we can use the mergetool to resolve our merge conflict.
+We can see that we're having a __Merge Conflict__ and we're in the __MERGING State__. Like before, as we tried to hande a Merge Conflict in __[section 7.5](https://github.com/Ch-sriram/Just-Git-In#75-conflict-resolution-while-merging)__, we can do the same here by either resolving the merge conflict directly, or by using the mergetool. Since we have a mergetool configured as shown in __[section 5](https://github.com/Ch-sriram/Just-Git-In#5-git--github-installation)__, we can use the mergetool to resolve our merge conflict.
 
 In the __MERGING State__, we will type in <code>git mergetool</code>, and the Helix P4Merge tool will open, where we will resolve the conflict and then save the changes we made. After that, we will the changes in this state using <code>git commit -m "Resolving the merge conflict"</code> command in the terminal, and if everything went well, we should exit the MERGING State, back to the normal state. Now, when we check the status of our repository using <code>git status</code>, we will see that we have the following output:
 
