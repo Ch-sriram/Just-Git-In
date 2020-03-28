@@ -1931,6 +1931,7 @@ Now when we get to the main page of our repository, we can see that the reposito
 
 <pre>
 * <strong>develop</strong>
+  remotes/origin/HEAD -> origin/develop
   remotes/origin/develop
   remotes/origin/master
 </pre>
@@ -1940,6 +1941,7 @@ We can see that __master__ is not present in the local repository, it is only pr
 <pre>
   develop
 * <strong>master</strong>
+  remotes/origin/HEAD -> origin/develop
   remotes/origin/develop
   remotes/origin/master
 </pre>
