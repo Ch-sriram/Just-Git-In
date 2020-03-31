@@ -57,6 +57,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     12. [Pull with Rebase](https://github.com/Ch-sriram/Just-Git-In#1012-pull-with-rebase)
     13. [Changing Default Branch in GitHub](https://github.com/Ch-sriram/Just-Git-In#1013-changing-default-branch-in-github)
     14. [Dealing with a Conflict while Pulling](https://github.com/Ch-sriram/Just-Git-In#1014-dealing-with-a-conflict-while-pulling)
+11. [GitHub Tags & Releases](https://github.com/Ch-sriram/Just-Git-In#11-github-tags-and-releases)
 
 ## 1. What is Git?
 
@@ -2030,3 +2031,13 @@ To git@github.com/Ch-sriram/demo.git
 We can verify the publish on GitHub by checking out the LICENCE.txt file.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+## 11 GitHub Tags & Releases
+
+__Tags__ are often a forgotten aspect of GitHub, but with our project hosted on GitHub, tags can play a larger role in the life of our project.
+
+Locally, we use tags to mark important events, while that remains the same on GitHub, it extends the tagging concepts with __Releases__, allowing us to attach _release notes_ and provide links to download archives of our project to the end-user(s)/other-programmer(s).
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
