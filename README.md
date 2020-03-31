@@ -60,6 +60,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
 11. [GitHub Tags & Releases](https://github.com/Ch-sriram/Just-Git-In#11-github-tags--releases)
     1. [Local Tags (Review)](https://github.com/Ch-sriram/Just-Git-In#111-local-tags-review)
     2. [Pushing Local Tags to GitHub](https://github.com/Ch-sriram/Just-Git-In#112-pushing-local-tags-to-github)
+    3. [Deleting Tags on GitHub](https://github.com/Ch-sriram/Just-Git-In#113-deleting-tags-on-github)
 
 ## 1. What is Git?
 
@@ -2211,3 +2212,58 @@ To git@github.com:Ch-sriram/demo.git
 We can see that git pushed rest of our tags from the local side on to the remote side on GitHub. We can verify that tag releases on GitHub under the __References__ tab of our remote repository.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 11.3 Deleting Tags on GitHub
+
+We are going to delete some tags both directly on GitHub (remote repository) and on the local system (local repository). In our demo GitHub remote repository, we will go to the __releases__ tab and we will be re-directed to _github.com/username/repo-name/tags_ page in Github. In there, we've two tabs which are __Releases__ and __Tags__. We click on the __Tags__ tab to see the tags we've created till now. We click on __v0.1-alpha__ tag and we get re-directed to the specific page related to v0.1-alpha tag where we have an option to delete the tag using the __Delete__ button. We will click that button and delete the tag. We will see that the deleted tag is no longer listed inside our __releases__ tab of the remote GitHub repository. However, the deleted tag still exists on our local side.
+
+In our local terminal, on the develop branch with a clean working directory, if we type in <code>git tag</code>, we should see a similar output as the following below:
+
+<pre>
+stable
+unstable
+v0.1-alpha
+v1.0
+</pre>
+
+We can see that the tag that we deleted on GitHub (which is __v0.1-alpha__) is still listed as a tag in our local repository. Before deleting the tag on our local repository, we will apply a __fetch__ command to sync our remote repository on GitHub with the local local repository. Therefore, we type in <code>git fetch -p</code> (where -p is a prune option) command for the reason mentioned earlier (syncing GitHub's remote repo with the local repo). We will now delete the __v0.1-alpha__ tag on our local system by typing in <code>git tag -d v0.1-alpha</code> command in our terminal and we'll see the following output:
+
+<pre>
+Deleted tag 'v0.1-alpha' (was d741b7e)
+</pre>
+
+Now if we type in <code>git tag</code> command in our terminal, we will see the following output:
+
+<pre>
+stable
+unstable
+v1.0
+</pre>
+
+We can notice that we are missing the tag that we deleted just now, from the list of tags on our local repository.
+
+__Now, this is how we delete tags starting on the remote side (on GitHub) and syncing the deletion on the local side (in the local repository).__
+
+<hr>
+
+__Now, we will delete the tag on the local system (local repository) and then sync the remote repository on GitHub by deleting the same tag on GitHub using the local side's git command(s).__
+
+This time, we'll delete the tag __v1.0__ from the local side, and then delete it on the remote side. If we open our repository's releases/tags on GitHub, we will see that we currently have 3 tags. Therefore, we will delete the tag using the command <code>git tag -d v1.0</code> where __-d__ option is the __--delete__ variant and __v1.0__ is the name of the tag. We will see the following output when we delete the tag:
+
+<pre>
+Deleted tag 'v1.0' (was 3c5ec7d)
+</pre>
+
+After that, we can delete the tag on the remote side by pushing to the remote using no tag name when we use the __push__ command with the remote reference. We will do that using <code>git push origin :v1.0</code> command (note that the command uses colon ':' before the tag-name) in our terminal and we shall see the following output:
+
+<pre>
+To git@github.com/Ch-sriram/demo.git
+ - [deleted]      v1.0
+</pre>
+
+We can verify if the push was successful by going to the tags page of the demo's remote repository on GitHub. We will see that tag __v1.0__ is not listed in the __references__ tab of our remote repository.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
