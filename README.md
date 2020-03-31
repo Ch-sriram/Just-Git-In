@@ -58,6 +58,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     13. [Changing Default Branch in GitHub](https://github.com/Ch-sriram/Just-Git-In#1013-changing-default-branch-in-github)
     14. [Dealing with a Conflict while Pulling](https://github.com/Ch-sriram/Just-Git-In#1014-dealing-with-a-conflict-while-pulling)
 11. [GitHub Tags & Releases](https://github.com/Ch-sriram/Just-Git-In#11-github-tags--releases)
+    1. [Local Tags (Review)](https://github.com/Ch-sriram/Just-Git-In#111-local-tags-review)
 
 ## 1. What is Git?
 
