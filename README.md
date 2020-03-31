@@ -2041,3 +2041,135 @@ Locally, we use tags to mark important events, while that remains the same on Gi
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
+
+### 11.1 Local Tags (Review)
+
+Now, most of the information about local tags is given in __[section 7.6](https://github.com/Ch-sriram/Just-Git-In#76-marking-special-events-w-tagging)__, apart from that, we have additional things we can do with tags in GitHub.
+
+To list all the tags associated with our local repository, we can use the command <code>git tag --list</code> or else, we can just type in <code>git tag</code>, which will also give us a list of tags in our repository.
+
+We can associate a lightweight tag to a specific commit-ID using the command <code>git tag tag-name commit-ID</code> (ex: <code>git tag v0.1-alpha a3c4edv</code>, where _tag-name_ is __v0.1-aplha__ and the _commit-ID_ is a3c4edv) where _tag-name_ is any name that can be given to the tag and the _commit-ID_ is the SHA-1 hash ID given to the tag and till that commit point (snapshot), the tag associated, will act as a release on GitHub. Instead of the commit-ID being an actual ID, we can also give a reference as the commit-ID, i.e., for example, we can type in the command <code>git tag v2.0 HEAD</code> in the terminal, and the tag __v2.0__ will be associated with the latest commit point (__NOTE: if we use the name of a branch as a commit-ID say <code>git tag v2.0 master</code>, then the tag will be associated to the latest commit of the respective branch__).
+
+We can do the same with annotated tags also, the only difference is, for annotated tags, we use the following syntax for the command - <code>git tag -a tag-name -m "tag-information" commit-ID</code> where __-a__ stands for __annotated__, _tag-information_ can be though of as release notes for the tag associated to the specific _commit-ID_. Example: <code>git tag -a v0.2-alpha -m "Release v0.2 (Aplha)" a3c4edv</code>.
+
+We can create a simple/lightweight tag for the __master__ branch of our demo repository by typing in <code>git tag stable master</code> in our terminal, and then we can create a simple tag for the __develop__ branch of our demo repository by typing in <code>git tag unstable develop</code> in our terminal. 
+
+We can also create a release/annotated tag for a specific commit ID in our demo repository by typing in <code>git tag -a v0.1-alpha -m "Release v0.1 (Alpha)" d741b7e</code> in our terminal.
+
+When we type in <code>git tag</code> command in our terminal, we should see the following output:
+
+<pre>
+stable
+unstable
+v0.1-alpha
+v1.0
+</pre>
+
+Note that tag v1.0 was created in __[section 7.6](https://github.com/Ch-sriram/Just-Git-In#76-marking-special-events-w-tagging)__. We can see that all our created tags are listed in the output above.
+
+To check which tag is associated with what commit, we simply type in our alias created in __[section 6.9](https://github.com/Ch-sriram/Just-Git-In#69-creating-new-commands---git-alias)__ which is <code>git hist</code> command, in our terminal and we shall an output similar to the following log:
+
+<pre>
+* a70158c (HEAD -> develop, tag: unstable, origin/develop, origin/HEAD) README Link Update: Section 11
+* 63eca36 README Update: Section 11 - GitHub Tags & Releases
+*   1e98ed8 Resolved the merge conflict in LICENCE
+|\
+| * 4b15d00 LICENCE update in remote on GitHub
+* | 46b999e LICENCE Update with malice on local side
+|/
+* bd43565 README Update: Section 10.14 Minor Edits
+* 117c07e README Update: 10.14 Dealing with a Conflict while Pulling
+* 14b6ce1 README Update: Section 10.13 Edited
+* cf01906 (tag: stable, origin/master, master) README: Section 10.13 edited
+* 96781e9 README: Section 10.13 updated w. more content
+* 9445fa7 README Update: 10.13 Changing Default Branch in GitHub
+.
+.
+.
+.
+* 3c5ec7d (tag: v1.0) Updating .gitignore to exclude .orig files
+*   afb7058 Resolving Conflict in LICENCE.md
+|\
+| * 7c48e4c very bad update in LICENCE.md
+* | cb652a3 LICENCE.md Update (Merge Conflict Possible)
+|/
+* 85a1d27 README Update
+* 593fe03 Adding new updates from master branch to 'updates' branch
+* 6b79701 README Update
+* 20c7c63 Adding .gitignore file
+* eb94f26 Adding .gitignore file
+* 801a434 README Update
+* cd82d85 README Updated
+* 1f28d75 deleted demo.txt file
+* 64f7486 renamed example.txt to demo.txt
+* 53f8779 adding example.txt
+* d741b7e (tag: v0.1-alpha) README Update
+* 6bf863a README Update
+* 634793a README Update
+* 8af524a README & LICENCE Update
+* 231b4cd README Update
+</pre>
+
+To show information about a specific tag, we can simply type in <code>git show tag-name</code> command in our terminal. For instance, if we type in <code>git show v0.1-aplha</code>, we would get an output similar to the following:
+
+<pre>
+tag v0.1-alpha
+Tagger: Chandrabhatta Sriram &lt;sriram@example.com>
+Date:   Tue Mar 31 15:00:20 2020 +0530
+
+Release v0.1 (Alpha)
+
+commit d741b7eb68a7b30d4fc11f55a0ad5ca5e919ad83 (tag: v0.1-alpha)
+Author: Chandrabhatta Sriram &lt;sriram@example.com>
+Date:   Mon Mar 2 13:26:27 2020 +0530
+
+    README Update
+
+diff --git a/README.md b/README.md
+index 5e4a1a0..54aaecd 100644
+--- a/README.md
++++ b/README.md
+@@ -5,6 +5,7 @@ Resources
+ 1. [Official Git Documentation](https://git-scm.com/docs)
+ 2. [Jason Taylor's Online Git & GitHub Course](https://www.udemy.com/course/github-ultimate/)
+
++
+ ## Table Of Contents
+ 1. [What is Git?]()
+ 2. [What is a Repository?]()
+@@ -19,6 +20,9 @@ Resources
+    5. [Initializing a Git Repository w. Existing Files/Project]()
+    6. [Commit History w. Log and Show]()
+    7. [Express Commits]()
++   8. [Rolling Back Changes]()
++
++
+
+
+ ## 1. What is Git?
+@@ -174,4 +178,20 @@ We can get rid of the newly created file using &lt;code>rm &lt;new-file-name>&lt;/code>
+
+ When we say we are adding the modified files into the git's staging area, we are basically adding the modifications to the git repository, not the entire modified file.
+
+-Now when we type in &lt;code>git log&lt;/code> into the git bash, we can see all the commits we made till now and also the most recent commit that we made earlier at the top of the logs.
+\ No newline at end of file
++Now when we type in &lt;code>git log&lt;/code> into the git bash, we can see all the commits we made till now and also the most recent commit that we made earlier at the top of the logs.
++
++
++### 6.8 Rolling Back Changes
++Here, we will back out the changes we made previously by unstaging our changes from the git staging area and then finally we will revert our changes entirely.
++
++In our "demo" git repository, when we git bash the command &lt;code>git status&lt;/code>, we can see that there will be nothing to commit and we will see the following message: &lt;em>nothing to commit, working directory clean&lt;/em>.
++
++Now, we will modify the README.md file again and we will put some random text inside it. We save and close the README and then we again type in &lt;code>git status&lt;/code> command inside the git bash. We can see that we will have the message - &lt;strong>modified: README.md&lt;/strong> and then we can add the changes into the repository using &lt;code>git add .&lt;/code> command in our git bash. When we type in &lt;code>git status&lt;/code> again, we can see that we see the message - &lt;strong>Changes to be committed: modified: README.md&lt;/strong> in the git bash.
++
++Now, to unstage the changes, or undo the commit, we can type in the command &lt;code>git reset HEAD README.md&lt;/code> where README.md is the file to be unstaged from the user's repository. When we open up our README.md file, the changes that we made, will still be there, but the changes that we made have simply been unstaged, that means, when we type in the command &lt;code>git status&lt;/code>, we can see that the message we get is - &lt;strong>Changes not staged for commit: modified: README.md&lt;/strong> in the git bash.
++
++Now, if we don't want the changes that we made and to discard the changes made to the repository, we can simply revert back to the last known good state (or commit) of the respective file (here, it is README.md) whose details are available inside the .git folder, we simply type in &lt;code>git checkout -- &lt;file-name>&lt;/code> (ex: &lt;code>git checkout -- README.md&lt;/code>). Now, we can check the status of the repository with &lt;code>git status&lt;/code> command, which will respond with the message - &lt;em>nothing to commit, working directory clean&lt;/em> in the master branch of our "demo" repository. Now if we open README.md, we can see that the changes we made are also gone.
++
++
++### 6.9 Creating New Commands - Git Alias
++We will create a git alias to shorten a command into a smaller command. In our "demo" repository, in the master branch, when we type in &lt;code>git status&lt;/code>, we can see that we have &lt;em>nothing to commit, working directory clean&lt;/em> as the message.
+\ No newline at end of file
+(END)
+</pre>
