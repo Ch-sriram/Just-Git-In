@@ -59,6 +59,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     14. [Dealing with a Conflict while Pulling](https://github.com/Ch-sriram/Just-Git-In#1014-dealing-with-a-conflict-while-pulling)
 11. [GitHub Tags & Releases](https://github.com/Ch-sriram/Just-Git-In#11-github-tags--releases)
     1. [Local Tags (Review)](https://github.com/Ch-sriram/Just-Git-In#111-local-tags-review)
+    2. [Pushing Local Tags to GitHub](https://github.com/Ch-sriram/Just-Git-In#112-pushing-local-tags-to-github)
 
 ## 1. What is Git?
 
@@ -2174,3 +2175,39 @@ index 5e4a1a0..54aaecd 100644
 \ No newline at end of file
 (END)
 </pre>
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 11.2 Pushing Local Tags to GitHub
+
+We created 3 tags in [section 11.1](https://github.com/Ch-sriram/Just-Git-In#111-local-tags-review) and when we simply apply a push from the local repository using <code>git push</code> command in our terminal, we can see that in our remote repository hosted on GitHub, we don't have any new releases on either the __develop__ branch or the __master__ branch when we check the __Releases__ tab.
+
+_Note: In GitHub, Releases and Tags are almost synonymous to each other, although there's a minor distinction between the two, which we will get into later._
+
+Before moving forward, we'll merge in the changes that were made in our remote repository, into our local repository using <code>git pull</code> command. After that, if we type in <code>git push</code>, we shall get the following output:
+
+<pre>
+Everything up-to-date
+</pre>
+
+which means that there's nothing to push. Now, we can see that, by default, tag are not sent to GitHub using the standard git's __push__ command. Now, to actually push the tags to the remote repository hosted on GitHub, we type in the __push__ command with the following syntax -  <code>git push remote-reference tag-name</code>. For instance, if we want to push the _stable_ tag (which is the name of the tag associated to the __master__ branch) to remote, we type in <code>git push origin stable</code>, and we shall see the following output:
+
+<pre>
+To git@github.com:Ch-sriram/demo.git
+ * [new tag]      stable -> stable
+</pre>
+
+We can see that git has given a response saying that it has pushed a new tag _stable_ (of the local repository) to a newly created tag _stable_ (in the remote repository). We can verify this on GitHub (remote side), and we will see a new tag named __stable__ along with its associated commit-ID in the __References__ tab of our demo remote repository. We also have the options for downloading the source code associated with that tag on GitHub in <code>.zip</code> or <code>.tar.gz</code> formats.
+
+From our terminal in the local side, we just sent one specific tag to our remote side, we could keep on just sending all our tags individually, one-by-one, however we have several tags, and we want to publish all of them to the remote repository on GitHub. To push all our tags in the local side onto the remote side, we use git's __push__ command along with the __--tags__ option, i.e., we type in <code>git push --tags</code> command in our terminal, and we shall see the following output:
+
+<pre>
+To git@github.com:Ch-sriram/demo.git
+ * [new tag]      unstable -> unstable
+ * [new tag]      v0.1-alpha -> v0.1-alpha
+</pre>
+
+We can see that git pushed rest of our tags from the local side on to the remote side on GitHub. We can verify that tag releases on GitHub under the __References__ tab of our remote repository.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
