@@ -62,6 +62,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     2. [Pushing Local Tags to GitHub](https://github.com/Ch-sriram/Just-Git-In#112-pushing-local-tags-to-github)
     3. [Deleting Tags on GitHub](https://github.com/Ch-sriram/Just-Git-In#113-deleting-tags-on-github)
     4. [Updating Tags Creating a Floating Tag](https://github.com/Ch-sriram/Just-Git-In#114-updating-tags-creating-a-floating-tag)
+    5. [Starting a Release on GitHub](https://github.com/Ch-sriram/Just-Git-In#115-starting-a-release-on-github)
 
 ## 1. What is Git?
 
@@ -2301,7 +2302,7 @@ We can see that the tag __unstable__ is associated to the commit with the ID of 
 Updated tag 'unstable' (was a70158c)
 </pre>
 
-We can see that git gives us the information about the updated tag's name and along with the information about which commit ID it was previously associated with. Now, if we type in our alias which is <code>git hist</code>, we shall see the following output in our terminal:
+We can see that git gives us the information about the updated tag's name and along with that, we get the information about which commit ID it was previously associated with. Now, if we type in our alias which is <code>git hist</code>, we shall see the following output in our terminal:
 
 <pre>
 * eg64f8b (<strong>HEAD -> develop, tag: unstable, origin/develop, origin/HEAD</strong>) LICENCE Update: Adding the Purpose Section
@@ -2341,5 +2342,22 @@ To git@github.com/Ch-sriram/demo.git
 </pre>
 
 We can see the git lets us know that the push was a forced update. In general, we have to be careful with the __--force__ option because we can cause a lot of grief (to fellow developers), since git repositories are distributed. We can verify the update back in the remote side on GitHub's __tags/references__ tab.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 11.5 Starting a Release on GitHub
+
+We will know the differences between __tags__ and __releases__ in this section. We will also create a new release on GitHub.
+
+We are currently on the demo remote github repository in the __releases__ (tags) tab, and by default, out of the two sub-tabs which are __References__ and __Tags__ tabs, GitHub's website routes/lands us on the __Releases__ sub-tab. When we go over to the __Tags__ sub-tab, we will notice almost no difference between the previous sub-tab (which was __Releases__ sub-tab) and the current sub-tab. The only difference we'd notice is that, in the __Tags__ sub-tab, we have the option to __Add release notes__ and this is the only vital difference between __releases__ and __tags__. 
+
+In the __Tags__ sub-tab, we will click on __v0.9-beta__ tag's __Add release notes__ hyperlink which re-routes us back onto the __Releases__ sub-tab where we can add the release notes in a mark-down format (along with a __Release title__). In the mark-down, we can also reference the specific issues using the pound symbol (__#__)[i.e., Pull Request #2]. 
+
+After writing down our release notes, we can scroll down, and see that there's a checkbox available for making this particular release a pre-release by checking the __This is a pre-release__ checkbox. We can either check that checkbox or we can leave it depending on whether the release is actually a pre-release or not and then click __Publish release__ button to puclish the release in our repository.
+
+We can verify our release in the __Releases__ sub-tab in the __releases__ tab of our demo github repository and we will see that the release is mentioned as __Pre-release__ along with the release notes in the markdown format.
+
+Now, if we compare the differences between __tags__ and __releases__, we can see that the tags page is just a simply list of tags, and the releases page is the tag, along with a whole lot of information that is associated to the tag, where the release also have assets for production ready use.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
