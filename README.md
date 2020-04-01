@@ -61,6 +61,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     1. [Local Tags (Review)](https://github.com/Ch-sriram/Just-Git-In#111-local-tags-review)
     2. [Pushing Local Tags to GitHub](https://github.com/Ch-sriram/Just-Git-In#112-pushing-local-tags-to-github)
     3. [Deleting Tags on GitHub](https://github.com/Ch-sriram/Just-Git-In#113-deleting-tags-on-github)
+    4. [Updating Tags Creating a Floating Tag](https://github.com/Ch-sriram/Just-Git-In#114-updating-tags-creating-a-floating-tag)
 
 ## 1. What is Git?
 
@@ -2267,3 +2268,78 @@ We can verify if the push was successful by going to the tags page of the demo's
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
 
 
+### 11.4 Updating Tags Creating a Floating Tag
+
+We are going to update our existing tags in the local environment, to point to a new commit. Then, we will update the same in our remote repository on GitHub to reflect that.
+
+Before beginning, we will make a new annotated tag by following the steps in __[section 11.1](https://github.com/Ch-sriram/Just-Git-In#111-local-tags-review)__ and let's say we create the annotated tag __v0.9-beta__. We're in the demo remote GitHub repository in the __tags/releases__ page, where we should see 3 tags listed (which are __v0.9-beta__, __unstable__ & __stable__).
+
+Heading over to our local environment, we'll edit our dummy LICENCE.txt file (meaning that, we'll add some text to the file, not remove the existing text) on the __develop__ branch. We'll commit those changes and then publish (push) them on to the remote repository on GitHub.
+
+When we check our log using the alias we created in [section 6.9](https://github.com/Ch-sriram/Just-Git-In#69-creating-new-commands---git-alias) which is <code>git hist</code>, we should see some output similar to the following:
+
+<pre>
+* eg64f8b (<strong>HEAD -> develop, origin/develop, origin/HEAD</strong>) LICENCE Update: Adding the Purpose Section
+* df53e7a README Update: Section 11.3 - Deleting Tags on GitHub
+* 4c92f48 README Update: Section - 11.2 Pushing Local Tags to GitHub
+* 93e8951 README Link Update: Section 11.1
+* 157ff7c README Update: Section 11.1 - Local Tags (Review)
+* a70158c (<strong>tag: unstable</strong>) README Link Update: Section 11
+* 63eca36 README Update: Section 11 - GitHub Tags & Releases
+*   1e98ed8 Resolved the merge conflict in LICENCE
+|\
+| * 4b15d00 LICENCE update in remote on GitHub
+* | 46b999e LICENCE Update with malice on local side
+|/
+* bd43565 README Update: Section 10.14 Minor Edits
+:
+</pre>
+
+We can see that the tag __unstable__ is associated to the commit with the ID of a70158c. We will update our tag to point to the latest commit (the commit ID which is pointed by HEAD). In order update an existing tag (associated to some commit ID) to now associate with a new commit ID, we use the __--force__ option (abbreviation: __-f__) in the git's __tag__ command, i.e., we type in <code>git tag -f unstable HEAD</code> command (__unstable__ is the _tag-name_ and __HEAD__ is the _optional reference to the commit ID_. The commit ID is optional as if we don't mention the commit ID, whatever commit ID is being pointed by the HEAD pointer of the current branch will be the commit ID that will be associated with the newly created tag by default) in our terminal, and we should see the following output:
+
+<pre>
+Updated tag 'unstable' (was a70158c)
+</pre>
+
+We can see that git gives us the information about the updated tag's name and along with the information about which commit ID it was previously associated with. Now, if we type in our alias which is <code>git hist</code>, we shall see the following output in our terminal:
+
+<pre>
+* eg64f8b (<strong>HEAD -> develop, tag: unstable, origin/develop, origin/HEAD</strong>) LICENCE Update: Adding the Purpose Section
+* df53e7a README Update: Section 11.3 - Deleting Tags on GitHub
+* 4c92f48 README Update: Section - 11.2 Pushing Local Tags to GitHub
+* 93e8951 README Link Update: Section 11.1
+* 157ff7c README Update: Section 11.1 - Local Tags (Review)
+* a70158c README Link Update: Section 11
+* 63eca36 README Update: Section 11 - GitHub Tags & Releases
+*   1e98ed8 Resolved the merge conflict in LICENCE
+|\
+| * 4b15d00 LICENCE update in remote on GitHub
+* | 46b999e LICENCE Update with malice on local side
+|/
+* bd43565 README Update: Section 10.14 Minor Edits
+:
+</pre>
+
+We can see that the tag __unstable__ in the __develop__ branch has moved up to the latest commit. Before we check out GitHub, let's push our commits that we have made till now, onto GitHub by typing in <code>git push</code>, then before pushing the tag, we type in <code>git pull</code> (to sync the local repo with the remote repo), and finally, we type in <code>git push origin develop</code> in our terminal.
+
+We will open our remote repository on GitHub and see that all our commits we made were pushed onto the remote side, but the in the __references__ tab, the tag __unstable__ hasn't changed at all, i.e., __unstable__ tag is still pointing to the older commit ID which means that we didn't push our tag changes made in the local side, onto the remote side on GitHub. Therefore, let's push our tag change(s) using <code>git push origin unstable</code> command in our terminal and we shall see the following output:
+
+<pre>
+To git@github.com/Ch-sriram/demo.git
+ ! [rejected]     unstable -> unstable (already exists)
+error: failed to push some refs to 'git@github.com/Ch-sriram/demo.git'
+hint: Updates were rejected because the tag already exists in the remote.
+</pre>
+
+We can see that the tag push (update) gets rejected as mentioned in the reason given in the output aforementioned. Therefore, we can delete that existing tag (which is __unstable__ tag) on the remote side at GitHub using the instructions given in __[section 11.3](https://github.com/Ch-sriram/Just-Git-In#113-deleting-tags-on-github)__ and then push the updated __unstable__ tag using the same command as given above (which is <code>git push origin unstable</code>) and that would work. 
+
+There's another way to make it work which is by using the __--force__ (or __-f__) option, i.e., using the command <code>git push --force origin unstable</code> in our local terminal and it would push the tag changes in __unstable__ to the remote on GitHub forcefully and we shall see an output of the following sort:
+
+<pre>
+To git@github.com/Ch-sriram/demo.git
+ + a70158c...eg64f8b unstable -> unstable (forced update)
+</pre>
+
+We can see the git lets us know that the push was a forced update. In general, we have to be careful with the __--force__ option because we can cause a lot of grief (to fellow developers), since git repositories are distributed. We can verify the update back in the remote side on GitHub's __tags/references__ tab.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
