@@ -2375,3 +2375,66 @@ One thing to keep in mind is that, if we delete a release, it doesn't mean that 
 In order to fully get rif of both the release and the tag associated with it, in the tag page, we click on the __v0.9-beta__ tag, and then we click on the __Delete__ button, which will delete the tag. When we refresh our tags/releases page, we will see that we do NOT see the __v0.9-beta__ tag and also the release associated to it.
 
 [Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
+### 11.7 Creating a Completely New Release on GitHub
+
+In this section, we'll know how to create a new release and tag directly in the remote repository hosted on GitHub.
+
+In our demo GitHub remote repository, within the releases page, in order to create a new release (along with the tag), we click on the __Draft a new release__ button. We will be re-directed towards the release notes form where we have some extra options now. We can create a new tag by giving it a __Tag version__ (let's say we used the tag version as __v1.0__) in a particular __branch which has already been created__, or __in a new branch__, or __we can associate the release with a specific commit also__ (let's say we associated the tag with the __master__ branch), and then as usual, give the Release a __Release title__ (let's say the title for our release is __Release 1.0__)and then we can __Describe the release__ (which are the release notes). After which, we can check whether the release is a pre-release or a full release by checking or unchecking the __This is a pre-release__ checkbox. After that, we can simply click on the __Publish release__ button to publish the release on GitHub.
+
+We can verify that the release, along with the tag in the releases page of our remote github repository was successfull or not.
+
+Going back to our local environment, in the __master__ branch with the working directory clean (if we aren't on the __master__ branch, then we use the <code>git checkout master</code> command to checkout to the __master__ branch), we can check the tags we have using the <code>git tag</code> command in our terminal and we shall see the following output:
+
+<pre>
+stable
+unstable
+v0.9-beta
+</pre>
+
+We can see that the tag __v0.9-beta__ that we deleted in __[section 11.6](https://github.com/Ch-sriram/Just-Git-In#116-deleting-a-release-on-github)__ is still available in our local repository as we never synced our remote repository changes to our local repository. In this case, we'd leave the local repository as it is with its tags as they're. Now, in order to get all the updates from the remote repository on GitHub, type in <code>git pull</code> command in the terminal, and we shall see the following output:
+
+<pre>
+From github.com:Ch-sriram/demo.git
+ * [new tag]      v1.0 -> v1.0
+Already up-to-date
+</pre>
+
+Now, if we check the list of tags using <code>git tag</code> command, we'll see the __v1.0__ tag listed in our list of tags, as shown below:
+
+<pre>
+stable
+unstable
+v0.9-beta
+v1.0
+</pre>
+
+We can inspect our tag locally using <code>git show v1.0</code> command, and we shall see the following output:
+
+<pre>
+commit cf01906ac509b965e762b36d1b04b4be46300018 (<strong>HEAD -> master, tag: v1.0, tag: stable, origin/master</strong>)
+Author: Chandrabhatta Sriram <sriram@example.com>
+Date:   Sat Mar 28 15:30:52 2020 +0530
+
+    README: Section 10.13 edited
+
+diff --git a/README.md b/README.md
+index 14ff086..3a5d398 100644
+--- a/README.md
++++ b/README.md
+@@ -1925,7 +1925,7 @@ To git@github.com:Ch-sriram/demo.git
+
+ In the demo remote repository on GitHub, on the master branch. In a lot of workflows, the __master__ branch represents whatever is currently in production. Active development should not happen directly on the __master__ branch. Instead, there should be another branch which is also long-lived where all the development effort goes, and then periodically, those changes are merged back into the __master__ branch for production.
+
+-So from now on, we will make a branch called __develop__ which will be the __default__ branch of our repository. To do that, we will create a new branch in GitHub using the instructions present __[here in 10.6](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)__. After that, we navigate to the __Repository Settings__ in GitHub's webpage and then goto the __Options__ tab, where we will see the __Default branch__ option, where we change the repository to __develop__ branch and then press the __Update__ button to make sure that the changes stick to the repository. We've successfully updated the default branch for the repository.
++So from now on, we will make a branch called __develop__ which will be the __default__ branch of our repository. To do that, we will create a new branch in GitHub using the instructions present __[here in 10.6](https://github.com/Ch-sriram/Just-Git-In#106-creating-branches-on-github)__. After that, we navigate to the __Repository Settings__ in GitHub's webpage and then goto the __Branches__ tab under Options, where we will see the __Default branch__ settings through which we change the repository to __develop__ branch and then press the __Update__ button to make sure that the changes stick to the repository. We've successfully updated the default branch for the repository.
+
+ Now when we get to the main page of our repository, we can see that the repository's default branch is now the __develop__ branch. Now, whenever we try to make a __Pull Request__, we will see that the base destination of the pull request is now the __develop__ branch (and not the __master__ branch). Another thing is, whenever we try to clone the repository using either the HTTPS/SSH clone URL in the terminal in the local system, using the <code>git clone git@github.com:Ch-sriram/demo.git</code> command, we will see that the repository is cloned inside the local system, and when we type in <code>git branch -a</code> command in the terminal, we will see the following output:
+</pre>
+
+By inspecting about the tag details, we can see that we do NOT have any annotations of the tag listed in the tag's information. Therefore, when we create a tag on GitHub (remote side) using the GitHub interface, GitHub internally creates a lightweight/simple tag.
+
+[Goto: Table Of Contents](https://github.com/Ch-sriram/Just-Git-In#table-of-contents)
+
+
