@@ -64,6 +64,7 @@ Learn about Git and GitHub step-by-step, with well explained concepts in theory 
     4. [Updating Tags Creating a Floating Tag](https://github.com/Ch-sriram/Just-Git-In#114-updating-tags-creating-a-floating-tag)
     5. [Starting a Release on GitHub](https://github.com/Ch-sriram/Just-Git-In#115-starting-a-release-on-github)
     6. [Deleting a Release on GitHub](https://github.com/Ch-sriram/Just-Git-In#116-deleting-a-release-on-github)
+    7. [Creating a Completely New Release on GitHub](https://github.com/Ch-sriram/Just-Git-In#117-creating-a-completely-new-release-on-github)
 
 ## 1. What is Git?
 
