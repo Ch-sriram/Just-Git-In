@@ -1,6 +1,6 @@
 # Just Git In
 
-Learn about Git and GitHub step-by-step, with well explained concepts in theory and practice.
+Proof of Concept: Implementation of beginner to advanced concepts of git and GitHub.
 
 ## Resources
 
