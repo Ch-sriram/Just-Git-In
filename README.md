@@ -171,7 +171,7 @@ There are 3 local states related to files being managed by git. These three stat
 
 The Working Directory contains our application's files and folders, and therefore, git is aware of these files as a logical state known as "Working Directory".
 
-On the other hand, we've the .git folder, where all teh commit history is saved and thereby git knows at as the final state (in local machine) which is the "Repository" state. .git folder contains all the committed and saved changes of the repository. Anything in .git folder is a part of git's history.
+On the other hand, we've the .git folder, where all the commit history is saved and thereby git knows it as the final state (in local machine) which is the "Repository" state. .git folder contains all the committed and saved changes of the repository. Anything in .git folder is a part of git's history.
 
 In between is the git's Staging Area. This state is used to prepare for the next commit. Files are moved from the modified "Working Directory" state, to the Git "Staging Area" and then finally committed into the Git "Repository". These aforementioned 3 states of git are specific to the local git repository.
 
